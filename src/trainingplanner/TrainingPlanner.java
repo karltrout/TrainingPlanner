@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import trainingplanner.org.extensions.AthleteExt;
 import trainingplanner.org.extensions.TrainingPlanExt;
 
@@ -23,7 +24,8 @@ public class TrainingPlanner extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("TrainingPlannerWindow.fxml"));
         Scene scene = new Scene(root);
-        
+        stage.setFullScreen(true);
+        stage.initStyle(StageStyle.UTILITY);
         stage.setScene(scene);
         stage.show();
     }

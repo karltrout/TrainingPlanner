@@ -1,0 +1,28 @@
+/* 
+    Document   : trainingPlanner
+    Created on : Aug 22, 2012, 2:31:11 PM
+    Author     : troutk
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.bigGreyBlueText {
+    -fx-font:24pt "Tw Cen MT Condensed Extra Bold";
+    -fx-text-fill: #cbcffe;
+    -fx-font-weight:bolder;
+    color:#cbcffe
+}
+
+.labelText {
+    -fx-font-weight:bold;
+}
+
+#dashBoardPane{
+    -fx-background-color: #fbfbfe;
+    color: #fbfbfe
+}
+
