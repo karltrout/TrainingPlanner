@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 sp1 (x64) (http://www.altova.com) by Karl Trout (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="TrainingPlan">
+		<xs:annotation>
+			<xs:documentation>the Root Element for a training plan object </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Athlete" type="Athlete"/>
+				<xs:element name="PhaseStrategy" type="IPhaseStrategyType"/>
+				<xs:element name="TrainingCalendar" type="ICalendarType"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Athlete">
+		<xs:annotation>
+			<xs:documentation>The Athlete details. holds basic athlete information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="firstName" type="xs:string" nillable="false"/>
+			<xs:element name="lastName" type="xs:string" nillable="false"/>
+			<xs:element name="dateOfBirth" type="xs:date" nillable="false"/>
+			<xs:element name="age" type="xs:int" nillable="false"/>
+			<xs:element name="weight" type="xs:int" nillable="false"/>
+			<xs:element name="keyPerformanceIndicators">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="KPI" type="IKPIType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID"/>
+	</xs:complexType>
+	<xs:complexType name="MonthType">
+		<xs:annotation>
+			<xs:documentation>Month details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="monthName">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:gMonth">
+							<xs:attribute name="monthId" type="xs:gMonth"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="year" type="xs:gYear"/>
+			<xs:group ref="weeks"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="trainingPlanId" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="WeekType">
+		<xs:annotation>
+			<xs:documentation>Week details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="trainingPlanWeek" type="xs:int"/>
+			<xs:element name="trainingType"/>
+			<xs:group ref="days"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="parentId" type="xs:string"/>
+		<xs:attribute name="weekNumber"/>
+	</xs:complexType>
+	<xs:complexType name="DayType">
+		<xs:annotation>
+			<xs:documentation>Day Details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="date" type="xs:date" nillable="false"/>
+			<xs:element name="details" type="dayDetails"/>
+			<xs:group ref="workouts"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="parentId" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="IWorkoutType">
+		<xs:annotation>
+			<xs:documentation>Workout Type is an iterface for different workouts. the sportsType, intensity and duration is required.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="intensity" type="xs:double"/>
+			<xs:element name="duration" type="xs:duration"/>
+			<xs:element name="description" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="parentId" type="xs:string"/>
+		<xs:attribute name="sportType" type="sportTypes" use="optional" default="Other"/>
+	</xs:complexType>
+	<xs:complexType name="IPhaseStrategyType">
+		<xs:annotation>
+			<xs:documentation>Phase Strategy. this can be extended to be any type of phase with multiple subphases if nessissary. Itenesity and duration is required</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="phaseStrategyName" type="xs:string"/>
+			<xs:element name="phaseStrategyDescription" type="xs:string" nillable="false"/>
+			<xs:element name="IntensityFactor" type="xs:double"/>
+			<xs:element name="startDate" type="xs:date"/>
+			<xs:element name="endDate" type="xs:date"/>
+			<xs:element name="duration" type="xs:duration"/>
+			<xs:group ref="phases"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="parentId" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="PhaseType">
+		<xs:sequence>
+			<xs:element name="startDate" type="xs:date"/>
+			<xs:element name="endDate" type="xs:date"/>
+			<xs:element name="phaseName" type="xs:string" nillable="false"/>
+			<xs:element name="description" type="xs:string"/>
+			<xs:element name="intensity" type="xs:double"/>
+			<xs:element name="duration" type="xs:duration"/>
+			<xs:group ref="phases" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="workouts"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="parentId" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ICalendarType">
+		<xs:annotation>
+			<xs:documentation>Represents the trainingCalendar can be arbitrrily long. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="numberOfMonths" type="xs:int"/>
+			<xs:element name="numberOfWeeks" type="xs:int"/>
+			<xs:element name="numberOfDays" type="xs:int"/>
+			<xs:element name="startDate" type="xs:date"/>
+			<xs:element name="endDate" type="xs:date"/>
+			<xs:group ref="months"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID"/>
+		<xs:attribute name="parentId" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="IKPIType">
+		<xs:annotation>
+			<xs:documentation>hold the list of test values for a particular sportsType. contains measurement types and values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SportsType" type="sportTypes" default="Other"/>
+			<xs:element name="startValue" type="KpiValueType"/>
+			<xs:element name="goalValue" type="KpiValueType"/>
+			<xs:element name="currentValue" type="KpiValueType"/>
+			<xs:element name="Measurement">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="measureType" type="measureTypes" use="optional" default="pace"/>
+							<xs:attribute name="distanceMeasure" type="distanceMeasures" use="optional" default="meter"/>
+							<xs:attribute name="timeMeasure" type="timeMeasures" default="second"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="kpiRecords">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="kpiRecord" type="KpiValueType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="parentId"/>
+		<xs:attribute name="id" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="dayDetails">
+		<xs:annotation>
+			<xs:documentation>extensible day details which should be measureable and trackable.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="wakeupTime" type="xs:time"/>
+			<xs:element name="sleepQuality" type="xs:int" default="0"/>
+			<xs:element name="energyLevel" type="xs:int" default="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KpiValueType">
+		<xs:annotation>
+			<xs:documentation>measurable value Recorded in meters per second.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="valueDate" type="xs:dateTime"/>
+		<xs:attribute name="workoutId" type="xs:string"/>
+		<xs:attribute name="value" type="xs:decimal"/>
+	</xs:complexType>
+	<xs:group name="weeks">
+		<xs:sequence>
+			<xs:element name="WeekType" maxOccurs="4">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="WeekType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="days">
+		<xs:sequence>
+			<xs:element name="DayType" maxOccurs="7">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="DayType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="months">
+		<xs:sequence>
+			<xs:element name="MonthType" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="MonthType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="workouts">
+		<xs:sequence>
+			<xs:element name="WorkoutType" type="IWorkoutType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="phases">
+		<xs:sequence>
+			<xs:element name="phase" type="PhaseType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:simpleType name="sportTypes">
+		<xs:annotation>
+			<xs:documentation>array of measureable sports types </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Strength"/>
+			<xs:enumeration value="Other"/>
+			<xs:enumeration value="Race"/>
+			<xs:enumeration value="Day Off"/>
+			<xs:enumeration value="Swim"/>
+			<xs:enumeration value="Bike"/>
+			<xs:enumeration value="Run"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="distanceMeasures">
+		<xs:annotation>
+			<xs:documentation>distance value multiplier. values recorded in meters per sec.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="kilometer"/>
+			<xs:enumeration value="meter"/>
+			<xs:enumeration value="mile"/>
+			<xs:enumeration value="yard"/>
+			<xs:enumeration value="feet"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="timeMeasures">
+		<xs:annotation>
+			<xs:documentation>time value multiplier. values recorded in meters per sec.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="hour"/>
+			<xs:enumeration value="minute"/>
+			<xs:enumeration value="second"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="measureTypes">
+		<xs:annotation>
+			<xs:documentation>pace: time per distance; speed: distance per time</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="speed"/>
+			<xs:enumeration value="pace"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
