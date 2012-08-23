@@ -48,9 +48,9 @@
         <Label id="" alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutY="60.0" prefWidth="189.0" styleClass="bigGreyBlueText" text="DashBoard" AnchorPane.leftAnchor="304.5" AnchorPane.rightAnchor="304.5" />
       </children>
     </AnchorPane>
-    <AnchorPane fx:id="dashBoardPane" prefHeight="600.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
+    <AnchorPane fx:id="dashBoardPane" prefHeight="600.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
       <children>
-        <StackPane id="StackPane" AnchorPane.rightAnchor="184.0" AnchorPane.topAnchor="14.0">
+        <StackPane id="StackPane" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="384.0" AnchorPane.topAnchor="14.0">
           <children>
             <fx:include source="TrainingPlannerCalendar.fxml" />
           </children>

@@ -29,6 +29,7 @@
 }
 .dayLabel{
       -fx-font-weight:bold;
+    -fx-font-size: 10pt;
 }
 .monthDateBoxInactive{
     -fx-fill: rgb(240,240,240);
@@ -67,5 +68,19 @@
 .monthTitle{
     -fx-font-weight: bold;
     -fx-fill: white; 
-    -fx-font-size: 24pt;
+    -fx-font-size: 20pt;
+    -fx-blend-mode: lighten;
+}
+#previousMonthArrow{
+    -fx-fill: white;
+}
+#previousMonthArrow:hover{
+     -fx-fill: grey;
+}
+
+#nextMonthArrow{
+     -fx-fill: white;
+}
+#nextMonthArrow:hover{
+     -fx-fill: grey;
 }
