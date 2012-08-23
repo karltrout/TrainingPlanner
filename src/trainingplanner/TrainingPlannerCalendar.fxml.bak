@@ -110,7 +110,7 @@
         <Group id="Group" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
           <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
-            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="dayLabel" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
           </children>
         </Group>
         <Group id="Group" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
@@ -248,13 +248,13 @@
         <Group id="Group" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.valignment="TOP">
           <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
-            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="dayLabel" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
           </children>
         </Group>
         <Group id="Group" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.valignment="TOP">
           <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
-            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="dayLabel" text="30" textAlignment="CENTER" translateX="1.0" translateY="1.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="30" textAlignment="CENTER" translateX="1.0" translateY="1.0" />
           </children>
         </Group>
         <Group id="Group" GridPane.columnIndex="4" GridPane.rowIndex="5" GridPane.valignment="TOP">

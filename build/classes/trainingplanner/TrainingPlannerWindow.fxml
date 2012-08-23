@@ -32,9 +32,9 @@
     </MenuBar>
     <AnchorPane layoutY="25.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" prefWidth="798.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
       <children>
-        <Label fx:id="athleteName" alignment="CENTER" labelFor="$athleteName" layoutY="20.0" text="Atheletes Name" textAlignment="CENTER" textFill="#60607d" AnchorPane.leftAnchor="20.0">
+        <Label fx:id="athleteName" alignment="CENTER" labelFor="$athleteName" layoutY="12.0" text="Atheletes Name" textAlignment="CENTER" textFill="#60607d" AnchorPane.leftAnchor="20.0">
           <font>
-            <Font name="Tw Cen MT Bold" size="24.0" />
+            <Font size="24.0" fx:id="x1" />
           </font>
         </Label>
         <Separator layoutY="44.0" prefWidth="592.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
@@ -45,14 +45,18 @@
         <Label layoutX="437.0" layoutY="25.0" styleClass="labelText" text="Birth:" />
         <Label fx:id="athleteDOB" layoutX="471.0" layoutY="25.0" text="DOBValue" />
         <Label fx:id="todaysDate" contentDisplay="RIGHT" layoutY="6.0" styleClass="labelText" text="todaysDate" AnchorPane.rightAnchor="10.0" />
-        <Label id="" alignment="CENTER" contentDisplay="CENTER" layoutY="60.0" prefWidth="105.0" styleClass="bigGreyBlueText" text="DashBoard" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="335.0">
-          <font>
-            <Font name="Tw Cen MT Condensed Bold" size="24.0" />
-          </font>
-        </Label>
+        <Label id="" alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutY="60.0" prefWidth="189.0" styleClass="bigGreyBlueText" text="DashBoard" AnchorPane.leftAnchor="304.5" AnchorPane.rightAnchor="304.5" />
       </children>
     </AnchorPane>
-    <AnchorPane fx:id="dashBoardPane" prefHeight="600.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0" />
+    <AnchorPane fx:id="dashBoardPane" prefHeight="600.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
+      <children>
+        <StackPane id="StackPane" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+          <children>
+            <fx:include source="TrainingPlannerCalendar.fxml" />
+          </children>
+        </StackPane>
+      </children>
+    </AnchorPane>
   </children>
   <stylesheets>
     <URL value="@trainingPlanner.css" />

@@ -50,6 +50,16 @@
     -fx-halignment: top;
     -fx-alignment: baseline-left;   
 }
+.oddWeek:hover{
+    -fx-background-color: rgb(250, 250, 255);
+    -fx-border-color: blue;
+    -fx-border-width: .5px;  
+}
+.evenWeek:hover{
+    -fx-background-color: rgb(250, 250, 255);
+    -fx-border-color: blue;
+    -fx-border-width: .5px;   
+}
 .monthDateBoxActiveText{
     -fx-font-weight: bold;
     -fx-fill: #00336E;
