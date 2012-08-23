@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerCalendarController">
+  <children>
+    <Region id="headerRegionGradient" prefHeight="35.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+    <Region id="headerRegionColor" blendMode="MULTIPLY" prefHeight="35.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    <GridPane id="gridPane1" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+      <children>
+        <Region id="region4" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Region id="region3" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+        <Region id="region3" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Region id="region6" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+        <Region id="region2" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Region id="region5" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+        <Region id="region1" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Region id="region5" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Region id="region2" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <Region id="region6" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+        <Region id="region3" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+        <Region id="region3" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+        <Region id="region4" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+        <Region id="region5" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <Region id="region5" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Region id="region5" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+        <Region id="region5" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+        <Region id="region5" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+        <Region id="region5" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek, noDateCell" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+        <Region id="region5" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek, noDateCell" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+        <Region id="region1" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek, noDateCell" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+        <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+        <Label id="label1" text="Monday" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label id="label1" text="Tuesday" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label id="label1" text="Wednesday" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label id="label1" text="Thursday" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label id="label1" text="Friday" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+        <Label id="label1" text="Saturday" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+        <Label id="label1" text="Sunday" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="20.0" valignment="BOTTOM" vgrow="NEVER" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </children>
+  <stylesheets>
+    <URL value="@trainingplannercalendar.css" />
+  </stylesheets>
+</AnchorPane>

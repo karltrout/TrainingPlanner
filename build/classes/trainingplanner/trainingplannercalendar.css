@@ -1,0 +1,41 @@
+/*
+ * Empty Stylesheet file.
+*/
+
+.mainFxmlClass {
+
+}
+#rectangle1 {
+   -fx-fill: linear-gradient(from 0px 0px to 0px 35px, grey, darkgrey 35%, dimgrey 99%, white);
+}
+#headerRegionGradient{
+   -fx-background-color: linear-gradient(from 0px 0px to 0px 35px, grey, darkgrey 35%, dimgrey 99%, white);
+}
+#headerRegionColor{
+    -fx-background-color: rgb(0,255,0);
+    -fx-blend-mode: multiply;
+}
+#rectangle2 {
+    -fx-fill: rgb(0,255,0);
+}
+
+#pane1 {
+    -fx-fill: rgb(0,255,0);
+}
+.evenWeek {
+    -fx-background-color: grey;
+    -fx-border-color: black;
+    -fx-border-width: .5px;
+}
+.oddWeek {
+    -fx-background-color: lightgrey;
+    -fx-border-color: black;
+    -fx-border-width: .5px;  
+}
+.noDateCell{
+    -fx-background-color: white;
+        -fx-border-width: .25px; 
+}
+.dayLabel{
+      -fx-font-weight:bold;
+}
