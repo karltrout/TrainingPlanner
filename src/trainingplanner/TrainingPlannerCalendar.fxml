@@ -3,9 +3,14 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerCalendarController">
   <children>
@@ -55,6 +60,227 @@
         <Label id="label1" styleClass="dayLabel" text="Friday" GridPane.columnIndex="4" GridPane.rowIndex="0" />
         <Label id="label1" styleClass="dayLabel" text="Saturday" GridPane.columnIndex="5" GridPane.rowIndex="0" />
         <Label id="label1" styleClass="dayLabel" text="Sunday" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+        <Group id="Group" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="1" textAlignment="CENTER" translateX="1.0" translateY="1.0">
+              <fill>
+                <Color blue="0.000" green="0.094" red="0.400" fx:id="x3" />
+              </fill>
+              <font>
+                <Font name="System Bold" size="12.0" fx:id="x1" />
+              </font>
+            </Text>
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0">
+              <fill>
+                <Color blue="0.000" green="0.094" red="0.400" fx:id="x2" />
+              </fill>
+            </Text>
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="3" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="4" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="5" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="6" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="dayLabel, monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="dayLabel, monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="2" textAlignment="RIGHT" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="30" textAlignment="CENTER" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="4" GridPane.rowIndex="5" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="2.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="31" textAlignment="CENTER" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxInactive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxInactiveText" text="1" textAlignment="CENTER" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="6" GridPane.rowIndex="5" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxInactive" width="20.0" />
+            <Text fill="$x2" font="$x1" layoutX="3.0" layoutY="-20.0" scaleX="1.0000176853423883" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxInactiveText" text="2" textAlignment="CENTER" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
+        <Group id="Group" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxInactive" width="20.0" />
+            <Text fill="$x3" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxInactiveText" text="30" textAlignment="CENTER" translateX="1.0" translateY="1.0" />
+          </children>
+        </Group>
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -74,6 +300,11 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
+    <Text blendMode="SOFT_LIGHT" layoutX="6.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthTitle" text="January" textAlignment="CENTER">
+      <effect>
+        <InnerShadow color="#606060" height="3.0" offsetX="1.0" offsetY="1.0" radius="1.0" width="3.0" />
+      </effect>
+    </Text>
   </children>
   <stylesheets>
     <URL value="@trainingplannercalendar.css" />
