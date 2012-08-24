@@ -22,7 +22,7 @@ public class TrainingPlanner extends Application {
     AthleteExt athlete;
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("TrainingPlannerWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXML/TrainingPlannerWindow.fxml"));
         Scene scene = new Scene(root);
         stage.setFullScreen(true);
         stage.initStyle(StageStyle.UTILITY);

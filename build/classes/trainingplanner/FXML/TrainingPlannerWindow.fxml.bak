@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerWindowController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerWindowController">
   <children>
     <MenuBar id="menuBar" layoutY="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
       <menus>
@@ -30,33 +30,12 @@
         </Menu>
       </menus>
     </MenuBar>
-    <ScrollPane id="scrollPane2" fitToHeight="true" fitToWidth="true" prefHeight="650.0" prefViewportHeight="798.0" prefViewportWidth="523.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
-      <content>
-        <AnchorPane fx:id="dashBoardPane" prefHeight="523.0" prefWidth="798.0">
-          <children>
-            <StackPane id="StackPane" layoutX="14.0" layoutY="14.0">
-              <children>
-                <fx:include source="TrainingPlannerCalendar.fxml" styleClass="widgetPane" />
-              </children>
-            </StackPane>
-            <StackPane id="stackPane1" prefHeight="150.0" prefWidth="398.0" styleClass="widgetPane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="350.0">
-              <children>
-                <fx:include source="TrainingPlannerGoals.fxml" prefHeight="150.0" prefWidth="398.0" />
-              </children>
-            </StackPane>
-          </children>
-        </AnchorPane>
-      </content>
-    </ScrollPane>
     <AnchorPane layoutY="25.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" prefWidth="798.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
       <children>
-        <Label fx:id="athleteName" alignment="CENTER" labelFor="$athleteName" layoutY="12.0" styleClass="bigDarkGreyBlueText" text="Atheletes Name" textAlignment="CENTER" textFill="#60607d" AnchorPane.leftAnchor="20.0">
+        <Label fx:id="athleteName" alignment="CENTER" labelFor="$athleteName" layoutY="12.0" text="Atheletes Name" textAlignment="CENTER" textFill="#60607d" AnchorPane.leftAnchor="20.0">
           <font>
             <Font size="24.0" fx:id="x1" />
           </font>
-          <stylesheets>
-            <URL value="@css/trainingPlanner.css" />
-          </stylesheets>
         </Label>
         <Separator layoutY="44.0" prefWidth="592.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
         <Label layoutX="224.0" layoutY="25.0" styleClass="labelText" text="age:" />
@@ -69,8 +48,17 @@
         <Label id="" alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutY="60.0" prefWidth="189.0" styleClass="bigGreyBlueText" text="DashBoard" AnchorPane.leftAnchor="304.5" AnchorPane.rightAnchor="304.5" />
       </children>
     </AnchorPane>
+    <AnchorPane fx:id="dashBoardPane" prefHeight="600.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
+      <children>
+        <StackPane id="StackPane" layoutX="14.0" layoutY="14.0">
+          <children>
+            <fx:include source="TrainingPlannerCalendar.fxml" />
+          </children>
+        </StackPane>
+      </children>
+    </AnchorPane>
   </children>
   <stylesheets>
-    <URL value="@css/trainingPlanner.css" />
+    <URL value="@trainingPlanner.css" />
   </stylesheets>
 </AnchorPane>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerGoalsController">
+  <children>
+    <Label id="athleteName" fx:id="x1" alignment="CENTER" labelFor="$x1" styleClass="bigDarkGreyBlueText" text="Atheletes Goals" textAlignment="CENTER" textFill="#60607d" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0">
+      <font>
+        <Font size="24.0" />
+      </font>
+      <stylesheets>
+        <URL value="@css/trainingPlanner.css" />
+      </stylesheets>
+    </Label>
+    <Separator id="separatorHorizontal1" prefWidth="200.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0" />
+    <Separator id="separatorVertical1" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="36.0" />
+    <ScrollPane id="scrollPane1" minHeight="-Infinity" prefHeight="150.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0">
+      <content>
+        <ListView id="listView1" prefHeight="200.0" prefWidth="372.0" />
+      </content>
+    </ScrollPane>
+  </children>
+  <stylesheets>
+    <URL value="@css/trainingPlanningGoals.css" />
+  </stylesheets>
+</AnchorPane>
