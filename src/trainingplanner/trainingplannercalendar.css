@@ -3,7 +3,8 @@
 */
 
 .mainFxmlClass {
-
+    -fx-border-color: black;
+    -fx-border-width: 1px;
 }
 
 #headerRegionGradient{
@@ -22,6 +23,11 @@
     -fx-background-color: rgb(223, 231, 240);
     -fx-border-color: white;
     -fx-border-width: .5px;  
+}
+.todayBox{
+    -fx-background-color: #61ADFF;
+    -fx-border-color: white;
+    -fx-border-width: .5px;    
 }
 .noDateCell{
     -fx-background-color: white;
@@ -61,14 +67,18 @@
     -fx-border-color: blue;
     -fx-border-width: .5px;   
 }
+.inActiveWeek{
+    -fx-background-color: lightgrey;
+    -fx-border-color: white;
+    -fx-border-width: .5px;
+}
 .monthDateBoxActiveText{
     -fx-font-weight: bold;
     -fx-fill: #00336E;
 }
 .monthTitle{
-    -fx-font-weight: bold;
+    -fx-font: normal bold 20pt sans-serif; 
     -fx-fill: white; 
-    -fx-font-size: 20pt;
     -fx-blend-mode: lighten;
 }
 #previousMonthArrow{

@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="325.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerCalendarController">
   <children>
-    <Region id="headerRegionGradient" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+    <Region id="headerRegionGradient" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <Region id="headerRegionColor" blendMode="MULTIPLY" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <GridPane fx:id="calendarGridPane" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
       <children>
@@ -53,13 +53,13 @@
         <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="4" GridPane.rowIndex="4" />
         <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="5" GridPane.rowIndex="4" />
         <Region id="region7" prefHeight="71.0" prefWidth="84.0" styleClass="evenWeek" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-        <Label id="label1" styleClass="dayLabel" text="Sunday" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <Label id="label1" styleClass="dayLabel" text="Monday" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Label id="label1" styleClass="dayLabel" text="Tuesday" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-        <Label id="label1" styleClass="dayLabel" text="Wednesday" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-        <Label id="label1" styleClass="dayLabel" text="Thursday" GridPane.columnIndex="4" GridPane.rowIndex="0" />
-        <Label id="label1" styleClass="dayLabel" text="Friday" GridPane.columnIndex="5" GridPane.rowIndex="0" />
-        <Label id="label1" styleClass="dayLabel" text="Saturday" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+        <Label id="label1" styleClass="dayLabel" text="Sun" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label id="label1" styleClass="dayLabel" text="Mon" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label id="label1" styleClass="dayLabel" text="Tue" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label id="label1" styleClass="dayLabel" text="Wed" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label id="label1" styleClass="dayLabel" text="Thu" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+        <Label id="label1" styleClass="dayLabel" text="Fri" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+        <Label id="label1" styleClass="dayLabel" text="Sat" GridPane.columnIndex="6" GridPane.rowIndex="0" />
         <Group id="Group" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
           <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SCREEN" fill="DODGERBLUE" height="20.0" layoutY="-34.0" stroke="BLACK" strokeMiterLimit="1.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="monthDateBoxActive" width="20.0" />
@@ -348,10 +348,10 @@
     </GridPane>
     <Text fx:id="monthName" blendMode="SOFT_LIGHT" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthTitle" text="2000 January" textAlignment="CENTER" AnchorPane.leftAnchor="30.0">
       <effect>
-        <InnerShadow color="#606060" height="3.0" offsetX="1.0" offsetY="1.0" radius="1.0" width="3.0" />
+        <InnerShadow color="#606060" height="2.0" offsetX="1.0" offsetY="1.0" radius="0.5" width="2.0" />
       </effect>
     </Text>
-    <Polygon id="nextMonthArrow" fill="DODGERBLUE" layoutY="14.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="6.0">
+    <Polygon id="nextMonthArrow" fill="DODGERBLUE" layoutY="14.0" onMouseClicked="#nextMonth" rotate="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="6.0">
       <points>
         <Double fx:value="-8.0" />
         <Double fx:value="8.0" />
@@ -361,7 +361,7 @@
         <Double fx:value="-8.0" />
       </points>
     </Polygon>
-    <Polygon id="previousMonthArrow" fill="DODGERBLUE" layoutY="14.0" rotate="-90.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="6.0">
+    <Polygon id="previousMonthArrow" fill="DODGERBLUE" layoutY="15.0" onMouseClicked="#prevMonth" rotate="-90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="6.0">
       <points>
         <Double fx:value="-8.0" />
         <Double fx:value="8.0" />
