@@ -1,0 +1,17 @@
+/*
+ * Empty Stylesheet file.
+*/
+
+.mainFxmlClass {
+
+}
+
+.goalKPIValue{
+    -fx-font: normal normal 16pt sans-serif; 
+    -fx-fill: Black; 
+}
+
+.sportTitle{
+    -fx-font: normal bold 24pt sans-serif; 
+    -fx-fill: #60607d;
+}

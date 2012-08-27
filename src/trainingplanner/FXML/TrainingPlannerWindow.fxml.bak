@@ -41,7 +41,7 @@
             </StackPane>
             <StackPane id="stackPane1" prefHeight="150.0" prefWidth="398.0" styleClass="widgetPane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="350.0">
               <children>
-                <fx:include source="TrainingPlannerGoals.fxml" prefHeight="200.0" prefWidth="398.0" />
+                <fx:include source="TrainingPlannerGoals.fxml" prefHeight="150.0" prefWidth="398.0" />
               </children>
             </StackPane>
           </children>

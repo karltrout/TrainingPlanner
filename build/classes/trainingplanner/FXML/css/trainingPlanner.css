@@ -9,10 +9,22 @@
 root { 
     display: block;
 }
+.widgetPane{
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    
+}
 
 .bigGreyBlueText {
     -fx-font:24pt "Tw Cen MT Condensed Extra Bold";
     -fx-text-fill: #cbcffe;
+    -fx-font-weight:bolder;
+    color:#cbcffe
+}
+
+.bigDarkGreyBlueText {
+    -fx-font:24pt "Tw Cen MT Condensed Extra Bold";
+    -fx-text-fill: #60607d;
     -fx-font-weight:bolder;
     color:#cbcffe
 }

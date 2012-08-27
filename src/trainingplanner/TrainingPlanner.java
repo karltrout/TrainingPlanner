@@ -20,9 +20,13 @@ import trainingplanner.org.extensions.TrainingPlanExt;
 public class TrainingPlanner extends Application {
     TrainingPlanExt trainingPlan;
     AthleteExt athlete;
+    TrainingPlannerWindowController windowController;
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXML/TrainingPlannerWindow.fxml"));
+        FXMLLoader calendarLoader = new FXMLLoader();
+                
+        Parent root = calendarLoader.load(getClass().getResource("FXML/TrainingPlannerWindow.fxml"));
+        windowController = (TrainingPlannerWindowController) calendarLoader.getController();
         Scene scene = new Scene(root);
         stage.setFullScreen(true);
         stage.initStyle(StageStyle.UTILITY);
