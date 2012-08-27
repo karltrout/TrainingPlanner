@@ -22,17 +22,17 @@ public class TrainingPlanner extends Application {
     AthleteExt athlete;
     TrainingPlannerWindowController windowController;
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(final Stage stage) throws Exception {
         FXMLLoader calendarLoader = new FXMLLoader();
                 
         Parent root = calendarLoader.load(getClass().getResource("FXML/TrainingPlannerWindow.fxml"));
         windowController = (TrainingPlannerWindowController) calendarLoader.getController();
         Scene scene = new Scene(root);
-        stage.setFullScreen(true);
+        //stage.setFullScreen(true);
         stage.initStyle(StageStyle.UTILITY);
         stage.setScene(scene);
         stage.show();
-    }
+  }  
 
     /**
      * The main() method is ignored in correctly deployed JavaFX application.

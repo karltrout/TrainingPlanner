@@ -5,16 +5,18 @@
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" minHeight="-Infinity" prefHeight="150.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerGoalsController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" minHeight="-Infinity" onMouseClicked="#editGoals" prefHeight="150.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerGoalsController">
   <children>
     <Separator id="separatorHorizontal1" prefWidth="200.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0" />
     <Separator id="separatorVertical1" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="36.0" />
     <ScrollPane id="scrollPane1" minHeight="-Infinity" prefHeight="150.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0">
       <content>
-        <AnchorPane id="goalsPane" fx:id="goalsListPane" minHeight="94.0" prefHeight="94.0" prefWidth="370.0">
+        <AnchorPane id="goalsPane" fx:id="goalsListPane" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="100.0" prefWidth="370.0">
           <children>
             <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" maxHeight="1.7976931348623157E308" prefHeight="94.0" prefWidth="370.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
           </children>
@@ -29,6 +31,11 @@
         <URL value="@css/trainingPlanner.css" />
       </stylesheets>
     </Label>
+    <ImageView id="editImageButton" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <image>
+        <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="true" />
+      </image>
+    </ImageView>
   </children>
   <stylesheets>
     <URL value="@css/trainingPlanningGoals.css" />

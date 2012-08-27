@@ -5,3 +5,8 @@
 .mainFxmlClass {
 
 }
+
+#editImageButton:hover{
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.7) , 5, 0.0 , 0 , 1 );
+        
+}

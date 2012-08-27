@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.FXML.TrainingPlannerEditGoalDialogController">
+  <children>
+    <HBox id="hBox1" layoutX="14.0" layoutY="14.0" prefHeight="372.0" prefWidth="572.0" styleClass="modal-dialog" />
+  </children>
+  <stylesheets>
+    <URL value="@css/modal-dialog.css" />
+  </stylesheets>
+</AnchorPane>
