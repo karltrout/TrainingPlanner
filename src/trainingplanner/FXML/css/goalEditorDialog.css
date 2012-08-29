@@ -14,19 +14,20 @@
 .root {
   -fx-glass-color: rgba(92, 157, 229, 0.9);
 }
+.base{
+  -fx-fill: rgba(50,50,110,0.1);
+}
 
 .modal-dialog {
   -fx-padding: 20;
-  -fx-spacing: 10;
-  -fx-alignment: center;
-  -fx-font-size: 20;
+  -fx-spacing: 0;
   -fx-background-color: linear-gradient(to bottom, derive(-fx-glass-color, 20%), -fx-glass-color);
   -fx-border-color: derive(-fx-glass-color, -20%);
-  -fx-border-width: 5;
-  -fx-background-insets: 12;
-  -fx-border-insets: 10;
-  -fx-border-radius: 6;
-  -fx-background-radius: 6;
+  -fx-border-width: 10;
+  -fx-background-insets: 4;
+  -fx-border-insets: 4;
+  -fx-border-radius: 8;
+  -fx-background-radius: 16;
 }
 
 .modal-dialog:pressed {
@@ -35,4 +36,15 @@
 
 .modal-dialog .button:pressed {
   -fx-cursor: default;
+}
+
+#title {
+    -fx-font: normal bold 20pt sans-serif; 
+    -fx-fill: white; 
+    -fx-blend-mode: lighten;
+}
+.labelText{
+        -fx-font: normal bold 12pt sans-serif; 
+    -fx-fill: white; 
+    -fx-blend-mode: lighten;
 }
