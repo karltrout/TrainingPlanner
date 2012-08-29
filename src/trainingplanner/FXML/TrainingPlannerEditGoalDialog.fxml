@@ -3,15 +3,78 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.FXML.TrainingPlannerEditGoalDialogController">
+<fx:root type="javafx.scene.layout.AnchorPane" id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" styleClass="root, modal-dialog" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <HBox id="hBox1" layoutX="14.0" layoutY="14.0" prefHeight="372.0" prefWidth="572.0" styleClass="modal-dialog" />
+    <Button id="button1" mnemonicParsing="false" onAction="#closeDialog" prefWidth="80.0" text="Done" AnchorPane.bottomAnchor="-5.0" AnchorPane.rightAnchor="-6.0" />
+    <Text id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="New Goal" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-10.0" />
+    <Text id="text2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelText" text="Sports Type" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="29.0" />
+    <ChoiceBox id="choiceBox1" fx:id="sportsTypes" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="24.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <Text id="text3" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelText" text="Displayed as" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="59.0" />
+    <ChoiceBox id="choiceBox1" fx:id="displayedAs" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="55.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <Text id="text4" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelText" text="Distance in" AnchorPane.bottomAnchor="305.04" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="99.0" />
+    <ChoiceBox id="choiceBox1" fx:id="distanceIn" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="94.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <Text id="text5" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelText" text="Time Measured" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="139.0" />
+    <ChoiceBox id="choiceBox1" fx:id="timeMeasuredAs" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="135.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <Text id="text6" scaleX="0.9999981108405761" scaleY="1.0000076480665687" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelText" text="Start Date" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="179.0" />
+    <ChoiceBox id="choiceBox1" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="175.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <Text id="text7" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelText" text="Goal Date" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="219.0" />
+    <ChoiceBox id="choiceBox1" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="215.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
   </children>
   <stylesheets>
-    <URL value="@css/modal-dialog.css" />
+    <URL value="@css/goalEditorDialog.css" />
   </stylesheets>
-</AnchorPane>
+</fx:root>

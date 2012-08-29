@@ -10,30 +10,21 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBuilder;
-import javafx.scene.control.LabelBuilder;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBoxBuilder;
-import javafx.scene.layout.VBoxBuilder;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import trainingplanner.controls.EditGoalDialog;
 import trainingplanner.org.extensions.KPI;
 import trainingplanner.org.xsd.Athlete;
 import trainingplanner.org.xsd.IKPIType;
@@ -47,6 +38,7 @@ public class TrainingPlannerGoalsController implements Initializable {
  
     @FXML private AnchorPane goalsListPane;
     
+    Stage dialog;
     private Athlete.KeyPerformanceIndicators KPIs;
     /**
      * Initializes the controller class.
@@ -93,46 +85,28 @@ public class TrainingPlannerGoalsController implements Initializable {
      this.KPIs = KPIs;   
     }
     
-    @FXML private void editGoals(){
+    @FXML public void editGoals(){
         System.out.println("Edit Button Pressed.");
         
         Scene scene = goalsListPane.getScene();
         
         if (scene != null){
             Parent currentStage = scene.getRoot();
-            addDialogBox(currentStage);
+            if (dialog == null) addDialogBox(currentStage);
+                currentStage.getScene().getRoot().setEffect(new BoxBlur());
+                dialog.show();
         }
     }
     
     private void addDialogBox(final Parent parent){
-        final Stage dialog = new Stage(StageStyle.TRANSPARENT);
+        dialog = new Stage(StageStyle.TRANSPARENT);
         dialog.initModality(Modality.WINDOW_MODAL);
         dialog.initOwner(parent.getScene().getWindow());
+        EditGoalDialog editGoalDialog = new EditGoalDialog(parent);
         dialog.setScene(
-            new Scene(
-              HBoxBuilder.create().styleClass("modal-dialog").children(
-                LabelBuilder.create().text("Will you like this page?").build(),
-                ButtonBuilder.create().text("Yes").defaultButton(true).onAction(new EventHandler<ActionEvent>() {
-                  @Override public void handle(ActionEvent actionEvent) {
-                    // take action and close the dialog.
-                    //System.out.println("Liked: " + webView.getEngine().getTitle());
-                    parent.getScene().getRoot().setEffect(null);
-                    dialog.close();
-                  }
-                }).build(),
-                ButtonBuilder.create().text("No").cancelButton(true).onAction(new EventHandler<ActionEvent>() {
-                  @Override public void handle(ActionEvent actionEvent) {
-                    // abort action and close the dialog.
-                    //System.out.println("Disliked: " + webView.getEngine().getTitle());
-                    parent.getScene().getRoot().setEffect(null);
-                    dialog.close();
-                  }
-                }).build()
-              ).build()
-              , Color.TRANSPARENT
-            )
+            new Scene(editGoalDialog)
         );
-        dialog.getScene().getStylesheets().add(getClass().getResource("FXML/css/modal-dialog.css").toExternalForm());
+        //dialog.getScene().getStylesheets().add(getClass().getResource("FXML/css/modal-dialog.css").toExternalForm());
 
         // allow the dialog to be dragged around.
         final Node root = dialog.getScene().getRoot();
@@ -150,8 +124,7 @@ public class TrainingPlannerGoalsController implements Initializable {
                 dialog.setY(mouseEvent.getScreenY() + dragDelta.y);
           }
         });
-        parent.getScene().getRoot().setEffect(new BoxBlur());
-        dialog.show();
+
     }
      class Delta { double x, y; } 
 }
