@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" minHeight="-Infinity" onMouseClicked="#editGoals" prefHeight="150.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerGoalsController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" minHeight="-Infinity" prefHeight="150.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerGoalsController">
   <children>
     <Separator id="separatorHorizontal1" prefWidth="200.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0" />
     <Separator id="separatorVertical1" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="36.0" />
@@ -31,7 +31,7 @@
         <URL value="@css/trainingPlanner.css" />
       </stylesheets>
     </Label>
-    <ImageView id="editImageButton" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+    <ImageView id="editImageButton" fitHeight="16.0" fitWidth="16.0" onMouseClicked="editGoals" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <image>
         <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="true" />
       </image>

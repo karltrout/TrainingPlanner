@@ -44,7 +44,12 @@
     -fx-blend-mode: lighten;
 }
 .labelText{
-        -fx-font: normal bold 12pt sans-serif; 
+    -fx-font: normal bold 12pt sans-serif; 
     -fx-fill: white; 
     -fx-blend-mode: lighten;
+}
+.dateText{
+    -fx-font: normal bold 14pt sans-serif; 
+    -fx-fill: darkGrey;
+    -fx-alignment: center-right;
 }

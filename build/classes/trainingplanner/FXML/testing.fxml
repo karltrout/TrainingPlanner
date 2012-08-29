@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.FXML.TestingController">
-    
+<AnchorPane id="archorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.FXML.TestingController">
+  <children>
+    <ImageView fitHeight="320.0" fitWidth="32.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@images/numbers.png" preserveRatio="false" smooth="false" />
+      </image>
+    </ImageView>
+    <Region prefHeight="32.0" prefWidth="32.0" styleClass="glass" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+  </children>
+  <stylesheets>
+    <URL value="@css/testing.css" />
+  </stylesheets>
 </AnchorPane>
