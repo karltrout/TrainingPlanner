@@ -1,0 +1,21 @@
+/* 
+    Document   : testing
+    Created on : Aug 27, 2012, 8:22:00 PM
+    Author     : Karl
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.background{
+    -fx-background-color: black;
+}
+
+.glass{
+    -fx-
+    -fx-background-color: radial 100% stops (0.0,white) (0.50,gray) (1.0,black);
+    
+}
