@@ -86,7 +86,6 @@ public class TrainingPlannerGoalsController implements Initializable {
     }
     
     @FXML public void editGoals(){
-        System.out.println("Edit Button Pressed.");
         
         Scene scene = goalsListPane.getScene();
         

@@ -76,4 +76,8 @@ public class EditGoalDialog extends AnchorPane implements Initializable  {
         Scene scene = this.getScene();
         scene.getWindow().hide();       
     }
+    
+    @FXML public void validateDate(){
+        System.out.println("text changed");
+    }
 }
