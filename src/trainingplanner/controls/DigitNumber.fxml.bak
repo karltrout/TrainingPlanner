@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="60.0" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" height="100.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+    <Group id="Group" layoutX="8.0" layoutY="10.0">
+      <children>
+        <Polygon id="polygon1" fx:id="p1" fill="WHITE" layoutX="21.0" layoutY="20.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="polygonOff">
+          <points>
+            <Double fx:value="-3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="-3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-35.0" />
+          </points>
+        </Polygon>
+        <Polygon id="polygon1" fx:id="p2" fill="WHITE" layoutX="39.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+          <points>
+            <Double fx:value="-3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="-3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-35.0" />
+          </points>
+        </Polygon>
+        <Polygon id="polygon1" fx:id="p3" fill="WHITE" layoutX="39.0" layoutY="73.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+          <points>
+            <Double fx:value="-3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="-3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-35.0" />
+          </points>
+        </Polygon>
+        <Polygon id="polygon1" fx:id="p4" fill="WHITE" layoutX="21.0" layoutY="90.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+          <points>
+            <Double fx:value="-3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="-3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-35.0" />
+          </points>
+        </Polygon>
+        <Polygon id="polygon1" fx:id="p5" fill="WHITE" layoutX="3.0" layoutY="73.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+          <points>
+            <Double fx:value="-3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="-3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-35.0" />
+          </points>
+        </Polygon>
+        <Polygon id="polygon1" fx:id="p6" fill="WHITE" layoutX="3.0" layoutY="38.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+          <points>
+            <Double fx:value="-3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="-3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-35.0" />
+          </points>
+        </Polygon>
+        <Polygon id="polygon1" fx:id="p7" fill="WHITE" layoutX="21.0" layoutY="55.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+          <points>
+            <Double fx:value="-3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="-3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-5.0" />
+            <Double fx:value="3.0" />
+            <Double fx:value="-30.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-35.0" />
+          </points>
+        </Polygon>
+      </children>
+      <effect>
+        <DropShadow color="#ff6666" height="44.27380952380952" radius="24.925595238095234" spread="0.15873015873015872" width="57.42857142857142" />
+      </effect>
+    </Group>
+  </children>
+  <stylesheets>
+    <URL value="@paceclock.css" />
+  </stylesheets>
+</fx:root>
