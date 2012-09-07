@@ -16,9 +16,9 @@
     <Separator id="separatorVertical1" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="36.0" />
     <ScrollPane id="scrollPane1" minHeight="-Infinity" prefHeight="150.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0">
       <content>
-        <AnchorPane id="goalsPane" fx:id="goalsListPane" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="100.0" prefWidth="370.0">
+        <AnchorPane id="goalsPane" fx:id="goalsListPane" minHeight="-Infinity" prefHeight="100.0" prefWidth="370.0">
           <children>
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" maxHeight="1.7976931348623157E308" prefHeight="94.0" prefWidth="370.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
           </children>
         </AnchorPane>
       </content>

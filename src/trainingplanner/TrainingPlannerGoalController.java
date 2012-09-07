@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import trainingplanner.org.extensions.KPI;
+import trainingplanner.org.xsd.IKPIType;
 import trainingplanner.org.xsd.KpiValueType;
 
 /**
@@ -24,7 +25,7 @@ public class TrainingPlannerGoalController implements Initializable {
     @FXML private Text sportTimeCurrent;
     @FXML private Text sportTimeGoal;
     
-    private KPI kpi;
+    private IKPIType kpi;
     /**
      * Initializes the controller class.
      */
@@ -37,7 +38,7 @@ public class TrainingPlannerGoalController implements Initializable {
         this.goalSportTitle.setText(title);
     }
     
-    public void setKPI(KPI kpi){
+    public void setKPI(IKPIType kpi){
         this.kpi = kpi;
         this.goalSportTitle.setText(kpi.getSportsType().value());
         this.sportTimeCurrent.setText(kpiMeasurementValue(kpi.getCurrentValue()));

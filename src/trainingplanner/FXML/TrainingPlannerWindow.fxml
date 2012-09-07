@@ -34,6 +34,12 @@
       <content>
         <AnchorPane fx:id="dashBoardPane" prefHeight="523.0" prefWidth="798.0">
           <children>
+            <StackPane id="stackPane2" fx:id="goalIcons" prefHeight="496.0" prefWidth="356.0" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+              <children>
+                <fx:include source="../controls/SpeedOMeter.fxml" />
+                <fx:include source="../controls/PaceClock.fxml" translateY="210.0" />
+              </children>
+            </StackPane>
             <StackPane id="StackPane" layoutX="14.0" layoutY="14.0">
               <children>
                 <fx:include source="TrainingPlannerCalendar.fxml" styleClass="widgetPane" />

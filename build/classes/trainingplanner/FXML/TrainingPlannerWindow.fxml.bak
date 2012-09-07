@@ -34,12 +34,17 @@
       <content>
         <AnchorPane fx:id="dashBoardPane" prefHeight="523.0" prefWidth="798.0">
           <children>
+            <StackPane id="stackPane2" fx:id="goalIcons" prefHeight="150.0" prefWidth="300.0" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+              <children>
+                <fx:include source="../controls/SpeedOMeter.fxml" />
+              </children>
+            </StackPane>
             <StackPane id="StackPane" layoutX="14.0" layoutY="14.0">
               <children>
                 <fx:include source="TrainingPlannerCalendar.fxml" styleClass="widgetPane" />
               </children>
             </StackPane>
-            <StackPane id="stackPane1" prefHeight="150.0" prefWidth="398.0" styleClass="widgetPane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="350.0">
+            <StackPane id="stackPane1" fx:id="goalsPane" prefHeight="150.0" prefWidth="398.0" styleClass="widgetPane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="350.0">
               <children>
                 <fx:include source="TrainingPlannerGoals.fxml" prefHeight="150.0" prefWidth="398.0" />
               </children>

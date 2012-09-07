@@ -6,10 +6,12 @@ package trainingplanner;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,26 +41,31 @@ public class TrainingPlannerGoalsController implements Initializable {
     @FXML private AnchorPane goalsListPane;
     
     Stage dialog;
-    private Athlete.KeyPerformanceIndicators KPIs;
+    //private Athlete.KeyPerformanceIndicators KPIs;
+    private ObservableList<IKPIType> kpis;
+    
+    public ObservableList<IKPIType> getKPIs() {
+        return kpis;
+    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("initializing goals controller");
-        if (this.KPIs != null) {
+        if (this.kpis != null) {
             setGoals();
         } 
     } 
     
     public void setGoals(){
-        List<IKPIType> kpis = KPIs.getKPI();
+        //kpis = FXCollections.observableList(KPIs.getKPI());
        // if (goalsListPane == null ) goalsListPane = new AnchorPane();
         goalsListPane.getChildren().clear();
         int x = 0;
         for (IKPIType kpi : kpis){
-            System.out.println("KPI: "+kpi.getSportsType()+" "+kpi.getMeasurement().getMeasureType()+" current value: "+
-                                kpi.getCurrentValue().getValue()+" goal value: "+kpi.getGoalValue().getValue());  
+          //  System.out.println("KPI: "+kpi.getSportsType()+" "+kpi.getMeasurement().getMeasureType()+" current value: "+
+           //                     kpi.getCurrentValue().getValue()+" goal value: "+kpi.getGoalValue().getValue());  
             try {
                 URL location = getClass().getResource("FXML/TrainingPlannerGoal.fxml");
                 FXMLLoader goalLoader = new FXMLLoader();
@@ -70,9 +77,12 @@ public class TrainingPlannerGoalsController implements Initializable {
                 x++;
                 
                 TrainingPlannerGoalController goalController = goalLoader.getController();
-                goalController.setKPI((KPI)kpi);
+                goalController.setKPI(kpi);
                 //goalController.setSportsTitle(kpi.getSportsType().value());
                 goalsListPane.getChildren().add(goalPane);
+                double height = goalsListPane.getHeight();
+                goalsListPane.setMinHeight(height+35.0);
+                
             } catch (IOException ex) {
                 System.out.println("Error: "+ex.getMessage());
                 Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,7 +92,15 @@ public class TrainingPlannerGoalsController implements Initializable {
     }
     
     public void setKPIs(Athlete.KeyPerformanceIndicators KPIs){
-     this.KPIs = KPIs;   
+     this.kpis = FXCollections.observableList(KPIs.getKPI());
+     kpis.addListener(new ListChangeListener() {
+ 
+            @Override
+            public void onChanged(ListChangeListener.Change change) {
+                System.out.println("Detected a change! ");
+                setGoals();
+            }
+        });
     }
     
     @FXML public void editGoals(){
@@ -91,7 +109,9 @@ public class TrainingPlannerGoalsController implements Initializable {
         
         if (scene != null){
             Parent currentStage = scene.getRoot();
-            if (dialog == null) addDialogBox(currentStage);
+            if (dialog == null) {
+                addDialogBox(currentStage);
+            }
                 currentStage.getScene().getRoot().setEffect(new BoxBlur());
                 dialog.show();
         }
@@ -102,6 +122,7 @@ public class TrainingPlannerGoalsController implements Initializable {
         dialog.initModality(Modality.WINDOW_MODAL);
         dialog.initOwner(parent.getScene().getWindow());
         EditGoalDialog editGoalDialog = new EditGoalDialog(parent);
+        editGoalDialog.setKPIs(getKPIs());
         dialog.setScene(
             new Scene(editGoalDialog)
         );

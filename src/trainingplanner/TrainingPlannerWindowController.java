@@ -10,15 +10,20 @@ import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import trainingplanner.controls.DigitNumberController;
+import trainingplanner.controls.PaceClockController;
+import trainingplanner.controls.SpeedOMeterController;
 import trainingplanner.org.extensions.AthleteExt;
 import trainingplanner.org.extensions.TrainingPlanExt;
 
@@ -40,6 +45,7 @@ public class TrainingPlannerWindowController implements Initializable {
     @FXML  private Label todaysDate;
     @FXML  private AnchorPane dashBoardPane;
     @FXML  private StackPane goalsPane;
+    @FXML  private StackPane goalIcons;
     
     
     
@@ -59,11 +65,6 @@ public class TrainingPlannerWindowController implements Initializable {
         athleteWeight.setText(String.valueOf(athlete.getWeight()));
         athleteDOB.setText(String.format(dateFormatString,athlete.getDateOfBirth().toGregorianCalendar()));
 
-        //System.out.println("Size of :" + goalsPane.getChildren().size());
-        Parent test;
-        Parent test2;
-        //Parent goalsPaneParent = new 
-        //try {
             URL location = getClass().getResource("FXML/TrainingPlannerGoals.fxml");
             FXMLLoader goalsLoader = new FXMLLoader();
             goalsLoader.setLocation(location);
@@ -83,5 +84,16 @@ public class TrainingPlannerWindowController implements Initializable {
             TrainingPlannerGoalsController goalsControler = goalsLoader.getController();
             goalsControler.setKPIs(athlete.getKeyPerformanceIndicators());
             goalsControler.setGoals();
+            
+            ObservableList<Node> goals = goalIcons.getChildren();
+            goals.clear();
+            //SpeedOMeterController bikeSpeed = (SpeedOMeterController)goals.get(0);
+           SpeedOMeterController bikeSpeed = new SpeedOMeterController();
+            bikeSpeed.setSpeed(42.0);
+           
+            goalIcons.getChildren().add(bikeSpeed);
+           PaceClockController number = new PaceClockController(500);
+           number.setTranslateY(210.0);
+           goalIcons.getChildren().add(number);
     }    
 }
