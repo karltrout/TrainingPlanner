@@ -8,9 +8,13 @@
 polygon1{
     -fx-fill:  Lime;
 }
-.polygonOff{
-    -fx-fill: #202020;
-}
+
 .polygonOn{
     -fx-fill: Lime;
+}
+#settingsButton{
+    
+}
+#settingsButton:hover{
+    -fx-cursor: hand;
 }

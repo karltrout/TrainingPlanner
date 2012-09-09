@@ -3,37 +3,94 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<fx:root type="javafx.scene.layout.AnchorPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="javafx.scene.layout.AnchorPane" prefHeight="219.0" prefWidth="200.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <Group id="Group" layoutX="2.0" layoutY="2.0">
+    <Group id="Group" layoutX="93.0" layoutY="1.0">
       <children>
-        <Circle id="circle2" fill="#9f9f9f" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-        <Circle id="circle2" fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff0000ff 0.0%, 0x0000ffff 30.0%, 0x000000ff 100.0%)" layoutX="98.0" layoutY="98.0" opacity="0.24" radius="84.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-        <Circle id="circle1" blendMode="OVERLAY" fill="linear-gradient(from -10.0% 0.0% to 0.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 35.0%, 0xc0c0c0ff 40.0%, 0x808080ff 55.00000000000001%, 0xffffffff 75.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle id="circle2" fill="#404040" layoutX="98.0" layoutY="98.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+        <Rectangle id="rectangle2" arcHeight="5.0" arcWidth="5.0" fill="linear-gradient(from 0.0% 100.0% to 100.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 65.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" height="30.0" layoutX="2.0" layoutY="5.0" strokeType="INSIDE" strokeWidth="0.5" width="15.0">
+          <stroke>
+            <Color blue="0.251" green="0.251" red="0.251" fx:id="x2" />
+          </stroke>
+        </Rectangle>
+        <Rectangle fx:id="settingsButton" arcHeight="5.0" arcWidth="5.0" fill="linear-gradient(from 0.0% 100.0% to 100.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 65.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" height="16.535040991213464" layoutX="-1.0" layoutY="1.0" stroke="$x2" strokeType="INSIDE" strokeWidth="0.5" width="21.0" />
       </children>
     </Group>
-    <Group id="Group" fx:id="numbers" layoutX="25.0" layoutY="55.0">
+    <Group id="Group" layoutX="140.0" layoutY="13.0" rotate="25.0" scaleX="0.75" scaleY="0.75">
       <children>
-        <fx:include source="DigitNumber.fxml" blendMode="ADD" scaleX="0.5" scaleY="0.5" />
-        <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="30.0" scaleX="0.5" scaleY="0.5" />
-        <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="65.0" scaleX="0.5" scaleY="0.5" />
-        <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="95.0" scaleX="0.5" scaleY="0.5" />
+        <Rectangle id="rectangle2" arcHeight="5.0" arcWidth="5.0" fill="linear-gradient(from 0.0% 100.0% to 100.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 65.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" height="30.0" layoutX="2.0" layoutY="5.0" stroke="$x2" strokeType="INSIDE" strokeWidth="0.5" width="15.0" />
+        <Rectangle id="rectangle2" arcHeight="5.0" arcWidth="5.0" fill="linear-gradient(from 0.0% 100.0% to 100.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 65.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" height="15.0" layoutX="-0.5" stroke="$x2" strokeType="INSIDE" strokeWidth="0.5" width="20.0" />
       </children>
     </Group>
-    <Group id="Group" blendMode="HARD_LIGHT" opacity="0.51" styleClass="center">
+    <Group id="Group" layoutX="43.0" layoutY="13.0" rotate="-25.0" scaleX="0.75" scaleY="0.75">
       <children>
-        <Circle id="glassCover" fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 0.0px 75.0px, radius 200.0px, 0xffffffff 0.0%, 0x000000ff 100.0%)" layoutX="100.0" layoutY="100.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
-        <Ellipse id="ellipse1" blendMode="SCREEN" centerY="-20.0" fill="linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, 0xffffffff 0.0%, 0x000000ff 80.0%, 0x000000ff 100.0%)" layoutX="100.0" layoutY="109.0" radiusX="70.0" radiusY="58.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-        <Rectangle id="SpeedBackGround" arcHeight="5.0" arcWidth="5.0" blendMode="MULTIPLY" fill="RED" height="30.0" layoutX="-2.0" stroke="#dfdfdf" strokeType="INSIDE" styleClass="center" visible="false" width="100.0" x="50.0" y="135.0" />
+        <Rectangle id="rectangle2" arcHeight="5.0" arcWidth="5.0" fill="linear-gradient(from 0.0% 100.0% to 100.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 65.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" height="30.0" layoutX="2.0" layoutY="5.0" stroke="$x2" strokeType="INSIDE" strokeWidth="0.5" width="15.000099999997474" />
+        <Rectangle id="rectangle2" arcHeight="5.0" arcWidth="5.0" fill="linear-gradient(from 0.0% 100.0% to 100.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 65.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" height="15.0" layoutX="-0.5" stroke="$x2" strokeType="INSIDE" strokeWidth="0.5" width="20.0" />
+      </children>
+    </Group>
+    <Group id="Group" layoutX="2.0" layoutY="21.0">
+      <children>
+        <Group id="Group">
+          <children>
+            <Circle id="circle2" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+              <fill>
+                <Color blue="0.624" green="0.624" red="0.624" fx:id="x1" />
+              </fill>
+            </Circle>
+            <Circle id="circle2" fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff0000ff 0.0%, 0x0000ffff 30.0%, 0x000000ff 100.0%)" layoutX="98.0" layoutY="98.0" opacity="0.24" radius="84.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle1" blendMode="OVERLAY" fill="linear-gradient(from -10.0% 0.0% to 0.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 35.0%, 0xc0c0c0ff 40.0%, 0x808080ff 55.00000000000001%, 0xffffffff 75.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle id="circle2" fill="$x2" layoutX="98.0" layoutY="98.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle2" fx:id="rimColor" fill="$x2" layoutX="98.0" layoutY="98.0" radius="75.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+          </children>
+        </Group>
+        <Group id="Group" fx:id="numbers" layoutX="23.0" layoutY="53.0">
+          <children>
+            <fx:include source="DigitNumber.fxml" blendMode="ADD" scaleX="0.5" scaleY="0.5" />
+            <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="30.0" scaleX="0.5" scaleY="0.5" />
+            <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="65.0" scaleX="0.5" scaleY="0.5" />
+            <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="95.0" scaleX="0.5" scaleY="0.5" />
+          </children>
+        </Group>
+        <Group id="Group" blendMode="HARD_LIGHT" layoutX="-2.0" layoutY="-2.0" opacity="0.51" styleClass="center">
+          <children>
+            <Circle id="glassCover" fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 0.0px 75.0px, radius 200.0px, 0xffffffff 0.0%, 0x000000ff 100.0%)" layoutX="100.0" layoutY="100.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
+            <Ellipse id="ellipse1" blendMode="SCREEN" centerY="-20.0" fill="linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, 0xffffffff 0.0%, 0x000000ff 80.0%, 0x000000ff 100.0%)" layoutX="100.0" layoutY="109.0" radiusX="70.0" radiusY="58.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Rectangle id="SpeedBackGround" arcHeight="5.0" arcWidth="5.0" blendMode="MULTIPLY" fill="RED" height="30.0" layoutX="-2.0" stroke="#dfdfdf" strokeType="INSIDE" styleClass="center" visible="false" width="100.0" x="50.0" y="135.0" />
+          </children>
+        </Group>
+      </children>
+    </Group>
+    <Group id="Group" layoutX="2.0" layoutY="21.0">
+      <children>
+        <Group id="Group" fx:id="paceSettings" visible="false">
+          <children>
+            <Circle id="circle2" fill="$x1" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle2" fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff0000ff 0.0%, 0x0000ffff 30.0%, 0x000000ff 100.0%)" layoutX="98.0" layoutY="98.0" opacity="0.24" radius="84.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle1" blendMode="OVERLAY" fill="linear-gradient(from -10.0% 0.0% to 0.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 35.0%, 0xc0c0c0ff 40.0%, 0x808080ff 55.00000000000001%, 0xffffffff 75.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle id="circle2" fill="$x2" layoutX="98.0" layoutY="98.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle2" fill="$x2" layoutX="98.0" layoutY="98.0" radius="75.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+            <Slider id="sliderVertical1" fx:id="paceSlider" layoutX="57.0" layoutY="68.0" orientation="VERTICAL" prefHeight="64.0" />
+            <TextField id="textField1" fx:id="paceValueText" layoutX="78.0" layoutY="89.0" prefWidth="60.0" />
+            <Text id="text1" fill="WHITE" layoutX="73.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set Pace">
+              <font>
+                <Font name="System Bold" size="14.0" />
+              </font>
+            </Text>
+          </children>
+        </Group>
       </children>
     </Group>
   </children>
+  <rotationAxis>
+    <Point3D />
+  </rotationAxis>
   <stylesheets>
     <URL value="@paceclock.css" />
   </stylesheets>

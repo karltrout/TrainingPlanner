@@ -12,7 +12,7 @@
 <fx:root type="javafx.scene.layout.AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="60.0" xmlns:fx="http://javafx.com/fxml">
   <children>
     <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" height="100.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-    <Group id="Group" layoutX="8.0" layoutY="10.0">
+    <Group id="Group" fx:id="ledGroup" layoutX="8.0" layoutY="10.0">
       <children>
         <Polygon id="polygon1" fx:id="p1" fill="WHITE" layoutX="21.0" layoutY="20.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
           <points>
@@ -128,7 +128,7 @@
         </Polygon>
       </children>
       <effect>
-        <DropShadow color="#ff6666" height="44.27380952380952" radius="24.925595238095234" spread="0.15873015873015872" width="57.42857142857142" />
+        <DropShadow color="#ff6666" height="50.85119047619047" radius="26.569940476190474" spread="0.15873015873015872" width="57.42857142857142" />
       </effect>
     </Group>
   </children>

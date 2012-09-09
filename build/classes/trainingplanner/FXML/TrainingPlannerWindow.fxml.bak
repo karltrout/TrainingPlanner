@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerWindowController">
   <children>
-    <MenuBar id="menuBar" layoutY="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+    <MenuBar id="menuBar" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -20,7 +20,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" text="Delete" />
+            <MenuItem mnemonicParsing="false" text="Window Color" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
@@ -32,13 +32,14 @@
     </MenuBar>
     <ScrollPane id="scrollPane2" fitToHeight="true" fitToWidth="true" prefHeight="650.0" prefViewportHeight="798.0" prefViewportWidth="523.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
       <content>
-        <AnchorPane fx:id="dashBoardPane" prefHeight="523.0" prefWidth="798.0">
+        <AnchorPane fx:id="dashBoardPane" minWidth="798.0" prefHeight="512.0" prefWidth="798.0">
           <children>
-            <StackPane id="stackPane2" fx:id="goalIcons" prefHeight="150.0" prefWidth="300.0" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <HBox id="hBox1" fx:id="goalIcons" alignment="TOP_CENTER" minWidth="363.0" prefWidth="363.0" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="14.0">
               <children>
-                <fx:include source="../controls/SpeedOMeter.fxml" />
+                <fx:include source="../controls/SpeedOMeter.fxml" scaleX="0.5" scaleY="0.5" />
+                <fx:include source="../controls/PaceClock.fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" scaleX="0.5" scaleY="0.5" />
               </children>
-            </StackPane>
+            </HBox>
             <StackPane id="StackPane" layoutX="14.0" layoutY="14.0">
               <children>
                 <fx:include source="TrainingPlannerCalendar.fxml" styleClass="widgetPane" />
@@ -72,6 +73,11 @@
         <Label fx:id="athleteDOB" layoutX="471.0" layoutY="25.0" text="DOBValue" />
         <Label fx:id="todaysDate" contentDisplay="RIGHT" layoutY="6.0" styleClass="labelText" text="todaysDate" AnchorPane.rightAnchor="10.0" />
         <Label id="" alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutY="60.0" prefWidth="189.0" styleClass="bigGreyBlueText" text="DashBoard" AnchorPane.leftAnchor="304.5" AnchorPane.rightAnchor="304.5" />
+        <Label id="label2" text="Dashboard Color" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="10.0">
+          <graphic>
+            <ColorPicker fx:id="colorPicker" />
+          </graphic>
+        </Label>
       </children>
     </AnchorPane>
   </children>
