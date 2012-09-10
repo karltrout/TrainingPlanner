@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Group;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -46,22 +47,22 @@ public class DigitNumberController extends AnchorPane implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
+ 
+        public DigitNumberController(double scaleX, double scaleY,double translateX, int value, SimpleObjectProperty<Color> color){
+        loadFXML();
+        setScaleX(scaleX);
+        setScaleY(scaleY);
+        setLayoutX(translateX);
+        setBlendMode(BlendMode.ADD);
+        
+        setLedColor(color);
+        number = value;
+        setNumberLeds();
+    }
     
     public DigitNumberController(int value, SimpleObjectProperty<Color> color){
-        URL location = getClass().getResource("DigitNumber.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(location);
-        fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+        loadFXML();
         setLedColor(color);
-        setLedGroupBlendColor();
         number = value;
         setNumberLeds();
     }
@@ -205,7 +206,6 @@ public class DigitNumberController extends AnchorPane implements Initializable{
     private void setLedColor(ObjectProperty<Color> color ) {
         this.ledColorOn = color.getValue();
         color.addListener(new ChangeListener<Color>() {
-
             @Override
             public void changed(ObservableValue<? extends Color> ov, Color old_val, Color new_val) {
                 ledColorOn = new_val;
@@ -213,6 +213,7 @@ public class DigitNumberController extends AnchorPane implements Initializable{
                 setLedGroupBlendColor();
             }
         });
+        setLedGroupBlendColor();
     }
 
     /**
@@ -228,6 +229,21 @@ public class DigitNumberController extends AnchorPane implements Initializable{
     public void setNumber(int number) {
         this.number = number;
         setNumberLeds();
+    }
+
+    private void loadFXML() throws RuntimeException {
+        URL location = getClass().getResource("DigitNumber.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(location);
+        fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
     }
     
 }

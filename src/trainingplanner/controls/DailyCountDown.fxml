@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="75.0" prefWidth="150.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.controls.DailyCountDownController">
+  <children>
+    <Rectangle id="rectangle1" arcHeight="40.0" arcWidth="40.0" height="75.0" stroke="#8fff00" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="0.0" width="150.0" />
+    <Group id="Group" blendMode="SCREEN">
+      <children>
+        <Rectangle id="rectangle1" arcHeight="40.0" arcWidth="40.0" fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 75.0px 145.0px, radius 500.0px, 0xffffffff 0.0%, 0x000000ff 25.0%, 0x000000ff 100.0%)" height="75.0" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="0.0" width="150.0">
+          <stroke>
+            <Color blue="0.000" green="1.000" red="0.561" fx:id="x1" />
+          </stroke>
+        </Rectangle>
+        <Group id="Group" layoutX="3.0" layoutY="1.0">
+          <children>
+            <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="7.0" scaleX="0.45" scaleY="0.45" />
+            <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="41.0" scaleX="0.45" scaleY="0.45" />
+            <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="74.0" scaleX="0.45" scaleY="0.45" />
+          </children>
+        </Group>
+        <Rectangle id="rectangle1" arcHeight="40.0" arcWidth="40.0" blendMode="SCREEN" fill="linear-gradient(from 100.0% 0.0% to 100.0% 100.0%, 0xa9a9a9ff 0.0%, 0xc0c0c0ff 10.0%, 0x000000ff 60.0%, 0x000000ff 100.0%)" height="45.0" opacity="0.5" stroke="$x1" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="0.0" width="146.0" x="2.0" y="2.0" />
+        <Text id="daysLeftHeaderText" layoutX="14.0" layoutY="24.0" stroke="LIME" strokeType="INSIDE" strokeWidth="0.0" text="Days Left:">
+          <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0" />
+          </effect>
+          <font>
+            <Font name="MS Mincho" size="12.0" />
+          </font>
+        </Text>
+      </children>
+    </Group>
+  </children>
+  <stylesheets>
+    <URL value="@dailycountdown.css" />
+  </stylesheets>
+</AnchorPane>
