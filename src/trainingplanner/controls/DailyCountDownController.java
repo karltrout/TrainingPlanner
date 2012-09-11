@@ -6,6 +6,9 @@ package trainingplanner.controls;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -32,26 +35,28 @@ public class DailyCountDownController extends AnchorPane implements Initializabl
     private SimpleObjectProperty<Color> color = new SimpleObjectProperty<>(this, "color", Color.RED);
     private SimpleIntegerProperty numberProperty;
     private ObservableList<Node> kids;
+    private SimpleObjectProperty<GregorianCalendar> targetDate;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
        setNumbers();
     }
     
-     public DailyCountDownController(SimpleIntegerProperty _number, SimpleObjectProperty<Color> color){
+     public DailyCountDownController(SimpleObjectProperty<GregorianCalendar> _targetDate, SimpleObjectProperty<Color> color){
         if (null == color) { color = new SimpleObjectProperty<>(Color.LIME); }
-        this.number = _number.getValue();
-        _number.addListener(new ChangeListener<Number>() {
+        this.targetDate = _targetDate;
+        //this.number = _number.getValue();
+        _targetDate.addListener(new ChangeListener<GregorianCalendar>() {
             @Override
-            public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
-                number = t1.intValue();
-                setNumbers();
+            public void changed(ObservableValue<? extends GregorianCalendar> ov, GregorianCalendar t, GregorianCalendar t1) {
+               setNumbers();
             }
         });
-        this.numberProperty = _number;
+        //this.numberProperty = _number;
         this.color = color;
         color.addListener(new ChangeListener<Color>() {
             @Override
@@ -74,11 +79,14 @@ public class DailyCountDownController extends AnchorPane implements Initializabl
      }
      
     private void setNumbers() {
+        GregorianCalendar today = new GregorianCalendar();
+        number = (int)( (targetDate.getValue().getTime().getTime() - today.getTime().getTime()) / (1000 * 60 * 60 * 24));
+                
         if (number > 999){number = 999;}       
-        char[] ints = ("0000").toCharArray();       
+        char[] ints = ("000").toCharArray();       
         char[] _ints = String.valueOf(number).toCharArray();
         for(int i=_ints.length;i > 0; i--){
-            ints[4-i] = _ints[_ints.length-i];
+            ints[3-i] = _ints[_ints.length-i];
         }    
         kids = numbers.getChildren();
         kids.clear();

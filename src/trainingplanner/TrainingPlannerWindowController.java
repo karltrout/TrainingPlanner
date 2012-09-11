@@ -18,12 +18,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import trainingplanner.controls.DailyCountDownController;
@@ -51,7 +52,7 @@ public class TrainingPlannerWindowController implements Initializable {
     @FXML  private Label todaysDate;
     @FXML  private AnchorPane dashBoardPane;
     @FXML  private StackPane goalsPane;
-    @FXML  private HBox goalIcons;
+    @FXML  private FlowPane goalIcons;
     @FXML  private ColorPicker colorPicker;
     
     
@@ -103,13 +104,13 @@ public class TrainingPlannerWindowController implements Initializable {
         goalIcons.getChildren().add(bikeSpeed);
         
         PaceClockController paceClock = new PaceClockController(new SimpleIntegerProperty(537), color);
-        paceClock.setTranslateY(-5.0);
+        //paceClock.setTranslateY(-5.0);
         paceClock.setScaleX(0.5);
         paceClock.setScaleY(0.5);
         goalIcons.getChildren().add(paceClock);
         
-        DailyCountDownController counter = new DailyCountDownController(new SimpleIntegerProperty(202), color);
+        DailyCountDownController counter = new DailyCountDownController(new SimpleObjectProperty<GregorianCalendar>(new GregorianCalendar(2013, 7, 18) ), color);
         goalIcons.getChildren().add(counter);
-        
+        goalIcons.setAlignment(Pos.CENTER);
     }    
 }

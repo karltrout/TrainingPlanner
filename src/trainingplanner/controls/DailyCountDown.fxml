@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root type="javafx.scene.layout.AnchorPane" minHeight="75.00001525878906" prefHeight="78.67500305175781" prefWidth="150.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="javafx.scene.layout.AnchorPane" minHeight="75" prefHeight="75" prefWidth="150.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
   <children>
     <Rectangle id="rectangle1" arcHeight="40.0" arcWidth="40.0" height="75.0" stroke="#8fff00" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="0.0" width="150.0" />
     <Group id="Group" blendMode="SCREEN">
