@@ -31,11 +31,7 @@
         <Rectangle id="rectangle1" arcHeight="40.0" arcWidth="40.0" blendMode="SCREEN" fill="linear-gradient(from 100.0% 0.0% to 100.0% 100.0%, 0xa9a9a9ff 0.0%, 0xc0c0c0ff 10.0%, 0x000000ff 60.0%, 0x000000ff 100.0%)" height="45.0" opacity="0.5" stroke="$x1" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="0.0" width="146.0" x="2.0" y="2.0" />
         <Text id="daysLeftHeaderText" layoutX="14.0" layoutY="24.0" stroke="LIME" strokeType="INSIDE" strokeWidth="0.0" text="Days Left:">
           <effect>
-            <Reflection fraction="0.6785714285714286" topOffset="-1.0" topOpacity="0.31746031746031744">
-              <input>
-                <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0" />
-              </input>
-            </Reflection>
+            <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0" />
           </effect>
           <font>
             <Font name="MS Mincho" size="12.0" />

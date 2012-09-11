@@ -26,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import trainingplanner.controls.DailyCountDownController;
 import trainingplanner.controls.PaceClockController;
 import trainingplanner.controls.SpeedOMeterController;
 import trainingplanner.org.extensions.AthleteExt;
@@ -106,5 +107,9 @@ public class TrainingPlannerWindowController implements Initializable {
         paceClock.setScaleX(0.5);
         paceClock.setScaleY(0.5);
         goalIcons.getChildren().add(paceClock);
+        
+        DailyCountDownController counter = new DailyCountDownController(new SimpleIntegerProperty(202), color);
+        goalIcons.getChildren().add(counter);
+        
     }    
 }

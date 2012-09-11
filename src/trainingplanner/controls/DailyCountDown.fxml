@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="75.0" prefWidth="150.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.controls.DailyCountDownController">
+<fx:root type="javafx.scene.layout.AnchorPane" minHeight="75.00001525878906" prefHeight="78.67500305175781" prefWidth="150.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
   <children>
     <Rectangle id="rectangle1" arcHeight="40.0" arcWidth="40.0" height="75.0" stroke="#8fff00" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="0.0" width="150.0" />
     <Group id="Group" blendMode="SCREEN">
@@ -21,7 +21,7 @@
             <Color blue="0.000" green="1.000" red="0.561" fx:id="x1" />
           </stroke>
         </Rectangle>
-        <Group id="Group" layoutX="3.0" layoutY="1.0">
+        <Group id="Group" fx:id="numbers" layoutX="3.0" layoutY="1.0">
           <children>
             <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="7.0" scaleX="0.45" scaleY="0.45" />
             <fx:include source="DigitNumber.fxml" blendMode="ADD" layoutX="41.0" scaleX="0.45" scaleY="0.45" />
@@ -31,7 +31,7 @@
         <Rectangle id="rectangle1" arcHeight="40.0" arcWidth="40.0" blendMode="SCREEN" fill="linear-gradient(from 100.0% 0.0% to 100.0% 100.0%, 0xa9a9a9ff 0.0%, 0xc0c0c0ff 10.0%, 0x000000ff 60.0%, 0x000000ff 100.0%)" height="45.0" opacity="0.5" stroke="$x1" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="0.0" width="146.0" x="2.0" y="2.0" />
         <Text id="daysLeftHeaderText" layoutX="14.0" layoutY="24.0" stroke="LIME" strokeType="INSIDE" strokeWidth="0.0" text="Days Left:">
           <effect>
-            <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0" />
+            <DropShadow blurType="ONE_PASS_BOX" height="1.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0" />
           </effect>
           <font>
             <Font name="MS Mincho" size="12.0" />
@@ -43,4 +43,4 @@
   <stylesheets>
     <URL value="@dailycountdown.css" />
   </stylesheets>
-</AnchorPane>
+</fx:root>

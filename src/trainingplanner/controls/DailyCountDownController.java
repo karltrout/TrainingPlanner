@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 /**
@@ -25,9 +26,9 @@ import javafx.scene.paint.Color;
  *
  * @author troutk
  */
-public class DailyCountDownController implements Initializable {
+public class DailyCountDownController extends AnchorPane implements Initializable {
     @FXML private Group numbers;
-    private int number = 0000;
+    private int number = 000;
     private SimpleObjectProperty<Color> color = new SimpleObjectProperty<>(this, "color", Color.RED);
     private SimpleIntegerProperty numberProperty;
     private ObservableList<Node> kids;
@@ -37,7 +38,7 @@ public class DailyCountDownController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       setNumbers();
     }
     
      public DailyCountDownController(SimpleIntegerProperty _number, SimpleObjectProperty<Color> color){
@@ -58,7 +59,7 @@ public class DailyCountDownController implements Initializable {
             }
         });
         
-        URL location = getClass().getResource("PaceClock.fxml");
+        URL location = getClass().getResource("DailyCountDown.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);
         fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
@@ -73,7 +74,7 @@ public class DailyCountDownController implements Initializable {
      }
      
     private void setNumbers() {
-        if (number > 9999){number = 9999;}       
+        if (number > 999){number = 999;}       
         char[] ints = ("0000").toCharArray();       
         char[] _ints = String.valueOf(number).toCharArray();
         for(int i=_ints.length;i > 0; i--){
@@ -81,9 +82,8 @@ public class DailyCountDownController implements Initializable {
         }    
         kids = numbers.getChildren();
         kids.clear();
-        kids.add(new DigitNumberController(0.5,0.5,0.0,Integer.valueOf(String.valueOf(ints[0])),color));
-        kids.add(new DigitNumberController(0.5,0.5,30.0,Integer.valueOf(String.valueOf(ints[1])),color));
-        kids.add(new DigitNumberController(0.5,0.5,65.0,Integer.valueOf(String.valueOf(ints[2])),color));
-        kids.add(new DigitNumberController(0.5,0.5,95.0,Integer.valueOf(String.valueOf(ints[3])),color));
+        kids.add(new DigitNumberController(0.45,0.45,7.0,Integer.valueOf(String.valueOf(ints[0])),color));
+        kids.add(new DigitNumberController(0.45,0.45,41.0,Integer.valueOf(String.valueOf(ints[1])),color));
+        kids.add(new DigitNumberController(0.45,0.45,74.0,Integer.valueOf(String.valueOf(ints[2])),color));
     }
 }
