@@ -34,7 +34,7 @@
       <content>
         <AnchorPane fx:id="dashBoardPane" minWidth="798.0" prefHeight="512.0" prefWidth="798.0">
           <children>
-            <ScrollPane id="scrollPane3" prefHeight="161.0" prefWidth="360.9999000000025" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <ScrollPane id="scrollPane3" pannable="true" prefHeight="161.0" prefWidth="360.9999000000025" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="10.0">
               <content>
                 <FlowPane id="flowPane1" fx:id="goalIcons" alignment="CENTER" columnHalignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="150.0" prefWrapLength="0.0">
                   <children>

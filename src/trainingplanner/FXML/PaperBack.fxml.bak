@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="420.0" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <Group id="Group">
+      <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#feffde" height="640.0" stroke="#fff855" strokeType="INSIDE" width="410.0" x="5.0" y="5.0" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="15.0" startX="10.0" startY="30.0" stroke="#ff9393" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="35.0" startX="10.0" startY="30.0">
+          <stroke>
+            <Color blue="0.749" green="0.749" red="0.749" fx:id="x1" />
+          </stroke>
+        </Line>
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="55.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="75.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="95.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="115.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="135.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="155.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="175.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="195.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="215.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="235.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="275.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="455.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="435.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="415.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="395.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="375.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="355.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="335.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="315.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="295.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="255.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="475.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="495.0" startX="10.0" startY="30.0">
+          <stroke>
+            <Color blue="0.749" green="0.749" red="0.749" fx:id="x2" />
+          </stroke>
+        </Line>
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="515.0" startX="10.0" startY="30.0" stroke="$x2" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="535.0" startX="10.0" startY="30.0" stroke="$x2" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="555.0" startX="10.0" startY="30.0" stroke="$x2" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="575.0" startX="10.0" startY="30.0" stroke="$x2" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="595.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="40.0" endY="640.0" layoutX="-5.0" layoutY="-5.0" startX="40.0" startY="10.0" stroke="#8f86ff" />
+      </children>
+    </Group>
+    <HBox alignment="BOTTOM_RIGHT" layoutX="244.0" layoutY="20.0" prefHeight="26.5" prefWidth="160.5" spacing="5.0">
+      <children>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Today is:">
+          <font>
+            <Font name="System Italic" size="10.0" />
+          </font>
+        </Text>
+        <Text id="todayDateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Sept. 23, 1970">
+          <font>
+            <Font size="10.0" />
+          </font>
+        </Text>
+      </children>
+    </HBox>
+    <Text layoutX="46.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heading">
+      <font>
+        <Font name="Courier New Bold" size="18.0" />
+      </font>
+    </Text>
+  </children>
+</AnchorPane>
