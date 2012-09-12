@@ -55,6 +55,7 @@
                 <fx:include source="TrainingPlannerGoals.fxml" prefHeight="150.0" prefWidth="398.0" />
               </children>
             </StackPane>
+            <fx:include source="PaperBack.fxml" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
           </children>
         </AnchorPane>
       </content>

@@ -6,8 +6,6 @@ package trainingplanner.controls;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleIntegerProperty;

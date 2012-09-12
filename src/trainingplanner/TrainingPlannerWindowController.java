@@ -30,6 +30,7 @@ import javafx.scene.paint.Color;
 import trainingplanner.controls.DailyCountDownController;
 import trainingplanner.controls.PaceClockController;
 import trainingplanner.controls.SpeedOMeterController;
+import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.AthleteExt;
 import trainingplanner.org.extensions.TrainingPlanExt;
 
@@ -52,8 +53,10 @@ public class TrainingPlannerWindowController implements Initializable {
     @FXML  private Label todaysDate;
     @FXML  private AnchorPane dashBoardPane;
     @FXML  private StackPane goalsPane;
+    @FXML  private StackPane calendarPane;
     @FXML  private FlowPane goalIcons;
     @FXML  private ColorPicker colorPicker;
+    private SimpleObjectProperty<TrainingCalendarDay> selectedCalendarDate;
     
     
     
@@ -73,6 +76,10 @@ public class TrainingPlannerWindowController implements Initializable {
         athleteWeight.setText(String.valueOf(athlete.getWeight()));
         athleteDOB.setText(String.format(dateFormatString,athlete.getDateOfBirth().toGregorianCalendar()));
         colorPicker.valueProperty().setValue(Color.LIME);
+        
+        calendarPane.getChildren().clear();
+        TrainingPlannerCalendarController calendar = new TrainingPlannerCalendarController(selectedCalendarDate);
+        calendarPane.getChildren().add(calendar);
         
         URL location = getClass().getResource("FXML/TrainingPlannerGoals.fxml");
         FXMLLoader goalsLoader = new FXMLLoader();
@@ -104,12 +111,11 @@ public class TrainingPlannerWindowController implements Initializable {
         goalIcons.getChildren().add(bikeSpeed);
         
         PaceClockController paceClock = new PaceClockController(new SimpleIntegerProperty(537), color);
-        //paceClock.setTranslateY(-5.0);
         paceClock.setScaleX(0.5);
         paceClock.setScaleY(0.5);
         goalIcons.getChildren().add(paceClock);
         
-        DailyCountDownController counter = new DailyCountDownController(new SimpleObjectProperty<GregorianCalendar>(new GregorianCalendar(2013, 7, 18) ), color);
+        DailyCountDownController counter = new DailyCountDownController(new SimpleObjectProperty<>(new GregorianCalendar(2013, 7, 18) ), color);
         goalIcons.getChildren().add(counter);
         goalIcons.setAlignment(Pos.CENTER);
     }    

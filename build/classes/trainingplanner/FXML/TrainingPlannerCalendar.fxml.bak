@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="325.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerCalendarController">
+<fx:root type="javafx.scene.layout.AnchorPane" prefHeight="325.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
   <children>
     <Region id="headerRegionGradient" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <Region id="headerRegionColor" blendMode="MULTIPLY" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -348,10 +348,10 @@
     </GridPane>
     <Text fx:id="monthName" blendMode="SOFT_LIGHT" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthTitle" text="2000 January" textAlignment="CENTER" AnchorPane.leftAnchor="30.0">
       <effect>
-        <InnerShadow color="#606060" height="2.0" offsetX="1.0" offsetY="1.0" radius="0.5" width="2.0" />
+        <InnerShadow color="#606060" height="2.0" offsetX="1.0" radius="0.5" width="2.0" />
       </effect>
     </Text>
-    <Polygon id="nextMonthArrow" fill="DODGERBLUE" layoutY="14.0" onMouseClicked="#nextMonth" rotate="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="6.0">
+    <Polygon id="nextMonthArrow" fill="DODGERBLUE" layoutY="14.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="6.0">
       <points>
         <Double fx:value="-8.0" />
         <Double fx:value="8.0" />
@@ -361,7 +361,7 @@
         <Double fx:value="-8.0" />
       </points>
     </Polygon>
-    <Polygon id="previousMonthArrow" fill="DODGERBLUE" layoutY="15.0" onMouseClicked="#prevMonth" rotate="-90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="6.0">
+    <Polygon id="previousMonthArrow" fill="DODGERBLUE" layoutY="15.0" rotate="-90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="6.0">
       <points>
         <Double fx:value="-8.0" />
         <Double fx:value="8.0" />
@@ -373,6 +373,6 @@
     </Polygon>
   </children>
   <stylesheets>
-    <URL value="@trainingplannercalendar.css" />
+    <URL value="@css/trainingplannercalendar.css" />
   </stylesheets>
-</AnchorPane>
+</fx:root>
