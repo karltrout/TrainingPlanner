@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,6 +69,14 @@ public class TrainingPlannerWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        selectedCalendarDate = new SimpleObjectProperty<>();
+        selectedCalendarDate.addListener(new ChangeListener<TrainingCalendarDay>() {
+
+            @Override
+            public void changed(ObservableValue<? extends TrainingCalendarDay> ov, TrainingCalendarDay t, TrainingCalendarDay t1) {
+                System.out.println("Day Selected: "+t1.getCalendar());
+            }
+        });
         todaysDate.setText(String.format(dateFormatString, new GregorianCalendar()));
         trainingPlan = new TrainingPlanExt();
         trainingPlan.initialize();
