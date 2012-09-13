@@ -74,7 +74,7 @@ public class TrainingPlannerWindowController implements Initializable {
 
             @Override
             public void changed(ObservableValue<? extends TrainingCalendarDay> ov, TrainingCalendarDay t, TrainingCalendarDay t1) {
-                System.out.println("Day Selected: "+t1.getCalendar());
+                System.out.println("Day Selected: "+t1.getCalendar().getTime());
             }
         });
         todaysDate.setText(String.format(dateFormatString, new GregorianCalendar()));
