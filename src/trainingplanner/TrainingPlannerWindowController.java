@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
@@ -58,8 +59,9 @@ public class TrainingPlannerWindowController implements Initializable {
     @FXML  private StackPane calendarPane;
     @FXML  private FlowPane goalIcons;
     @FXML  private ColorPicker colorPicker;
-    private SimpleObjectProperty<TrainingCalendarDay> selectedCalendarDate;
     
+    private SimpleObjectProperty<TrainingCalendarDay> selectedCalendarDate;
+    final private PaperBackController currentNotePad = new PaperBackController();
     
     
     @FXML
@@ -69,14 +71,20 @@ public class TrainingPlannerWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        //notePad = new PaperBackController();
         selectedCalendarDate = new SimpleObjectProperty<>();
         selectedCalendarDate.addListener(new ChangeListener<TrainingCalendarDay>() {
-
             @Override
             public void changed(ObservableValue<? extends TrainingCalendarDay> ov, TrainingCalendarDay t, TrainingCalendarDay t1) {
-                System.out.println("Day Selected: "+t1.getCalendar().getTime());
+                displayNotePad(currentNotePad);
             }
         });
+        
+        currentNotePad.setVisible(false);
+        dashBoardPane.getChildren().add(currentNotePad);
+        
+        
         todaysDate.setText(String.format(dateFormatString, new GregorianCalendar()));
         trainingPlan = new TrainingPlanExt();
         trainingPlan.initialize();
@@ -114,19 +122,29 @@ public class TrainingPlannerWindowController implements Initializable {
 
         ObservableList<Node> goals = goalIcons.getChildren();
         goals.clear();
-        SpeedOMeterController bikeSpeed = new SpeedOMeterController();
-        bikeSpeed.setSpeed(42.0);
+        SpeedOMeterController bikeSpeed = new SpeedOMeterController(new SimpleDoubleProperty(21.4),color);
         bikeSpeed.setScaleX(0.5);
         bikeSpeed.setScaleY(0.5);
         goalIcons.getChildren().add(bikeSpeed);
+        
+        DailyCountDownController counter = new DailyCountDownController(new SimpleObjectProperty<>(new GregorianCalendar(2013, 7, 18) ), color);
+        goalIcons.getChildren().add(counter);
         
         PaceClockController paceClock = new PaceClockController(new SimpleIntegerProperty(537), color);
         paceClock.setScaleX(0.5);
         paceClock.setScaleY(0.5);
         goalIcons.getChildren().add(paceClock);
-        
-        DailyCountDownController counter = new DailyCountDownController(new SimpleObjectProperty<>(new GregorianCalendar(2013, 7, 18) ), color);
-        goalIcons.getChildren().add(counter);
-        goalIcons.setAlignment(Pos.CENTER);
-    }    
+
+    }
+    
+    
+            private void displayNotePad(PaperBackController _currentNotePad) {
+                
+                if (!_currentNotePad.isVisible()){
+                    _currentNotePad.setVisible(true);
+                }
+                _currentNotePad.setTrainingDay(selectedCalendarDate.get());
+                
+                System.out.println( "selected date is :"+selectedCalendarDate.getValue().getCalendar().getTime());
+            }
 }

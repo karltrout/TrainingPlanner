@@ -21,7 +21,6 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;

@@ -5,11 +5,12 @@
 <?import java.util.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerWindowController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerWindowController">
   <children>
     <MenuBar id="menuBar" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
       <menus>
@@ -30,22 +31,22 @@
         </Menu>
       </menus>
     </MenuBar>
-    <ScrollPane id="scrollPane2" fitToHeight="true" fitToWidth="true" prefHeight="650.0" prefViewportHeight="798.0" prefViewportWidth="523.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
+    <ScrollPane id="scrollPane2" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefViewportHeight="798.0" prefViewportWidth="523.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
       <content>
-        <AnchorPane fx:id="dashBoardPane" minWidth="798.0" prefHeight="512.0" prefWidth="798.0">
+        <AnchorPane fx:id="dashBoardPane" minHeight="-Infinity" minWidth="798.0" prefHeight="512.0" prefWidth="798.0">
           <children>
             <ScrollPane id="scrollPane3" pannable="true" prefHeight="161.0" prefWidth="360.9999000000025" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="10.0">
               <content>
                 <FlowPane id="flowPane1" fx:id="goalIcons" alignment="CENTER" columnHalignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="150.0" prefWrapLength="0.0">
                   <children>
+                    <fx:include source="../controls/PaceClock.fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" scaleX="0.5" scaleY="0.5" />
                     <fx:include source="../controls/DailyCountDown.fxml" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="150.0" />
                     <fx:include source="../controls/SpeedOMeter.fxml" scaleX="0.5" scaleY="0.5" />
-                    <fx:include source="../controls/PaceClock.fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" scaleX="0.5" scaleY="0.5" />
                   </children>
                 </FlowPane>
               </content>
             </ScrollPane>
-            <StackPane id="StackPane" layoutX="14.0" layoutY="14.0">
+            <StackPane id="StackPane" fx:id="calendarPane" layoutX="14.0" layoutY="14.0">
               <children>
                 <fx:include source="TrainingPlannerCalendar.fxml" styleClass="widgetPane" />
               </children>
@@ -55,7 +56,14 @@
                 <fx:include source="TrainingPlannerGoals.fxml" prefHeight="150.0" prefWidth="398.0" />
               </children>
             </StackPane>
-            <fx:include source="PaperBack.fxml" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <AreaChart id="AreaChartNxN" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="325.0" prefWidth="768.0" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="14.0">
+              <xAxis>
+                <NumberAxis id="xAxis1" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis id="yAxis1" side="LEFT" />
+              </yAxis>
+            </AreaChart>
           </children>
         </AnchorPane>
       </content>

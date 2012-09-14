@@ -7,21 +7,28 @@ package trainingplanner.controls;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+
 
 /**
  * FXML Controller class
  *
  * @author troutk
  */
-public class SpeedOMeterController extends AnchorPane implements Initializable {
+public final class SpeedOMeterController extends AnchorPane implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -34,18 +41,23 @@ public class SpeedOMeterController extends AnchorPane implements Initializable {
     @FXML private Pane   goalIndcator;
     @FXML private double speedRotation = 0;
     @FXML private double goalRotation = 0;
+    @FXML private Circle knobCenterCircle;
+    @FXML private Circle innerCircle;
+    @FXML private Rectangle digitBackground;
+    
           private int scaleMax = 80;
+    private final SimpleObjectProperty<Color> color  = new SimpleObjectProperty<>(this, "color", Color.RED);
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         goalSpeedText = new Text();
         this.setGoalSpeed(0.0);
-        this.setSpeed(0.0);
     }    
 
-    public SpeedOMeterController(){
-    URL location = getClass().getResource("SpeedOMeter.fxml");
+    public SpeedOMeterController(SimpleDoubleProperty value, SimpleObjectProperty<Color> color){
+        if (null == color) { color = new SimpleObjectProperty<>(Color.LIME); }
+        URL location = getClass().getResource("SpeedOMeter.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);
         fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
@@ -57,11 +69,31 @@ public class SpeedOMeterController extends AnchorPane implements Initializable {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-}
+        color.addListener(new ChangeListener<Color>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Color> ov, Color t, Color t1) {
+                knobCenterCircle.setFill(t1);
+                digitBackground.setFill(t1);
+                innerCircle.setStroke(t1);
+            }
+        });
+        
+       value.addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
+                setSpeedValue(t1.doubleValue());
+            }
+        });
+       
+       setSpeedValue(value.doubleValue());
+    }
+    
     /**
      * @param speedText the speedText to set
      */
-    public void setSpeed(double speed) {
+    public void setSpeedValue(double speed) {
         this.speed = speed;
         setSpeedText(String.valueOf(speed));
         setSpeedRotation();

@@ -39,15 +39,15 @@
       <children>
         <Group id="Group">
           <children>
-            <Circle id="circle2" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+            <Circle id="circle2" centerX="98.0" centerY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
               <fill>
                 <Color blue="0.624" green="0.624" red="0.624" fx:id="x1" />
               </fill>
             </Circle>
-            <Circle id="circle2" fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff0000ff 0.0%, 0x0000ffff 30.0%, 0x000000ff 100.0%)" layoutX="98.0" layoutY="98.0" opacity="0.24" radius="84.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle id="circle1" blendMode="OVERLAY" fill="linear-gradient(from -10.0% 0.0% to 0.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 35.0%, 0xc0c0c0ff 40.0%, 0x808080ff 55.00000000000001%, 0xffffffff 75.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle id="circle2" fill="$x2" layoutX="98.0" layoutY="98.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle id="circle2" fx:id="rimColor" fill="$x2" layoutX="98.0" layoutY="98.0" radius="75.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+            <Circle id="circle2" centerX="98.0" centerY="98.0" fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff0000ff 0.0%, 0x0000ffff 30.0%, 0x000000ff 100.0%)" opacity="0.24" radius="84.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle1" blendMode="OVERLAY" centerX="98.0" centerY="98.0" fill="linear-gradient(from -10.0% 0.0% to 0.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 35.0%, 0xc0c0c0ff 40.0%, 0x808080ff 55.00000000000001%, 0xffffffff 75.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" radius="98.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle id="circle2" centerX="98.0" centerY="98.0" fill="$x2" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle2" fx:id="rimColor" centerX="98.0" centerY="98.0" fill="$x2" radius="75.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
           </children>
         </Group>
         <Group id="Group" fx:id="numbers" layoutX="23.0" layoutY="53.0">
@@ -60,25 +60,25 @@
         </Group>
         <Group id="Group" blendMode="HARD_LIGHT" layoutX="-2.0" layoutY="-2.0" opacity="0.51" styleClass="center">
           <children>
-            <Circle id="glassCover" fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 0.0px 75.0px, radius 200.0px, 0xffffffff 0.0%, 0x000000ff 100.0%)" layoutX="100.0" layoutY="100.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
-            <Ellipse id="ellipse1" blendMode="SCREEN" centerY="-20.0" fill="linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, 0xffffffff 0.0%, 0x000000ff 80.0%, 0x000000ff 100.0%)" layoutX="100.0" layoutY="109.0" radiusX="70.0" radiusY="58.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="glassCover" centerX="100.0" centerY="100.0" fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 0.0px 75.0px, radius 200.0px, 0xffffffff 0.0%, 0x000000ff 100.0%)" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
+            <Ellipse id="ellipse1" blendMode="SCREEN" centerX="100.0" centerY="89.0" fill="linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, 0xffffffff 0.0%, 0x000000ff 80.0%, 0x000000ff 100.0%)" radiusX="68.0" radiusY="58.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Rectangle id="SpeedBackGround" arcHeight="5.0" arcWidth="5.0" blendMode="MULTIPLY" fill="RED" height="30.0" layoutX="-2.0" stroke="#dfdfdf" strokeType="INSIDE" styleClass="center" visible="false" width="100.0" x="50.0" y="135.0" />
           </children>
         </Group>
       </children>
     </Group>
-    <Group id="Group" layoutX="2.0" layoutY="21.0">
+    <Group id="Group" layoutX="2.0" layoutY="21.0" visible="false">
       <children>
-        <Group id="Group" fx:id="paceSettings" visible="false">
+        <Group id="Group" fx:id="paceSettings">
           <children>
-            <Circle id="circle2" fill="$x1" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle id="circle2" fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff0000ff 0.0%, 0x0000ffff 30.0%, 0x000000ff 100.0%)" layoutX="98.0" layoutY="98.0" opacity="0.24" radius="84.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle id="circle1" blendMode="OVERLAY" fill="linear-gradient(from -10.0% 0.0% to 0.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 35.0%, 0xc0c0c0ff 40.0%, 0x808080ff 55.00000000000001%, 0xffffffff 75.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle id="circle2" fill="$x2" layoutX="98.0" layoutY="98.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle id="circle2" fill="$x2" layoutX="98.0" layoutY="98.0" radius="75.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+            <Circle id="circle2" centerX="98.0" centerY="98.0" fill="$x1" radius="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle2" centerX="98.0" centerY="98.0" fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff0000ff 0.0%, 0x0000ffff 30.0%, 0x000000ff 100.0%)" opacity="0.24" radius="84.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle1" blendMode="OVERLAY" centerX="98.0" centerY="98.0" fill="linear-gradient(from -10.0% 0.0% to 0.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 35.0%, 0xc0c0c0ff 40.0%, 0x808080ff 55.00000000000001%, 0xffffffff 75.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" radius="98.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle id="circle2" centerX="98.0" centerY="98.0" fill="$x2" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle2" centerX="98.0" centerY="98.0" fill="$x2" radius="75.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
             <Slider id="sliderVertical1" fx:id="paceSlider" layoutX="57.0" layoutY="68.0" orientation="VERTICAL" prefHeight="64.0" />
             <TextField id="textField1" fx:id="paceValueText" layoutX="78.0" layoutY="89.0" prefWidth="60.0" />
-            <Text id="text1" fill="WHITE" layoutX="73.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set Pace">
+            <Text id="text1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Set Pace" x="73.0" y="65.0">
               <font>
                 <Font name="System Bold" size="14.0" />
               </font>

@@ -11,42 +11,38 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root type="javafx.scene.layout.AnchorPane" prefHeight="200.0" prefWidth="200.0" xmlns:fx="http://javafx.com/fxml">
-  <Circle id="BlackBackGround" layoutX="100.0" layoutY="100.0" radius="98.0" stroke="BLACK" strokeType="INSIDE">
-    <fill>
-      <Color blue="0.125" green="0.125" red="0.125" fx:id="x3" />
-    </fill>
-  </Circle>
-  <Circle id="greyBackPane" fill="#3b3b3b86" layoutX="100.0" layoutY="100.0" radius="70.0" strokeType="INSIDE" strokeWidth="1.5">
-    <stroke>
-      <Color blue="0.251" green="0.251" red="0.251" fx:id="x2" />
-    </stroke>
-  </Circle>
-  <Line id="line1" endX="100.0" endY="2.0" fill="WHITE" layoutY="2.0" startX="100.0" startY="20.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="2.0" />
-  <Line id="line1" endX="2.0" endY="100.0" fill="WHITE" layoutX="2.0" startX="20.0" startY="100.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="2.0" />
-  <Line id="line1" endX="198.0" endY="100.0" fill="WHITE" layoutX="-2.0" startX="180.0" startY="100.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="2.0" />
-  <Line id="line1" endX="45.0" endY="45.0" fill="WHITE" startX="32.0" startY="32.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="2.0" />
-  <Line id="line1" endX="2.0" endY="100.0" fill="WHITE" layoutX="9.0" layoutY="-34.0" rotate="30.0" startX="15.0" startY="100.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" />
-  <Line id="line1" endX="2.0" endY="100.0" fill="WHITE" layoutX="54.0" layoutY="-80.0" rotate="60.0" startX="15.0" startY="100.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" />
-  <Line id="line1" endX="100.0" endY="2.0" fill="WHITE" layoutX="35.0" layoutY="9.0" rotate="30.0" startX="100.0" startY="15.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" />
-  <Line id="line1" endX="100.0" endY="2.0" fill="WHITE" layoutX="63.0" layoutY="29.0" rotate="45.0" startX="100.0" startY="20.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="2.0" />
-  <Line id="line1" endX="100.0" endY="2.0" fill="WHITE" layoutX="80.0" layoutY="55.0" rotate="60.0" startX="100.0" startY="15.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" />
-  <stylesheets>
-    <URL value="@css/speedometer.css" />
-  </stylesheets>
-  <Circle id="BlackBackGround" blendMode="MULTIPLY" fill="WHITE" layoutX="100.0" layoutY="100.0" radius="98.0" stroke="BLACK" strokeWidth="2.0" />
-  <Text id="60Text" fill="WHITE" layoutX="87.0" layoutY="42.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="40" textAlignment="CENTER" textOrigin="CENTER">
-    <font>
-      <Font name="SansSerif Bold" size="24.0" fx:id="x1" />
-    </font>
-  </Text>
-  <Text id="60Text" fill="WHITE" font="$x1" layoutX="141.0" layoutY="100.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="80" textAlignment="CENTER" textOrigin="CENTER" />
-  <Text id="60Text" fill="WHITE" font="$x1" layoutX="32.0" layoutY="100.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" textOrigin="CENTER" />
-  <Text id="60Text" fill="WHITE" font="$x1" layoutX="49.0" layoutY="63.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="20" textAlignment="CENTER" textOrigin="CENTER" />
-  <Text id="60Text" fill="WHITE" font="$x1" layoutX="127.0" layoutY="63.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="60" textAlignment="CENTER" textOrigin="CENTER" />
-  <Pane id="pane1" fx:id="speedIndcator" prefHeight="200.0" prefWidth="200.0">
+<fx:root type="javafx.scene.layout.AnchorPane" prefHeight="220.0" prefWidth="220.0" xmlns:fx="http://javafx.com/fxml">
+  <Circle id="circle2" centerX="110.0" centerY="110.0" fill="#9f9f9f" radius="108.0" stroke="BLACK" strokeType="INSIDE" />
+  <Circle id="circle2" centerX="110.0" centerY="110.0" fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff0000ff 0.0%, 0x0000ffff 30.0%, 0x000000ff 100.0%)" opacity="0.24" radius="104.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+  <Circle id="circle1" blendMode="OVERLAY" centerX="110.0" centerY="110.0" fill="linear-gradient(from -10.0% 0.0% to 0.0% 100.0%, 0xc0c0c0ff 0.0%, 0x808080ff 15.0%, 0xffffffff 35.0%, 0xc0c0c0ff 40.0%, 0x808080ff 55.00000000000001%, 0xffffffff 75.0%, 0xc0c0c0ff 90.0%, 0xc0c0c0ff 100.0%)" radius="110.0" stroke="BLACK" strokeType="INSIDE" />
+  <Group id="Group" layoutX="110.0" layoutY="110.0">
     <children>
-      <Polygon id="polygon1" fill="BLUE" layoutX="100.0" layoutY="66.0" smooth="false" stroke="$x2" strokeType="INSIDE">
+      <Circle id="BlackBackGround" fill="#202020" radius="100.0" stroke="#606060" strokeType="OUTSIDE" />
+      <Circle id="greyBackPane" fx:id="innerCircle" fill="#3b3b3b86" radius="70.0" stroke="LIME" strokeType="INSIDE" strokeWidth="1.5" />
+      <Line id="line1" endX="-76.0" fill="WHITE" startX="-96.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="2.0" />
+      <Line id="line1" endX="-54.0" endY="-54.0" fill="WHITE" startX="-68.0" startY="-68.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="2.0" />
+      <Line id="line1" endY="-76.0" fill="WHITE" startY="-96.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="2.0" />
+      <Line id="line1" endX="78.0" endY="-54.0" fill="WHITE" rotate="-45.0" startX="54.0" startY="-54.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="2.0" />
+      <Line id="line1" endX="96.0" fill="WHITE" startX="76.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" strokeWidth="2.0" />
+      <Line id="line1" endX="10.0" fill="WHITE" rotate="30.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" />
+      <Line id="line1" endX="10.0" fill="WHITE" rotate="60.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" />
+      <Line id="line1" endY="2.0" fill="WHITE" rotate="30.0" startY="15.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" />
+      <Line id="line1" endY="2.0" fill="WHITE" rotate="60.0" startY="15.0" stroke="WHITE" strokeMiterLimit="1.0" strokeType="OUTSIDE" />
+      <Circle id="BlackBackGround" blendMode="MULTIPLY" fill="WHITE" radius="98.0" stroke="BLACK" strokeWidth="2.0" />
+      <Text id="60Text" fill="WHITE" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="40" textAlignment="CENTER" textOrigin="CENTER" x="-13.0" y="-50.0">
+        <font>
+          <Font name="SansSerif Bold" size="24.0" fx:id="x1" />
+        </font>
+      </Text>
+      <Text id="60Text" fill="WHITE" font="$x1" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" textOrigin="CENTER" x="-60.0" />
+      <Text id="60Text" fill="WHITE" font="$x1" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="60" textAlignment="CENTER" textOrigin="CENTER" x="30.0" y="-30.0" />
+      <Text id="60Text" fill="WHITE" font="$x1" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="80" textAlignment="CENTER" textOrigin="CENTER" x="40.0" />
+      <Text id="60Text" fill="WHITE" font="$x1" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="20" textAlignment="CENTER" textOrigin="CENTER" x="-50.0" y="-30.0" />
+    </children>
+  </Group>
+  <Pane id="pane1" fx:id="speedIndcator" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+    <children>
+      <Polygon id="polygon1" fill="BLUE" layoutX="100.0" layoutY="70.0" smooth="false" strokeType="INSIDE">
         <effect>
           <DropShadow height="11.0" offsetX="2.0" offsetY="2.0" radius="5.0" width="11.0" />
         </effect>
@@ -62,12 +58,15 @@
           <Double fx:value="0.0" />
           <Double fx:value="-60.0" />
         </points>
+        <stroke>
+          <Color blue="0.251" green="0.251" red="0.251" fx:id="x2" />
+        </stroke>
       </Polygon>
     </children>
   </Pane>
-  <Pane id="pane1" fx:id="goalIndcator" prefHeight="200.0" prefWidth="200.0">
+  <Pane id="pane1" fx:id="goalIndcator" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
     <children>
-      <Polygon id="greenArrow" fill="#7433ff" layoutX="100.0" layoutY="66.0" stroke="$x3" strokeType="INSIDE">
+      <Polygon id="greenArrow" fill="#7433ff" layoutX="100.0" layoutY="70.0" strokeType="INSIDE">
         <effect>
           <DropShadow height="11.0" offsetX="2.0" offsetY="2.0" radius="5.0" width="11.0" />
         </effect>
@@ -83,16 +82,13 @@
           <Double fx:value="0.0" />
           <Double fx:value="-40.0" />
         </points>
+        <stroke>
+          <Color blue="0.125" green="0.125" red="0.125" fx:id="x3" />
+        </stroke>
       </Polygon>
     </children>
   </Pane>
-  <Circle id="circle3" fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center -15.0px -15.0px, radius 40.0px, 0xffffffff 0.0%, 0xd3d3d3ff 10.0%, 0x000000ff 100.0%)" layoutX="100.0" layoutY="100.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
-    <effect>
-      <DropShadow offsetX="5.0" offsetY="5.0" />
-    </effect>
-  </Circle>
-  <Circle id="circle4" fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 15.0px 15.0px, radius 40.0px, 0x000000ff 0.0%, 0xffffffff 10.0%, 0x000000ff 100.0%)" layoutX="100.0" layoutY="100.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-  <Group id="Group" layoutY="160.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+  <Group id="Group" layoutX="60.0" layoutY="180.0">
     <children>
       <Rectangle id="SpeedBackGround" arcHeight="5.0" arcWidth="5.0" fill="linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, 0x000000ff 0.0%, 0x000000ff 5.0%, 0x808080ff 30.0%, 0x000000ff 100.0%)" height="30.0" stroke="GREY" strokeType="INSIDE" width="100.0" y="-23.0" />
       <Text id="text1" fx:id="speedText" fill="WHITE" layoutX="6.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="center" text="8888.8" textAlignment="JUSTIFY">
@@ -105,11 +101,25 @@
       </Text>
     </children>
   </Group>
-  <Group id="Group" blendMode="ADD" layoutX="2.0" layoutY="2.0" opacity="0.27" styleClass="center">
+  <Group id="Group" layoutX="110.0" layoutY="110.0">
     <children>
-      <Circle id="glassCover" fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 0.0px 75.0px, radius 200.0px, 0xffffffff 0.0%, 0x000000ff 100.0%)" layoutX="98.0" layoutY="98.0" radius="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Ellipse id="ellipse1" blendMode="SCREEN" centerY="-20.0" fill="linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, 0xffffffff 0.0%, 0x000000ff 80.0%, 0x000000ff 100.0%)" layoutX="98.0" layoutY="109.0" radiusX="89.0" radiusY="78.875" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Rectangle id="SpeedBackGround" arcHeight="5.0" arcWidth="5.0" blendMode="MULTIPLY" fill="RED" height="30.0" layoutX="-2.0" stroke="#dfdfdf" strokeType="INSIDE" styleClass="center" width="100.0" x="50.0" y="135.0" />
+      <Circle id="circle3" fill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xffffffff 0.0%, 0x808080ff 30.0%, 0x000000ff 100.0%)" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+        <effect>
+          <DropShadow offsetX="5.0" offsetY="5.0" />
+        </effect>
+      </Circle>
+      <Circle id="circle4" fx:id="knobCenterCircle" fill="LIME" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle id="circle4" blendMode="MULTIPLY" fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center -20.0px -20.0px, radius 150.0px, 0x000000ff 0.0%, 0xc0c0c0ff 30.0%, 0xffffffff 100.0%)" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
     </children>
   </Group>
+  <Group id="Group" blendMode="ADD" layoutX="110.0" layoutY="110.0" opacity="0.19" styleClass="center">
+    <children>
+      <Circle id="glassCover" fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 0.0px 75.0px, radius 200.0px, 0xffffffff 0.0%, 0x000000ff 100.0%)" radius="98.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Ellipse id="ellipse1" blendMode="SCREEN" centerY="-20.0" fill="linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, 0xffffffff 0.0%, 0x000000ff 80.0%, 0x000000ff 100.0%)" radiusX="89.0" radiusY="78.875" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Rectangle id="SpeedBackGround" fx:id="digitBackground" arcHeight="5.0" arcWidth="5.0" blendMode="MULTIPLY" fill="LIME" height="30.0" stroke="#dfdfdf" strokeType="INSIDE" styleClass="center" width="100.0" x="-50.0" y="47.0" />
+    </children>
+  </Group>
+  <stylesheets>
+    <URL value="@css/speedometer.css" />
+  </stylesheets>
 </fx:root>

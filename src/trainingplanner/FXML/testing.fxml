@@ -8,7 +8,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="archorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.FXML.TestingController">
+<fx:root type="javafx.scene.layout.AnchorPane"  minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0" styleClass="background" xmlns:fx="http://javafx.com/fxml">
   <children>
     <ImageView fitHeight="320.0" fitWidth="32.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
       <image>
@@ -20,4 +20,4 @@
   <stylesheets>
     <URL value="@css/testing.css" />
   </stylesheets>
-</AnchorPane>
+</fx:root>

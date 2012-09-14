@@ -5,17 +5,21 @@
 package trainingplanner.org.calendar;
 
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
  * @author troutk
  */
 public class TrainingCalendarDay {
-private Calendar calendar;
-private int week;
+    private Calendar calendar;
+    private int week;
+    private SimpleStringProperty date = new SimpleStringProperty();
 
+    public TrainingCalendarDay(){
+        setCalendar(Calendar.getInstance());
+    }
     /**
      * @return the calendar
      */
@@ -28,6 +32,7 @@ private int week;
      */
     public void setCalendar(Calendar calendar) {
         this.calendar = calendar;
+        date.set(calendar.getTime().toString());
     }
 
     /**
@@ -52,6 +57,10 @@ private int week;
         int dayOfYear = this.calendar.get(Calendar.DAY_OF_YEAR);
         int currentYear = this.calendar.get(Calendar.YEAR);        
         return (today.get(Calendar.YEAR)==currentYear && today.get(Calendar.DAY_OF_YEAR)==dayOfYear);
+    }
+    
+    public StringProperty getDate(){
+        return date;
     }
 
 

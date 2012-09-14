@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="420.0" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="javafx.scene.layout.AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="420.0" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <Group id="Group">
+    <Group id="paperBack">
       <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#feffde" height="640.0" stroke="#fff855" strokeType="INSIDE" width="410.0" x="5.0" y="5.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#feffde" height="640.0" stroke="#fff500" strokeType="INSIDE" width="410.0" x="5.0" y="5.0">
+          <effect>
+            <DropShadow color="#66631b" offsetX="2.0" offsetY="2.0" />
+          </effect>
+        </Rectangle>
         <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="15.0" startX="10.0" startY="30.0" stroke="#ff9393" />
         <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="35.0" startX="10.0" startY="30.0">
           <stroke>
@@ -41,20 +47,16 @@
         <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="295.0" startX="10.0" startY="30.0" stroke="$x1" />
         <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="255.0" startX="10.0" startY="30.0" stroke="$x1" />
         <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="475.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="495.0" startX="10.0" startY="30.0">
-          <stroke>
-            <Color blue="0.749" green="0.749" red="0.749" fx:id="x2" />
-          </stroke>
-        </Line>
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="515.0" startX="10.0" startY="30.0" stroke="$x2" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="535.0" startX="10.0" startY="30.0" stroke="$x2" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="555.0" startX="10.0" startY="30.0" stroke="$x2" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="575.0" startX="10.0" startY="30.0" stroke="$x2" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="495.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="515.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="535.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="555.0" startX="10.0" startY="30.0" stroke="$x1" />
+        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="575.0" startX="10.0" startY="30.0" stroke="$x1" />
         <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="595.0" startX="10.0" startY="30.0" stroke="$x1" />
         <Line endX="40.0" endY="640.0" layoutX="-5.0" layoutY="-5.0" startX="40.0" startY="10.0" stroke="#8f86ff" />
       </children>
     </Group>
-    <HBox alignment="BOTTOM_RIGHT" layoutX="244.0" layoutY="20.0" prefHeight="26.5" prefWidth="160.5" spacing="5.0">
+    <HBox id="dateBox" alignment="BOTTOM_RIGHT" layoutX="210.0" layoutY="27.0" prefHeight="20.390625" prefWidth="195.0" spacing="5.0">
       <children>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Today is:">
           <font>
@@ -68,10 +70,23 @@
         </Text>
       </children>
     </HBox>
-    <Text layoutX="46.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heading">
+    <Text id="heading" layoutX="46.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heading">
       <font>
         <Font name="Courier New Bold" size="18.0" />
       </font>
     </Text>
+    <Group id="notePadCloseBox" fx:id="closeButton" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <children>
+        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="20.0" />
+        <Line id="line1" endX="14.0" endY="14.0" startX="6.0" startY="6.0" strokeWidth="2.0" />
+        <Line id="line1" endX="14.0" endY="6.0" startX="6.0" startY="14.0" strokeWidth="2.0" />
+      </children>
+      <stylesheets>
+        <URL value="@css/trainingPlanner.css" />
+      </stylesheets>
+    </Group>
   </children>
-</AnchorPane>
+  <stylesheets>
+    <URL value="@css/trainingPlanner.css" />
+  </stylesheets>
+</fx:root>

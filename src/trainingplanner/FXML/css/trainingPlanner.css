@@ -38,3 +38,8 @@ root {
     color: #fbfbfe
 }
 
+#notePadCloseBox:hover{
+    -fx-cursor: hand;
+    -fx-effect: innershadow( three-pass-box , black, 5,0 ,2.0 ,2.0);
+}
+
