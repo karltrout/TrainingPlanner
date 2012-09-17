@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by karl trout (private) -->
+<!-- edited with XMLSpy v2012 sp1 (x64) (http://www.altova.com) by Karl Trout (private) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:element name="TrainingPlan">
 		<xs:annotation>
@@ -85,8 +85,10 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="intensity" type="xs:double"/>
+			<xs:element name="Volume"/>
 			<xs:element name="duration" type="xs:duration"/>
 			<xs:element name="description" type="xs:string"/>
+			<xs:group ref="excersizes"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
 		<xs:attribute name="parentId" type="xs:string"/>
@@ -176,6 +178,8 @@
 			<xs:element name="wakeupTime" type="xs:time"/>
 			<xs:element name="sleepQuality" type="xs:int" default="0"/>
 			<xs:element name="energyLevel" type="xs:int" default="0"/>
+			<xs:element name="moodLevel" type="xs:int"/>
+			<xs:group ref="nutrition"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="KpiValueType">
@@ -274,4 +278,29 @@
 			<xs:enumeration value="pace"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:complexType name="ExcersizeType">
+		<xs:sequence>
+			<xs:element name="intensity" type="xs:double"/>
+			<xs:element name="duration" type="xs:duration"/>
+			<xs:element name="volume" type="xs:double"/>
+			<xs:element name="focus" type="xs:string"/>
+			<xs:element name="description" type="xs:string"/>
+			<xs:element name="sportType" type="sportTypes" default="Other"/>
+		</xs:sequence>
+		<xs:attribute name="parentId" type="xs:string"/>
+		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="id" type="xs:ID"/>
+	</xs:complexType>
+	<xs:group name="excersizes">
+		<xs:sequence>
+			<xs:element name="Excersize" type="ExcersizeType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="nutrition">
+		<xs:sequence>
+			<xs:element name="protein" type="xs:int"/>
+			<xs:element name="fats" type="xs:int"/>
+			<xs:element name="carbohydrates" type="xs:int"/>
+		</xs:sequence>
+	</xs:group>
 </xs:schema>
