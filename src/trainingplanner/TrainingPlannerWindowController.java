@@ -4,6 +4,10 @@
  */
 package trainingplanner;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.GregorianCalendar;
@@ -21,29 +25,34 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.chart.AreaChart;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import trainingplanner.controls.DailyCountDownController;
 import trainingplanner.controls.PaceClockController;
 import trainingplanner.controls.SpeedOMeterController;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.AthleteExt;
 import trainingplanner.org.extensions.TrainingPlanExt;
+import trainingplanner.org.xsd.TrainingPlan;
 
 /**
  *
  * @author troutk
  */
 public class TrainingPlannerWindowController implements Initializable {
-    
-    private String dateFormatString = "%1$tb %1$te, %1$tY";
+    private JAXBContext jc;
+    final private String dateFormatString = "%1$tb %1$te, %1$tY";
     private SimpleObjectProperty<Color> color = new SimpleObjectProperty<>(this, "color", Color.LIME);
     
     private TrainingPlanExt trainingPlan;
@@ -59,9 +68,11 @@ public class TrainingPlannerWindowController implements Initializable {
     @FXML  private StackPane calendarPane;
     @FXML  private FlowPane goalIcons;
     @FXML  private ColorPicker colorPicker;
+    @FXML  private AreaChart volumeChart;
     
     private SimpleObjectProperty<TrainingCalendarDay> selectedCalendarDate;
     final private PaperBackController currentNotePad = new PaperBackController();
+    final private String planFile = "trainingPLan.xml";
     
     
     @FXML
@@ -69,10 +80,30 @@ public class TrainingPlannerWindowController implements Initializable {
         System.exit(0);
     }
     
+    @FXML
+    private void saveAction(ActionEvent event){
+        System.out.println("Saving... "+trainingPlan.getAthlete().getFullName());
+        if( null != trainingPlan)
+        {
+            try {
+                trainingplanner.org.xsd.TrainingPlan tp = new TrainingPlan();
+                serializeObjectToXML(planFile,trainingPlan);
+            } catch (Exception ex) {
+                Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            jc = JAXBContext.newInstance( "trainingplanner.org.xsd" );
+        } catch (JAXBException ex) {
+            Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        //notePad = new PaperBackController();
         selectedCalendarDate = new SimpleObjectProperty<>();
         selectedCalendarDate.addListener(new ChangeListener<TrainingCalendarDay>() {
             @Override
@@ -86,8 +117,16 @@ public class TrainingPlannerWindowController implements Initializable {
         
         
         todaysDate.setText(String.format(dateFormatString, new GregorianCalendar()));
+        
         trainingPlan = new TrainingPlanExt();
-        trainingPlan.initialize();
+        try {
+            trainingPlan.setRoot(deserializeXMLToTrainingPlan(planFile));
+            
+        } catch (Exception ex) {
+            Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            trainingPlan.initialize();
+        } 
+        
         athlete = trainingPlan.getAthlete();
         athleteName.setText(athlete.getFullName());
         athleteAge.setText(String.valueOf(athlete.getAge()));
@@ -147,4 +186,29 @@ public class TrainingPlannerWindowController implements Initializable {
                 
                 System.out.println( "selected date is :"+selectedCalendarDate.getValue().getCalendar().getTime());
             }
+            /**
+	 * This method saves (serializes) any java bean object into xml file
+	 */
+	public void serializeObjectToXML(String xmlFileLocation,
+		Object objectToSerialize) throws Exception {
+                Marshaller m = jc.createMarshaller();
+                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		FileOutputStream os = new FileOutputStream(xmlFileLocation);
+                
+                m.marshal( objectToSerialize, os);
+                os.close();
+                
+	}
+
+	/**
+	 * Reads Java Bean Object From XML File
+	 */
+	public TrainingPlan deserializeXMLToTrainingPlan(String xmlFileLocation)
+		throws Exception {
+		FileInputStream is = new FileInputStream(xmlFileLocation);
+		Unmarshaller u = jc.createUnmarshaller();
+                TrainingPlan tp = (TrainingPlan)u.unmarshal(is);
+		return tp;
+	}
+
 }

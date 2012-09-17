@@ -82,6 +82,16 @@ public class AthleteExt extends Athlete {
         //setKeyPerformanceIndicators(keyPerformanceIndicators);
         
 	}
+
+    AthleteExt(Athlete athlete) {
+        super.age = athlete.getAge();
+        super.dateOfBirth = athlete.getDateOfBirth();
+        super.firstName = athlete.getFirstName();
+        super.id = athlete.getId();
+        super.keyPerformanceIndicators = athlete.getKeyPerformanceIndicators();
+        super.lastName = athlete.getLastName();
+        super.weight = athlete.getWeight();
+    }
 	
 	public String getFullName(){
 		return this.getFirstName()+" "+this.getLastName();

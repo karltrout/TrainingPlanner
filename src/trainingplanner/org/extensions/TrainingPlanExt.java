@@ -6,6 +6,7 @@ package trainingplanner.org.extensions;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 import javax.xml.datatype.DatatypeConfigurationException;
+import trainingplanner.org.xsd.TrainingPlan;
 
 /**
  * @author troutk
@@ -41,5 +42,12 @@ public class TrainingPlanExt extends trainingplanner.org.xsd.TrainingPlan {
 	public AthleteExt getAthlete() {
 		return (AthleteExt) this.athlete;
 	}
+
+    public void setRoot(TrainingPlan root) {
+        super.setAthlete(new AthleteExt(root.getAthlete()));
+        super.setId(root.getId());
+        super.setPhaseStrategy(root.getPhaseStrategy());
+        super.setTrainingCalendar(root.getTrainingCalendar());
+    }
 
 }

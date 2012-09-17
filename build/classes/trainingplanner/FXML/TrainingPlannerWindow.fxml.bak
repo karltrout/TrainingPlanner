@@ -17,6 +17,7 @@
         <Menu mnemonicParsing="false" text="File">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#quitAction" text="Close" />
+            <MenuItem mnemonicParsing="false" onAction="#quitAction" text="Save" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
@@ -35,9 +36,9 @@
       <content>
         <AnchorPane fx:id="dashBoardPane" minHeight="-Infinity" minWidth="798.0" prefHeight="512.0" prefWidth="798.0">
           <children>
-            <ScrollPane id="scrollPane3" pannable="true" prefHeight="161.0" prefWidth="360.9999000000025" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="10.0">
+            <ScrollPane id="scrollPane3" hbarPolicy="NEVER" pannable="true" prefHeight="161.0" prefWidth="360.9999000000025" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="10.0">
               <content>
-                <FlowPane id="flowPane1" fx:id="goalIcons" alignment="CENTER" columnHalignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="150.0" prefWrapLength="0.0">
+                <FlowPane id="flowPane1" fx:id="goalIcons" alignment="CENTER" columnHalignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="145.0" prefWidth="765.0" prefWrapLength="0.0">
                   <children>
                     <fx:include source="../controls/PaceClock.fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" scaleX="0.5" scaleY="0.5" />
                     <fx:include source="../controls/DailyCountDown.fxml" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="150.0" />
@@ -56,7 +57,7 @@
                 <fx:include source="TrainingPlannerGoals.fxml" prefHeight="150.0" prefWidth="398.0" />
               </children>
             </StackPane>
-            <AreaChart id="AreaChartNxN" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="325.0" prefWidth="768.0" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="14.0">
+            <AreaChart fx:id="volumeChart" legendSide="LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="325.0" prefWidth="768.0" title="Volume" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="14.0">
               <xAxis>
                 <NumberAxis id="xAxis1" side="BOTTOM" />
               </xAxis>

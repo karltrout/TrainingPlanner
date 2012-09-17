@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TrainingPlan>
+    <Athlete id="64387c57-628b-4a67-822b-84e52eb4b4f7">
+        <firstName>Karl</firstName>
+        <lastName>Trout</lastName>
+        <dateOfBirth>1970-09-23-04:00</dateOfBirth>
+        <age>41</age>
+        <weight>180</weight>
+        <keyPerformanceIndicators>
+            <KPI>
+                <SportsType>Swim</SportsType>
+                <goalValue workoutId="000000003" value="75"/>
+                <currentValue workoutId="000000002" value="95"/>
+                <Measurement measureType="pace" distanceMeasure="yard" timeMeasure="minute"></Measurement>
+            </KPI>
+            <KPI>
+                <SportsType>Bike</SportsType>
+                <goalValue workoutId="000000001" value="133832714.4"/>
+                <currentValue workoutId="000000000" value="122245466.4"/>
+                <Measurement measureType="speed" distanceMeasure="mile" timeMeasure="hour"></Measurement>
+            </KPI>
+            <KPI>
+                <SportsType>Run</SportsType>
+                <goalValue value="10"/>
+                <currentValue valueDate="2012-09-14T14:09:25.992-04:00" value="10"/>
+                <Measurement measureType="speed" distanceMeasure="kilometer" timeMeasure="hour"></Measurement>
+            </KPI>
+            <KPI>
+                <SportsType>Race</SportsType>
+                <goalValue value="10"/>
+                <currentValue valueDate="2012-09-14T14:47:08.739-04:00" value="10"/>
+                <Measurement measureType="speed" distanceMeasure="mile" timeMeasure="hour"></Measurement>
+            </KPI>
+            <KPI>
+                <SportsType>Strength</SportsType>
+                <goalValue value="10"/>
+                <currentValue valueDate="2012-09-14T14:54:26.494-04:00" value="10"/>
+                <Measurement measureType="speed" distanceMeasure="meter" timeMeasure="hour"/>
+            </KPI>
+        </keyPerformanceIndicators>
+    </Athlete>
+</TrainingPlan>
