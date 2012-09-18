@@ -7,12 +7,15 @@ package trainingplanner;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Group;
+import javafx.scene.chart.PieChart;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -27,6 +30,8 @@ public class PaperBackController extends AnchorPane implements Initializable {
     
     @FXML Group closeButton;
     @FXML Text trainingDate;
+    @FXML PieChart calorieChart;
+    @FXML PieChart WorkoutLoadChart;
     TrainingCalendarDay trainingDay;
 /* default Constructor 
  * 
@@ -60,6 +65,27 @@ public PaperBackController(){
                 hidePaperBackWindow();
             }
         });
+       
+        
+         ObservableList<PieChart.Data> calorieChartData =
+                FXCollections.observableArrayList(
+                new PieChart.Data("Protein", 75),
+                new PieChart.Data("Fat", 40),
+                new PieChart.Data("Carbohydrates", 130));
+         
+         calorieChart.dataProperty().set(calorieChartData);
+         
+                 
+         ObservableList<PieChart.Data> workoutLoadChartData =
+                FXCollections.observableArrayList(
+                new PieChart.Data("Swimming", 90),
+                new PieChart.Data("Running", 45),
+                new PieChart.Data("Cycling", 180),
+                new PieChart.Data("Weights", 45),
+                new PieChart.Data("Rest", 30));
+         WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
+        
+        
         
         final Delta dragDelta = new Delta();
         setOnMousePressed(new EventHandler<MouseEvent>() {
