@@ -118,8 +118,8 @@
       </children>
     </HBox>
     <Text id="heading" font="$x2" layoutX="60.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workout Information" />
-    <PieChart id="PieChart" layoutX="205.0" layoutY="260.0" legendSide="RIGHT" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Workouts" />
-    <PieChart id="PieChart" legendSide="RIGHT" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Calories" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="40.0" />
+    <PieChart id="PieChart" fx:id="WorkoutLoadChart" layoutX="205.0" layoutY="260.0" legendSide="RIGHT" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Workouts" />
+    <PieChart id="PieChart" fx:id="calorieChart" legendSide="RIGHT" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Calories" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="40.0" />
     <Label id="label4" layoutX="43.0" layoutY="408.0" text="Description" />
     <TextArea id="textArea1" layoutX="40.0" layoutY="425.0" prefHeight="197.5" prefWidth="362.0" text="blah blah blah&#10;" wrapText="true" />
     <ImageView id="editImageButton" fitHeight="150.0" fitWidth="200.0" layoutX="-30.0" layoutY="-39.0" pickOnBounds="true" preserveRatio="true" scaleX="0.1" scaleY="0.1">
