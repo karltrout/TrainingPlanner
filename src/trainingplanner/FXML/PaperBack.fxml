@@ -7,6 +7,7 @@
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
@@ -21,46 +22,51 @@
             <DropShadow color="#66631b" offsetX="2.0" offsetY="2.0" />
           </effect>
         </Rectangle>
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="15.0" startX="10.0" startY="30.0" stroke="#ff9393" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="35.0" startX="10.0" startY="30.0">
+        <Line endX="410.0" endY="45.0" startX="5.0" startY="45.0" stroke="#ff9393" />
+        <Line endX="410.0" endY="65.0" startX="5.0" startY="65.0">
           <stroke>
             <Color blue="0.749" green="0.749" red="0.749" fx:id="x1" />
           </stroke>
         </Line>
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="55.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="75.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="95.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="115.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="135.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="155.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="175.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="195.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="215.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="235.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="275.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="455.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="435.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="415.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="395.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="375.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="355.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="335.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="315.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="295.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="255.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="475.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="495.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="515.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="535.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="555.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="575.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="595.0" startX="10.0" startY="30.0" stroke="$x1" />
-        <Line endX="40.0" endY="640.0" layoutX="-5.0" layoutY="-5.0" startX="40.0" startY="10.0" stroke="#8f86ff" />
+        <Line endX="410.0" endY="85.0" startX="5.0" startY="85.0" stroke="$x1" />
+        <Line endX="410.0" endY="105.0" startX="5.0" startY="105.0" stroke="$x1" />
+        <Line endX="410.0" endY="125.0" startX="5.0" startY="125.0" stroke="$x1" />
+        <Line endX="410.0" endY="145.0" startX="5.0" startY="145.0" stroke="$x1" />
+        <Line endX="410.0" endY="165.0" startX="5.0" startY="165.0" stroke="$x1" />
+        <Line endX="410.0" endY="185.0" startX="5.0" startY="185.0" stroke="$x1" />
+        <Line endX="410.0" endY="205.0" startX="5.0" startY="205.0" stroke="$x1" />
+        <Line endX="410.0" endY="225.0" startX="5.0" startY="225.0" stroke="$x1" />
+        <Line endX="410.0" endY="245.0" startX="5.0" startY="245.0" stroke="$x1" />
+        <Line endX="410.0" endY="265.0" startX="5.0" startY="265.0" stroke="$x1" />
+        <Line endX="410.0" endY="305.0" startX="5.0" startY="305.0" stroke="$x1" />
+        <Line endX="410.0" endY="485.0" startX="5.0" startY="485.0" stroke="$x1" />
+        <Line endX="410.0" endY="465.0" startX="5.0" startY="465.0" stroke="$x1" />
+        <Line endX="410.0" endY="445.0" startX="5.0" startY="445.0" stroke="$x1" />
+        <Line endX="410.0" endY="425.0" startX="5.0" startY="425.0" stroke="$x1" />
+        <Line endX="410.0" endY="405.0" startX="5.0" startY="405.0" stroke="$x1" />
+        <Line endX="410.0" endY="385.0" startX="5.0" startY="385.0" stroke="$x1" />
+        <Line endX="410.0" endY="365.0" startX="5.0" startY="365.0" stroke="$x1" />
+        <Line endX="410.0" endY="345.0" startX="10.0" startY="345.0" stroke="$x1" />
+        <Line endX="410.0" endY="325.0" startX="5.0" startY="325.0" stroke="$x1" />
+        <Line endX="410.0" endY="285.0" startX="5.0" startY="285.0" stroke="$x1" />
+        <Line endX="410.0" endY="505.0" startX="5.0" startY="505.0" stroke="$x1" />
+        <Line endX="410.0" endY="525.0" startX="5.0" startY="525.0" stroke="$x1" />
+        <Line endX="410.0" endY="545.0" startX="5.0" startY="545.0" stroke="$x1" />
+        <Line endX="410.0" endY="565.0" startX="5.0" startY="565.0" stroke="$x1" />
+        <Line endX="410.0" endY="585.0" startX="5.0" startY="585.0" stroke="$x1" />
+        <Line endX="410.0" endY="605.0" startX="5.0" startY="605.0" stroke="$x1" />
+        <Line endX="410.0" endY="625.0" startX="5.0" startY="625.0" stroke="$x1" />
+        <Line endX="30.0" endY="640.0" startX="30.0" startY="5.0" stroke="#8f86ff" />
+        <ImageView id="editImageButton" fitHeight="150.0" fitWidth="200.0" layoutX="-32.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" scaleX="0.1" scaleY="0.1">
+          <image>
+            <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
       </children>
     </Group>
     <Group id="notePadCloseBox" fx:id="closeButton" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
-        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="20.0" />
+        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" stroke="#006299" strokeType="INSIDE" strokeWidth="2.0" width="20.0" />
         <Line id="line1" endX="14.0" endY="14.0" startX="6.0" startY="6.0" strokeWidth="2.0" />
         <Line id="line1" endX="14.0" endY="6.0" startX="6.0" startY="14.0" strokeWidth="2.0" />
       </children>
@@ -68,7 +74,7 @@
         <URL value="@css/trainingPlanner.css" />
       </stylesheets>
     </Group>
-    <Text id="heading" layoutX="42.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Daily Activity">
+    <Text id="heading" layoutX="60.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Daily Activity">
       <font>
         <Font name="Courier New Bold" size="18.0" fx:id="x2" />
       </font>
@@ -79,10 +85,10 @@
         <Label id="label2" layoutY="28.0" text="Sleep Quality" />
         <Label id="label3" layoutY="48.0" text="Energy Level" />
         <Label id="label4" layoutY="68.0" text="Mood Level" />
-        <TextField id="textField1" layoutX="65.0" prefWidth="100.0" />
-        <TextField id="textField2" layoutX="145.0" layoutY="21.0" prefWidth="20.0" />
-        <TextField id="textField2" layoutX="145.0" layoutY="42.0" prefWidth="19.9998779296875" />
-        <TextField id="textField2" layoutX="145.0" layoutY="62.0" prefWidth="20.0" />
+        <TextField id="textField2" editable="false" layoutX="145.0" layoutY="21.0" prefWidth="20.0" />
+        <TextField id="textField2" editable="false" layoutX="145.0" layoutY="41.0" prefWidth="19.9998779296875" />
+        <TextField id="textField2" editable="false" layoutX="145.0" layoutY="61.0" prefWidth="20.0" />
+        <TextField id="textField1" editable="false" layoutX="65.0" prefWidth="100.0" />
       </children>
     </Group>
     <Group id="Group" layoutX="37.0" layoutY="283.0">
@@ -91,13 +97,13 @@
         <Label id="label2" layoutY="28.0" text="Intensity" />
         <Label id="label3" layoutY="48.0" text="Duration" />
         <Label id="label4" layoutY="68.0" text="Volume" />
-        <TextField id="textField1" layoutX="65.0" prefWidth="100.0" />
-        <TextField id="textField2" layoutX="145.0" layoutY="20.0" prefWidth="20.0" />
-        <TextField id="textField2" layoutX="145.0" layoutY="40.0" prefWidth="19.9998779296875" />
-        <TextField id="textField2" layoutX="145.0" layoutY="60.0" prefWidth="20.0" />
+        <TextField id="textField2" editable="false" layoutX="145.0" layoutY="20.0" prefWidth="20.0" />
+        <TextField id="textField2" editable="false" layoutX="145.0" layoutY="40.0" prefWidth="19.9998779296875" />
+        <TextField id="textField2" editable="false" layoutX="145.0" layoutY="60.0" prefWidth="20.0" />
+        <TextField id="textField1" editable="false" layoutX="45.0" prefWidth="120.0" />
       </children>
     </Group>
-    <HBox id="dateBox" alignment="BOTTOM_RIGHT" layoutX="210.0" layoutY="27.0" prefHeight="20.390625" prefWidth="195.0" spacing="5.0">
+    <HBox id="dateBox" alignment="BOTTOM_RIGHT" layoutX="210.0" layoutY="25.0" prefHeight="20.390625" prefWidth="195.0" spacing="5.0">
       <children>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Today is:">
           <font>
@@ -111,11 +117,16 @@
         </Text>
       </children>
     </HBox>
-    <Text id="heading" font="$x2" layoutX="41.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workout Information" />
+    <Text id="heading" font="$x2" layoutX="60.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workout Information" />
     <PieChart id="PieChart" layoutX="205.0" layoutY="260.0" legendSide="RIGHT" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Workouts" />
     <PieChart id="PieChart" legendSide="RIGHT" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Calories" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="40.0" />
     <Label id="label4" layoutX="43.0" layoutY="408.0" text="Description" />
     <TextArea id="textArea1" layoutX="40.0" layoutY="425.0" prefHeight="197.5" prefWidth="362.0" text="blah blah blah&#10;" wrapText="true" />
+    <ImageView id="editImageButton" fitHeight="150.0" fitWidth="200.0" layoutX="-30.0" layoutY="-39.0" pickOnBounds="true" preserveRatio="true" scaleX="0.1" scaleY="0.1">
+      <image>
+        <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="false" />
+      </image>
+    </ImageView>
   </children>
   <stylesheets>
     <URL value="@css/trainingPlanner.css" />
