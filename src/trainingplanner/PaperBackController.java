@@ -16,8 +16,10 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Group;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 /**
@@ -71,7 +73,7 @@ public PaperBackController(){
                 FXCollections.observableArrayList(
                 new PieChart.Data("Protein", 75),
                 new PieChart.Data("Fat", 40),
-                new PieChart.Data("Carbohydrates", 130));
+                new PieChart.Data("Carbs", 130));
          
          calorieChart.dataProperty().set(calorieChartData);
          
@@ -84,6 +86,22 @@ public PaperBackController(){
                 new PieChart.Data("Weights", 45),
                 new PieChart.Data("Rest", 30));
          WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
+         
+        final Label caption = new Label("");
+            caption.setTextFill(Color.DARKORANGE);
+            caption.setStyle("-fx-font: 24 arial;");
+            
+        for (final PieChart.Data data : WorkoutLoadChart.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                    caption.setTranslateX(e.getSceneX());
+                    caption.setTranslateY(e.getSceneY());
+                    caption.setText(String.valueOf(data.getPieValue()) + "%");
+                    System.out.println("clicked on "+data.getName());
+                }
+            });
+        }
         
         
         

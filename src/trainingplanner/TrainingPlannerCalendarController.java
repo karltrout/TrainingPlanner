@@ -29,6 +29,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import trainingplanner.org.calendar.TrainingCalendarDay;
+import trainingplanner.org.extensions.TrainingCalendarExt;
 
 /**
  * FXML Controller class
@@ -43,6 +44,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     @FXML private Polygon previousMonthButton;
     private GregorianCalendar calendar;
     private SimpleObjectProperty<TrainingCalendarDay> selectedTrainingDay;
+    private TrainingCalendarExt trainingCalendar;
 
     @FXML private Region firstDay;
     private final transient PropertyChangeSupport propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
@@ -52,6 +54,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (this.trainingCalendar == null) trainingCalendar = new TrainingCalendarExt();
         calendar = new GregorianCalendar();
         this.selectedTrainingDay = new SimpleObjectProperty<>();
         updateCalendar();
@@ -66,7 +69,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
         updateCalendar();
     } 
 
-    public TrainingPlannerCalendarController(SimpleObjectProperty<TrainingCalendarDay> _selectedTrainingDay){
+    public TrainingPlannerCalendarController(SimpleObjectProperty<TrainingCalendarDay> _selectedTrainingDay, TrainingCalendarExt _trainingCalendar){
             
         URL location = getClass().getResource("FXML/TrainingPlannerCalendar.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -81,6 +84,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
             throw new RuntimeException(exception);
         }
         this.selectedTrainingDay = _selectedTrainingDay;
+        this.trainingCalendar = _trainingCalendar;
         
         nextMonthButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -116,6 +120,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                 int neglmd = 1-lmd;
                 lmdCal.set(Calendar.DAY_OF_MONTH,neglmd);
                 calendarDay.setCalendar(lmdCal);
+                calendarDay.setTrainingDay(this.trainingCalendar.getTrainingDay((GregorianCalendar)lmdCal));
                 dayObjects[dayObjectsCnt]=calendarDay;
                 dayObjectsCnt++;
             }

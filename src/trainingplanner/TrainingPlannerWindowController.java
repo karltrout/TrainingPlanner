@@ -4,8 +4,6 @@
  */
 package trainingplanner;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -135,7 +133,7 @@ public class TrainingPlannerWindowController implements Initializable {
         colorPicker.valueProperty().setValue(Color.LIME);
         
         calendarPane.getChildren().clear();
-        TrainingPlannerCalendarController calendar = new TrainingPlannerCalendarController(selectedCalendarDate);
+        TrainingPlannerCalendarController calendar = new TrainingPlannerCalendarController(selectedCalendarDate, trainingPlan.getTrainingCalendar());
         calendarPane.getChildren().add(calendar);
         
         URL location = getClass().getResource("FXML/TrainingPlannerGoals.fxml");

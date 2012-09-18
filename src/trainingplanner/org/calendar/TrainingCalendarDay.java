@@ -5,8 +5,11 @@
 package trainingplanner.org.calendar;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import trainingplanner.org.extensions.TrainingDay;
+import trainingplanner.org.xsd.DayType;
 
 /**
  *
@@ -16,6 +19,7 @@ public class TrainingCalendarDay {
     private Calendar calendar;
     private int week;
     private SimpleStringProperty date = new SimpleStringProperty();
+    private DayType trainingDay;
 
     public TrainingCalendarDay(){
         setCalendar(Calendar.getInstance());
@@ -61,6 +65,25 @@ public class TrainingCalendarDay {
     
     public StringProperty getDate(){
         return date;
+    }
+
+    /**
+     * @return the trainingDay
+     */
+    public DayType getTrainingDay() {
+        if( trainingDay == null ){
+            GregorianCalendar gCal = new GregorianCalendar();
+            gCal.setTimeInMillis(calendar.getTimeInMillis());
+            trainingDay = new TrainingDay(gCal);
+        }
+        return trainingDay;
+    }
+
+    /**
+     * @param trainingDay the trainingDay to set
+     */
+    public void setTrainingDay(DayType trainingDay) {
+        this.trainingDay = trainingDay;
     }
 
 

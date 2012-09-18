@@ -6,17 +6,17 @@ package trainingplanner.org.extensions;
 
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import java.util.GregorianCalendar;
-import trainingplanner.org.xsd.DayType;
+import trainingplanner.org.xsd.WeekType.DayType;
 
 /**
  *
  * @author troutk
  */
 public class TrainingDay extends DayType {
-    TrainingDay(final GregorianCalendar day){
+    public TrainingDay(GregorianCalendar day){
         super.setDate(new XMLGregorianCalendarImpl(day));
     }
-    TrainingDay(){
+    public TrainingDay(){
         super();
     }
 }

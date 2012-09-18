@@ -65,7 +65,7 @@
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
 		<xs:attribute name="parentId" type="xs:string"/>
-		<xs:attribute name="weekNumber"/>
+		<xs:attribute name="weekNumber" type="xs:int"/>
 	</xs:complexType>
 	<xs:complexType name="DayType">
 		<xs:annotation>
@@ -118,8 +118,10 @@
 			<xs:element name="description" type="xs:string"/>
 			<xs:element name="intensity" type="xs:double"/>
 			<xs:element name="duration" type="xs:duration"/>
-			<xs:group ref="phases" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:group ref="workouts"/>
+			<xs:choice>
+				<xs:group ref="phases" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:group ref="workouts"/>
+			</xs:choice>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
 		<xs:attribute name="parentId" type="xs:string"/>
@@ -192,7 +194,7 @@
 	</xs:complexType>
 	<xs:group name="weeks">
 		<xs:sequence>
-			<xs:element name="WeekType" maxOccurs="4">
+			<xs:element name="WeekType" maxOccurs="6">
 				<xs:complexType>
 					<xs:complexContent>
 						<xs:extension base="WeekType"/>
