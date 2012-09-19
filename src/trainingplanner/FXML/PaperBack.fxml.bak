@@ -136,12 +136,7 @@
     <AnchorPane fx:id="workoutEditBox" layoutX="38.0" layoutY="269.0" minHeight="156.5" prefHeight="170.0" prefWidth="362.0">
       <children>
         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="159.99998474121094" layoutX="5.0" layoutY="3.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="352.0" />
-        <ScrollPane layoutX="43.0" layoutY="14.0" prefHeight="82.0" prefWidth="305.0">
-          <content>
-            <VBox fx:id="workoutListVBox" prefHeight="82.0" prefWidth="290.0322265625" />
-          </content>
-        </ScrollPane>
-        <VBox id="VBox" alignment="CENTER" layoutX="15.0" layoutY="16.0" spacing="5.0">
+        <VBox id="VBox" alignment="CENTER" layoutX="29.0" layoutY="16.0" spacing="5.0">
           <children>
             <Group id="notePadCloseBox" fx:id="deleteWorkoutButton">
               <children>
@@ -195,6 +190,7 @@
             <TextField id="textField2" layoutX="270.0" layoutY="25.0" prefWidth="20.0" />
           </children>
         </Group>
+        <ListView fx:id="workoutList" layoutX="56.0" layoutY="16.0" prefHeight="70.0" prefWidth="272.0" />
       </children>
     </AnchorPane>
   </children>

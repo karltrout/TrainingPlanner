@@ -133,7 +133,7 @@
     <Label id="label4" layoutX="43.0" layoutY="408.0" text="Description" />
     <TextArea id="textArea1" layoutX="40.0" layoutY="425.0" prefHeight="197.5" prefWidth="362.0" text="blah blah blah&#10;" wrapText="true" />
     <AnchorPane layoutX="37.0" layoutY="48.0" prefHeight="198.0" prefWidth="369.0" />
-    <AnchorPane fx:id="workoutEditBox" layoutX="38.0" layoutY="269.0" minHeight="156.5" prefHeight="170.0" prefWidth="362.0">
+    <AnchorPane fx:id="workoutEditBox" layoutX="38.0" layoutY="269.0" minHeight="156.5" prefHeight="170.0" prefWidth="362.0" visible="false">
       <children>
         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="159.99998474121094" layoutX="5.0" layoutY="3.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="352.0" />
         <VBox id="VBox" alignment="CENTER" layoutX="29.0" layoutY="16.0" spacing="5.0">

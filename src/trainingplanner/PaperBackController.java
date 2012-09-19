@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
@@ -22,6 +24,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
@@ -46,8 +49,8 @@ public class PaperBackController extends AnchorPane implements Initializable {
     @FXML Group addWorkoutButton;
     @FXML Group editWorkoutButton;
     @FXML ListView<WorkoutExt> workoutList;
-    
-    TrainingCalendarDay trainingDay;
+    private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();;
+    private TrainingCalendarDay trainingDay = new TrainingCalendarDay();;
     
 /* default Constructor 
  * 
@@ -72,9 +75,61 @@ public PaperBackController(){
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        initializeButtonActions();
+        initializeCharts();
+        initializeWorkoutList();
         
-        trainingDay = new TrainingCalendarDay(); 
-        //trainingDate.textProperty().bind(trainingDay.getDate());
+        final Delta dragDelta = new Delta();
+        setOnMousePressed(new EventHandler<MouseEvent>() {
+          @Override public void handle(MouseEvent mouseEvent) {
+            // record a delta distance for the drag and drop operation.
+            dragDelta.x = getLayoutX() - mouseEvent.getScreenX();
+            dragDelta.y = getLayoutY() - mouseEvent.getScreenY();
+          }
+        });
+        setOnMouseDragged(new EventHandler<MouseEvent>() {
+          @Override public void handle(MouseEvent mouseEvent) {
+                setLayoutX(mouseEvent.getScreenX() + dragDelta.x);
+                setLayoutY(mouseEvent.getScreenY() + dragDelta.y);
+          }
+        });
+    }
+    
+    private void hidePaperBackWindow(){
+        this.setVisible(false);
+    }
+
+    public void setTrainingDay(TrainingCalendarDay _trainingCalendarDay) {    
+            trainingDay = _trainingCalendarDay;
+            trainingDate.setText(String.format("%1$tb %1$te,%1$tY",trainingDay.getCalendar()));
+            ObservableList<PieChart.Data> workoutLoadChartData = FXCollections.observableArrayList();
+            for(IWorkoutType workout :trainingDay.getTrainingDay().getWorkoutType()){
+                workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getIntensity()));
+                workouts.add((WorkoutExt)workout);
+            }
+            WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
+            
+    }
+    
+    private void editWorkoutInfo(){
+        workoutEditBox.setVisible(!workoutEditBox.isVisible());
+    }
+    
+    private void addWorkout(){
+       workoutList.getItems().add(new WorkoutExt());
+    }
+    
+    private boolean deleteWorkout(){
+        WorkoutExt selected = workoutList.getSelectionModel().getSelectedItem();       
+        workoutList.getItems().remove(selected);
+        return true;
+    }
+    
+    private boolean editWorkout(){
+        return false;
+    }
+
+    private void initializeButtonActions() {
         closeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
@@ -109,33 +164,26 @@ public PaperBackController(){
                deleteWorkout();
             }
         });
-        
-        //workoutList.setItems(data);
- 
-        workoutList.setCellFactory(new Callback<ListView<WorkoutExt>, ListCell<WorkoutExt>>() {
-            @Override public ListCell<WorkoutExt> call(ListView<WorkoutExt> list) {
-                return new WorkoutHBox();
-            }
-        });
-        
-         ObservableList<PieChart.Data> calorieChartData =
-                FXCollections.observableArrayList(
-                new PieChart.Data("Protein", 75),
-                new PieChart.Data("Fat", 40),
-                new PieChart.Data("Carbs", 130));
-         
-         calorieChart.dataProperty().set(calorieChartData);
-         
-                 
-         ObservableList<PieChart.Data> workoutLoadChartData =
-                FXCollections.observableArrayList(
-                new PieChart.Data("Swimming", 90),
-                new PieChart.Data("Running", 45),
-                new PieChart.Data("Cycling", 180),
-                new PieChart.Data("Weights", 45),
-                new PieChart.Data("Rest", 30));
-         WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
-         
+    }
+
+    private void initializeCharts() {
+        ObservableList<PieChart.Data> calorieChartData =
+               FXCollections.observableArrayList(
+               new PieChart.Data("Protein", 75),
+               new PieChart.Data("Fat", 40),
+               new PieChart.Data("Carbs", 130));
+                        
+        ObservableList<PieChart.Data> workoutLoadChartData =
+               FXCollections.observableArrayList(
+               new PieChart.Data("Swimming", 90),
+               new PieChart.Data("Running", 45),
+               new PieChart.Data("Cycling", 180),
+               new PieChart.Data("Weights", 45),
+               new PieChart.Data("Rest", 30));
+               
+        calorieChart.dataProperty().set(calorieChartData);
+        WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
+
         final Label caption = new Label("");
             caption.setTextFill(Color.DARKORANGE);
             caption.setStyle("-fx-font: 24 arial;");
@@ -151,57 +199,16 @@ public PaperBackController(){
                 }
             });
         }
-        
-        
-        
-        final Delta dragDelta = new Delta();
-        setOnMousePressed(new EventHandler<MouseEvent>() {
-          @Override public void handle(MouseEvent mouseEvent) {
-            // record a delta distance for the drag and drop operation.
-            dragDelta.x = getLayoutX() - mouseEvent.getScreenX();
-            dragDelta.y = getLayoutY() - mouseEvent.getScreenY();
-          }
-        });
-        setOnMouseDragged(new EventHandler<MouseEvent>() {
-          @Override public void handle(MouseEvent mouseEvent) {
-                setLayoutX(mouseEvent.getScreenX() + dragDelta.x);
-                setLayoutY(mouseEvent.getScreenY() + dragDelta.y);
-          }
-        });
-
-    }
-    
-    private void hidePaperBackWindow(){
-        this.setVisible(false);
     }
 
-    public void setTrainingDay(TrainingCalendarDay _trainingCalendarDay) {
+    private void initializeWorkoutList() {
+        workoutList.setItems(workouts);
         
-            trainingDay = _trainingCalendarDay;
-            trainingDate.setText(String.format("%1$tb %1$te,%1$tY",trainingDay.getCalendar()));
-            ObservableList<PieChart.Data> workoutLoadChartData = FXCollections.observableArrayList();
-            for(IWorkoutType workout :trainingDay.getTrainingDay().getWorkoutType()){
-                workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getIntensity()));
-            }
-            WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
-    }
-    
-    private void editWorkoutInfo(){
-        workoutEditBox.setVisible(!workoutEditBox.isVisible());
-    }
-    
-    private void addWorkout(){
-       workoutList.getItems().add(new WorkoutExt());
-    }
-    
-    private boolean deleteWorkout(){
-        
-        return false;
-    }
-    
-    private boolean editWorkout(){
-    
-        return false;
+        workoutList.setCellFactory(new Callback<ListView<WorkoutExt>, ListCell<WorkoutExt>>() {
+           @Override public ListCell<WorkoutExt> call(ListView<WorkoutExt> list) {
+               return new WorkoutHBox();
+           }
+        });
     }
     
      class Delta { double x, y; } 
@@ -211,30 +218,31 @@ public PaperBackController(){
          private final Text intensity;
          private final Text volume;
          private final Text duration;
-         private boolean selected;
          
-         WorkoutHBox(String _title, int _intesity, int _volume, int _duration ){
-             title = new Text(_title);
-             intensity = new Text(String.valueOf(_intesity));
-             volume = new Text(String.valueOf(_volume));
-             duration = new Text(String.valueOf(_duration));
-             selected = false;
-             this.setText(_title);
-             this.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                 @Override
-                 public void handle(MouseEvent t) {
-                     selected = true;
-                     getStyleClass().add("workoutSelected");
-                     System.out.println(title.getText() + " Selected.");
-                 }
-             });
-             
+         WorkoutHBox(WorkoutExt workout){
+             title = new Text(workout.getSportType().name());
+             intensity = new Text(String.valueOf(workout.getIntensity()));
+             volume = new Text(String.valueOf(workout.getVolume()));
+             duration = new Text(String.valueOf(workout.getDuration()));
          }
          
          WorkoutHBox(){
-             this("demo", 10, 10, 60 );
+             this(new WorkoutExt());
          }
          
+        @Override
+        public void updateItem(WorkoutExt item, boolean empty) {
+            super.updateItem(item, empty);
+            HBox rect = new HBox();
+            rect.setSpacing(5.0);
+            rect.setAlignment(Pos.CENTER_LEFT);
+            if (item != null) {
+             rect.getChildren().add(title);
+             rect.getChildren().add(intensity);
+             rect.getChildren().add(volume);
+             rect.getChildren().add(duration);
+             setGraphic(rect);
+            }
+        }
      }
 }
