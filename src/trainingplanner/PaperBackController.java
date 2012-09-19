@@ -17,12 +17,16 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Group;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 import trainingplanner.org.calendar.TrainingCalendarDay;
+import trainingplanner.org.extensions.WorkoutExt;
 import trainingplanner.org.xsd.IWorkoutType;
 /**
  * FXML Controller class
@@ -36,8 +40,13 @@ public class PaperBackController extends AnchorPane implements Initializable {
     @FXML Text trainingDate;
     @FXML PieChart calorieChart;
     @FXML PieChart WorkoutLoadChart;
-    @FXML ImageView editWorkoutButton;
+    @FXML ImageView editWorkoutInfoButton;
     @FXML AnchorPane workoutEditBox;
+    @FXML Group deleteWorkoutButton;
+    @FXML Group addWorkoutButton;
+    @FXML Group editWorkoutButton;
+    @FXML ListView<WorkoutExt> workoutList;
+    
     TrainingCalendarDay trainingDay;
     
 /* default Constructor 
@@ -73,13 +82,42 @@ public PaperBackController(){
             }
         });
         
-        editWorkoutButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        editWorkoutInfoButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
                editWorkoutInfo();
             }
         });
+        
+        editWorkoutButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+               editWorkout();
+            }
+        });
+        
+        addWorkoutButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+               addWorkout();
+            }
+        });
 
+        deleteWorkoutButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+               deleteWorkout();
+            }
+        });
+        
+        //workoutList.setItems(data);
+ 
+        workoutList.setCellFactory(new Callback<ListView<WorkoutExt>, ListCell<WorkoutExt>>() {
+            @Override public ListCell<WorkoutExt> call(ListView<WorkoutExt> list) {
+                return new WorkoutHBox();
+            }
+        });
+        
          ObservableList<PieChart.Data> calorieChartData =
                 FXCollections.observableArrayList(
                 new PieChart.Data("Protein", 75),
@@ -152,5 +190,51 @@ public PaperBackController(){
         workoutEditBox.setVisible(!workoutEditBox.isVisible());
     }
     
+    private void addWorkout(){
+       workoutList.getItems().add(new WorkoutExt());
+    }
+    
+    private boolean deleteWorkout(){
+        
+        return false;
+    }
+    
+    private boolean editWorkout(){
+    
+        return false;
+    }
+    
      class Delta { double x, y; } 
+     
+     class WorkoutHBox extends ListCell<WorkoutExt>{
+         private final Text title;
+         private final Text intensity;
+         private final Text volume;
+         private final Text duration;
+         private boolean selected;
+         
+         WorkoutHBox(String _title, int _intesity, int _volume, int _duration ){
+             title = new Text(_title);
+             intensity = new Text(String.valueOf(_intesity));
+             volume = new Text(String.valueOf(_volume));
+             duration = new Text(String.valueOf(_duration));
+             selected = false;
+             this.setText(_title);
+             this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                 @Override
+                 public void handle(MouseEvent t) {
+                     selected = true;
+                     getStyleClass().add("workoutSelected");
+                     System.out.println(title.getText() + " Selected.");
+                 }
+             });
+             
+         }
+         
+         WorkoutHBox(){
+             this("demo", 10, 10, 60 );
+         }
+         
+     }
 }

@@ -48,3 +48,11 @@ root {
     -fx-cursor: hand;
 }
 
+#workoutHBox:hover {
+      -fx-cursor:hand; 
+}
+.workoutSelected{
+ -fx-background-color: #2f4f4f;
+}
+
+
