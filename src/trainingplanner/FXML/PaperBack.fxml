@@ -3,6 +3,7 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
@@ -61,7 +62,11 @@
     </Group>
     <Group id="notePadCloseBox" fx:id="closeButton" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
-        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" stroke="#001899" strokeType="INSIDE" strokeWidth="2.0" width="20.0" />
+        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" strokeType="INSIDE" strokeWidth="2.0" width="20.0">
+          <stroke>
+            <Color blue="0.600" green="0.094" red="0.000" fx:id="x3" />
+          </stroke>
+        </Rectangle>
         <Line id="line1" endX="14.0" endY="14.0" startX="6.0" startY="6.0" strokeWidth="2.0" />
         <Line id="line1" endX="14.0" endY="6.0" startX="6.0" startY="14.0" strokeWidth="2.0" />
       </children>
@@ -92,7 +97,7 @@
       </children>
     </Group>
     <Text id="heading" font="$x2" strokeType="OUTSIDE" strokeWidth="0.0" text="Workout Information" x="60.0" y="264.0" />
-    <ImageView id="editImageButton" fitHeight="15.0" fitWidth="20.0" layoutX="40.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="editImageButton" fx:id="editWorkoutButton" fitHeight="15.0" fitWidth="20.0" layoutX="40.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="false" />
       </image>
@@ -127,6 +132,71 @@
     <PieChart id="PieChart" fx:id="calorieChart" labelLineLength="10.0" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Calories" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="40.0" />
     <Label id="label4" layoutX="43.0" layoutY="408.0" text="Description" />
     <TextArea id="textArea1" layoutX="40.0" layoutY="425.0" prefHeight="197.5" prefWidth="362.0" text="blah blah blah&#10;" wrapText="true" />
+    <AnchorPane layoutX="37.0" layoutY="48.0" prefHeight="198.0" prefWidth="369.0" />
+    <AnchorPane fx:id="workoutEditBox" layoutX="38.0" layoutY="269.0" minHeight="156.5" prefHeight="170.0" prefWidth="362.0" visible="false">
+      <children>
+        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="159.99998474121094" layoutX="5.0" layoutY="3.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="352.0" />
+        <ScrollPane layoutX="43.0" layoutY="14.0" prefHeight="82.0" prefWidth="305.0">
+          <content>
+            <VBox prefHeight="82.0" prefWidth="290.0322265625" />
+          </content>
+        </ScrollPane>
+        <VBox id="VBox" alignment="CENTER" layoutX="15.0" layoutY="16.0" spacing="5.0">
+          <children>
+            <Group id="notePadCloseBox">
+              <children>
+                <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" stroke="$x3" strokeType="INSIDE" strokeWidth="2.0" width="20.0" />
+                <Line id="line1" endX="14.0" endY="14.0" startX="6.0" startY="6.0" stroke="RED" strokeWidth="2.0" />
+                <Line id="line1" endX="14.0" endY="6.0" startX="6.0" startY="14.0" stroke="RED" strokeWidth="2.0" />
+              </children>
+              <stylesheets>
+                <URL value="@css/trainingPlanner.css" />
+              </stylesheets>
+            </Group>
+            <Group id="notePadCloseBox">
+              <children>
+                <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" stroke="$x3" strokeType="INSIDE" strokeWidth="2.0" width="20.0" />
+                <Line id="line1" endX="14.0" endY="10.0" startX="6.0" startY="10.0" stroke="GREEN" strokeWidth="2.0" />
+                <Line id="line1" endX="10.0" endY="14.0" startX="10.0" startY="6.0" stroke="GREEN" strokeWidth="2.0" />
+              </children>
+              <stylesheets>
+                <URL value="@css/trainingPlanner.css" />
+              </stylesheets>
+            </Group>
+            <Group id="Group">
+              <children>
+                <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" stroke="$x3" strokeType="INSIDE" strokeWidth="2.0" width="20.0" />
+                <ImageView id="editImageButton" fitHeight="13.0" fitWidth="18.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="false" />
+                  </image>
+                </ImageView>
+              </children>
+            </Group>
+          </children>
+        </VBox>
+        <Group id="Group" layoutX="38.0" layoutY="109.0">
+          <children>
+            <Label layoutX="1.0" text="Workout Type" />
+            <ChoiceBox layoutX="85.0" layoutY="-3.0" prefWidth="205.2333984375">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Item 1" />
+                  <String fx:value="Item 2" />
+                  <String fx:value="Item 3" />
+                </FXCollections>
+              </items>
+            </ChoiceBox>
+            <Label id="label2" layoutX="29.0" layoutY="29.0" text="Intensity" />
+            <TextField id="textField2" layoutX="85.0" layoutY="25.0" prefWidth="20.0" />
+            <Label id="label3" layoutX="123.0" layoutY="28.0" text="Duration" />
+            <TextField id="textField2" layoutX="179.0" layoutY="25.0" prefWidth="19.9998779296875" />
+            <Label id="label4" layoutX="218.0" layoutY="27.0" text="Volume" />
+            <TextField id="textField2" layoutX="270.0" layoutY="25.0" prefWidth="20.0" />
+          </children>
+        </Group>
+      </children>
+    </AnchorPane>
   </children>
   <stylesheets>
     <URL value="@css/trainingPlanner.css" />

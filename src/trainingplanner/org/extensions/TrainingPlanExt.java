@@ -6,7 +6,6 @@ package trainingplanner.org.extensions;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 import javax.xml.datatype.DatatypeConfigurationException;
-import trainingplanner.org.xsd.ICalendarType;
 import trainingplanner.org.xsd.TrainingPlan;
 
 /**

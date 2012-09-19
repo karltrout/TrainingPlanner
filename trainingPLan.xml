@@ -35,7 +35,13 @@
                 <SportsType>Strength</SportsType>
                 <goalValue value="10"/>
                 <currentValue valueDate="2012-09-14T14:54:26.494-04:00" value="10"/>
-                <Measurement measureType="speed" distanceMeasure="meter" timeMeasure="hour"/>
+                <Measurement measureType="speed" distanceMeasure="meter" timeMeasure="hour"></Measurement>
+            </KPI>
+            <KPI>
+                <SportsType>Other</SportsType>
+                <goalValue value="10"/>
+                <currentValue valueDate="2012-09-18T21:29:07.401-04:00" value="10"/>
+                <Measurement measureType="speed" distanceMeasure="kilometer" timeMeasure="minute"></Measurement>
             </KPI>
         </keyPerformanceIndicators>
     </Athlete>

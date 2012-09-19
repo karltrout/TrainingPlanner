@@ -56,7 +56,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     public void initialize(URL url, ResourceBundle rb) {
         if (this.trainingCalendar == null) trainingCalendar = new TrainingCalendarExt();
         calendar = new GregorianCalendar();
-        this.selectedTrainingDay = new SimpleObjectProperty<>();
+        //this.selectedTrainingDay = new SimpleObjectProperty<>();
         updateCalendar();
     }  
     
@@ -114,11 +114,11 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
         if(calFirstDay>1){
             //set last months days
             for (int lmd = calFirstDay-1; lmd>0; lmd --){
-                TrainingCalendarDay calendarDay = new TrainingCalendarDay();
                 Calendar lmdCal = Calendar.getInstance();
                 lmdCal.setTime(calendar.getTime());
                 int neglmd = 1-lmd;
                 lmdCal.set(Calendar.DAY_OF_MONTH,neglmd);
+                TrainingCalendarDay calendarDay = new TrainingCalendarDay();
                 calendarDay.setCalendar(lmdCal);
                 calendarDay.setTrainingDay(this.trainingCalendar.getTrainingDay((GregorianCalendar)lmdCal));
                 dayObjects[dayObjectsCnt]=calendarDay;
@@ -224,6 +224,9 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                     }
                 //Today has a special Region code
                 if (trainingDay.isToday()){
+                   if (this.selectedTrainingDay == null) {
+                       this.selectedTrainingDay = new SimpleObjectProperty<>(trainingDay);
+                    } 
                     region.getStyleClass().clear();
                     region.getStyleClass().add("todayBox");
                     region.setEffect(new Glow(.2));

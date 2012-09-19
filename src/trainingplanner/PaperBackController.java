@@ -17,11 +17,13 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Group;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import trainingplanner.org.calendar.TrainingCalendarDay;
+import trainingplanner.org.xsd.IWorkoutType;
 /**
  * FXML Controller class
  *
@@ -34,7 +36,10 @@ public class PaperBackController extends AnchorPane implements Initializable {
     @FXML Text trainingDate;
     @FXML PieChart calorieChart;
     @FXML PieChart WorkoutLoadChart;
+    @FXML ImageView editWorkoutButton;
+    @FXML AnchorPane workoutEditBox;
     TrainingCalendarDay trainingDay;
+    
 /* default Constructor 
  * 
  */
@@ -67,8 +72,14 @@ public PaperBackController(){
                 hidePaperBackWindow();
             }
         });
-       
         
+        editWorkoutButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+               editWorkoutInfo();
+            }
+        });
+
          ObservableList<PieChart.Data> calorieChartData =
                 FXCollections.observableArrayList(
                 new PieChart.Data("Protein", 75),
@@ -126,11 +137,19 @@ public PaperBackController(){
         this.setVisible(false);
     }
 
-    void setTrainingDay(TrainingCalendarDay _trainingCalendarDay) {
+    public void setTrainingDay(TrainingCalendarDay _trainingCalendarDay) {
         
             trainingDay = _trainingCalendarDay;
             trainingDate.setText(String.format("%1$tb %1$te,%1$tY",trainingDay.getCalendar()));
-            
+            ObservableList<PieChart.Data> workoutLoadChartData = FXCollections.observableArrayList();
+            for(IWorkoutType workout :trainingDay.getTrainingDay().getWorkoutType()){
+                workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getIntensity()));
+            }
+            WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
+    }
+    
+    private void editWorkoutInfo(){
+        workoutEditBox.setVisible(!workoutEditBox.isVisible());
     }
     
      class Delta { double x, y; } 

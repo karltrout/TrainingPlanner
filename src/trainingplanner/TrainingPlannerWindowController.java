@@ -84,7 +84,6 @@ public class TrainingPlannerWindowController implements Initializable {
         if( null != trainingPlan)
         {
             try {
-                trainingplanner.org.xsd.TrainingPlan tp = new TrainingPlan();
                 serializeObjectToXML(planFile,trainingPlan);
             } catch (Exception ex) {
                 Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,18 +101,6 @@ public class TrainingPlannerWindowController implements Initializable {
             Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        selectedCalendarDate = new SimpleObjectProperty<>();
-        selectedCalendarDate.addListener(new ChangeListener<TrainingCalendarDay>() {
-            @Override
-            public void changed(ObservableValue<? extends TrainingCalendarDay> ov, TrainingCalendarDay t, TrainingCalendarDay t1) {
-                displayNotePad(currentNotePad);
-            }
-        });
-        
-        currentNotePad.setVisible(false);
-        dashBoardPane.getChildren().add(currentNotePad);
-        
-        
         todaysDate.setText(String.format(dateFormatString, new GregorianCalendar()));
         
         trainingPlan = new TrainingPlanExt();
@@ -124,6 +111,17 @@ public class TrainingPlannerWindowController implements Initializable {
             Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
             trainingPlan.initialize();
         } 
+        
+        selectedCalendarDate = new SimpleObjectProperty<>();
+        selectedCalendarDate.addListener(new ChangeListener<TrainingCalendarDay>() {
+            @Override
+            public void changed(ObservableValue<? extends TrainingCalendarDay> ov, TrainingCalendarDay t, TrainingCalendarDay t1) {
+                displayNotePad(currentNotePad);
+            }
+        });
+        
+        currentNotePad.setVisible(false);
+        dashBoardPane.getChildren().add(currentNotePad);
         
         athlete = trainingPlan.getAthlete();
         athleteName.setText(athlete.getFullName());
