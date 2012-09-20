@@ -173,7 +173,7 @@
         <Group id="Group" layoutX="38.0" layoutY="109.0">
           <children>
             <Label layoutX="1.0" text="Workout Type" />
-            <ChoiceBox layoutX="85.0" layoutY="-3.0" prefWidth="205.2333984375">
+            <ChoiceBox fx:id="sportsTypes" layoutX="85.0" layoutY="-3.0" prefWidth="205.2333984375">
               <items>
                 <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Item 1" />
@@ -183,11 +183,11 @@
               </items>
             </ChoiceBox>
             <Label id="label2" layoutX="29.0" layoutY="29.0" text="Intensity" />
-            <TextField id="textField2" layoutX="85.0" layoutY="25.0" prefWidth="20.0" />
+            <TextField id="textField2" fx:id="intensity" editable="false" layoutX="85.0" layoutY="25.0" prefWidth="20.0" />
             <Label id="label3" layoutX="123.0" layoutY="28.0" text="Duration" />
-            <TextField id="textField2" layoutX="179.0" layoutY="25.0" prefWidth="19.9998779296875" />
+            <TextField id="textField2" fx:id="duration" editable="false" layoutX="179.0" layoutY="25.0" prefWidth="19.9998779296875" />
             <Label id="label4" layoutX="218.0" layoutY="27.0" text="Volume" />
-            <TextField id="textField2" layoutX="270.0" layoutY="25.0" prefWidth="20.0" />
+            <TextField id="textField2" fx:id="volume" editable="false" layoutX="270.0" layoutY="25.0" prefWidth="20.0" />
           </children>
         </Group>
         <ListView fx:id="workoutList" layoutX="56.0" layoutY="16.0" prefHeight="70.0" prefWidth="272.0" />

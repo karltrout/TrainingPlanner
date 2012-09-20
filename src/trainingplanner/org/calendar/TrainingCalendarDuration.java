@@ -16,26 +16,33 @@ import javax.xml.datatype.Duration;
  */
 public class TrainingCalendarDuration extends Duration {
 
+    int years = 0;
+    int months = 0;
+    int days = 0;
+    int hours = 0;
+    int minutes = 0;
+    int seconds = 0;
+    
     @Override
     public int getSign() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return 1;
     }
 
     @Override
     public Number getField(Field field) {
             /*YEARS,MONTHS,DAYS,HOURS, MINUTES, or SECONDS */
         if (field.equals(DatatypeConstants.YEARS)) 
-            return getYears();
+            return years;
         if (field.equals(DatatypeConstants.MONTHS)) 
-            return getMonths();
+            return months;
         if (field.equals(DatatypeConstants.DAYS))
-            return getDays();
+            return days;
         if (field.equals(DatatypeConstants.HOURS))
-            return getHours();
+            return hours;
         if (field.equals(DatatypeConstants.MINUTES))
-            return getMinutes();
+            return minutes;
         if (field.equals(DatatypeConstants.SECONDS))
-            return getSeconds();
+            return seconds;
         else return null;
     }
 
@@ -82,12 +89,12 @@ public class TrainingCalendarDuration extends Duration {
  
     public String ToString(){
         String s = "";
-        if(isSet(DatatypeConstants.YEARS)) s.concat(getYears()+":");
-        if(isSet(DatatypeConstants.MONTHS)) s.concat(getMonths()+":");
-        if(isSet(DatatypeConstants.DAYS)) s.concat(getDays()+":");
-        if(isSet(DatatypeConstants.HOURS)) s.concat(getHours()+":");
-        if(isSet(DatatypeConstants.MINUTES)) s.concat(":"+getMinutes());
-        s.concat(":"+(isSet(DatatypeConstants.SECONDS)?getSeconds():0));
+        if(isSet(DatatypeConstants.YEARS)) s.concat(getYears()+"y:");
+        if(isSet(DatatypeConstants.MONTHS)) s.concat(getMonths()+"mo:");
+        if(isSet(DatatypeConstants.DAYS)) s.concat(getDays()+"d:");
+        if(isSet(DatatypeConstants.HOURS)) s.concat(getHours()+"hh:");
+        if(isSet(DatatypeConstants.MINUTES)) s.concat(getMinutes()+"mm:+");
+        s.concat(":"+(isSet(DatatypeConstants.SECONDS)?getSeconds():0)+"ss");
         return s;
     }
 }

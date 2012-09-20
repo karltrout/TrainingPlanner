@@ -6,21 +6,27 @@ package trainingplanner;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import javafx.beans.property.Property;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -29,8 +35,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import trainingplanner.org.calendar.TrainingCalendarDay;
+import trainingplanner.org.calendar.TrainingCalendarDuration;
 import trainingplanner.org.extensions.WorkoutExt;
 import trainingplanner.org.xsd.IWorkoutType;
+import trainingplanner.org.xsd.SportTypes;
 /**
  * FXML Controller class
  *
@@ -48,6 +56,11 @@ public class PaperBackController extends AnchorPane implements Initializable {
     @FXML Group deleteWorkoutButton;
     @FXML Group addWorkoutButton;
     @FXML Group editWorkoutButton;
+    @FXML ChoiceBox sportsTypes;
+    @FXML TextField intensity;
+    @FXML TextField duration;
+    @FXML TextField volume;
+    
     @FXML ListView<WorkoutExt> workoutList;
     private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();;
     private TrainingCalendarDay trainingDay = new TrainingCalendarDay();;
@@ -126,7 +139,9 @@ public PaperBackController(){
     }
     
     private boolean editWorkout(){
-        return false;
+        WorkoutExt selected = workoutList.getSelectionModel().getSelectedItem();
+       
+        return true;
     }
 
     private void initializeButtonActions() {
@@ -209,6 +224,18 @@ public PaperBackController(){
                return new WorkoutHBox();
            }
         });
+        
+        sportsTypes.getItems().clear();
+        sportsTypes.getItems().addAll(Arrays.asList(SportTypes.values()));
+    }
+    
+    private void setSelected(final WorkoutHBox wb){
+        System.out.println(wb.workout.getSportType().name()+" Selected");
+        sportsTypes.getSelectionModel().select(wb.workout.getSportType());
+        wb.workout.sportsProperty.bind(sportsTypes.itemsProperty());
+        intensity.setText(String.valueOf(wb.workout.getIntensity()));
+        volume.setText(String.valueOf(wb.workout.getVolume()));
+        //duration.setText(String.valueOf(wb.workout.getDuration()));
     }
     
      class Delta { double x, y; } 
@@ -218,12 +245,23 @@ public PaperBackController(){
          private final Text intensity;
          private final Text volume;
          private final Text duration;
+         private final WorkoutExt workout;
          
-         WorkoutHBox(WorkoutExt workout){
+         WorkoutHBox(WorkoutExt _workout){
+             workout = _workout;
              title = new Text(workout.getSportType().name());
              intensity = new Text(String.valueOf(workout.getIntensity()));
              volume = new Text(String.valueOf(workout.getVolume()));
-             duration = new Text(String.valueOf(workout.getDuration()));
+             TrainingCalendarDuration td = (TrainingCalendarDuration) workout.getDuration();
+             System.out.print(td.ToString());
+             duration = new Text("0");
+             setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                 @Override
+                 public void handle(MouseEvent t) {
+                     setSelected((WorkoutHBox)t.getSource());
+                 }
+             });
          }
          
          WorkoutHBox(){
