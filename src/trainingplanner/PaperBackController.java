@@ -8,13 +8,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import javafx.beans.property.Property;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -64,7 +62,7 @@ public class PaperBackController extends AnchorPane implements Initializable {
     @FXML ListView<WorkoutExt> workoutList;
     private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();;
     private TrainingCalendarDay trainingDay = new TrainingCalendarDay();;
-    
+    private WorkoutHBox selected;
 /* default Constructor 
  * 
  */
@@ -129,7 +127,12 @@ public PaperBackController(){
     }
     
     private void addWorkout(){
-       workoutList.getItems().add(new WorkoutExt());
+        if (selected != null){
+            SportTypes st = selected.workout.getSportType();
+            selected.workout.getSportsTypeProperty().unbind();
+            selected.workout.setSportType(st);
+        }
+       workoutList.getItems().add( new WorkoutExt());
     }
     
     private boolean deleteWorkout(){
@@ -139,7 +142,7 @@ public PaperBackController(){
     }
     
     private boolean editWorkout(){
-        WorkoutExt selected = workoutList.getSelectionModel().getSelectedItem();
+        //WorkoutExt selected = workoutList.getSelectionModel().getSelectedItem();
        
         return true;
     }
@@ -221,20 +224,32 @@ public PaperBackController(){
         
         workoutList.setCellFactory(new Callback<ListView<WorkoutExt>, ListCell<WorkoutExt>>() {
            @Override public ListCell<WorkoutExt> call(ListView<WorkoutExt> list) {
-               return new WorkoutHBox();
+               
+                return new WorkoutHBox();
            }
         });
         
         sportsTypes.getItems().clear();
         sportsTypes.getItems().addAll(Arrays.asList(SportTypes.values()));
+        sportsTypes.valueProperty().addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ObservableValue ov, Object t, Object t1) {
+                System.err.println("Changed to "+t1.toString());
+            }
+        });
     }
     
     private void setSelected(final WorkoutHBox wb){
+        if (selected != null){
+            SportTypes st = selected.workout.getSportType();
+            selected.workout.getSportsTypeProperty().unbind();
+            selected.workout.setSportType(st);
+        }
         System.out.println(wb.workout.getSportType().name()+" Selected");
         sportsTypes.getSelectionModel().select(wb.workout.getSportType());
-
-        wb.workout.getSportsTypeProperty().bindBidirectional(sportsTypes.itemsProperty());
-        //wb.workout.sportsProperty.bind(sportsTypes.itemsProperty());
+        wb.workout.getSportsTypeProperty().bind(sportsTypes.valueProperty());
+        selected = wb;
         
         intensity.setText(String.valueOf(wb.workout.getIntensity()));
         volume.setText(String.valueOf(wb.workout.getVolume()));
@@ -244,21 +259,26 @@ public PaperBackController(){
      class Delta { double x, y; } 
      
      class WorkoutHBox extends ListCell<WorkoutExt>{
-         private final Text title;
-         private final Text intensity;
-         private final Text volume;
-         private final Text duration;
-         private final WorkoutExt workout;
+         private Text title;
+         private  Text intensity;
+         private  Text volume;
+         private  Text duration;
+         private WorkoutExt workout;
          
-         WorkoutHBox(WorkoutExt _workout){
-             workout = _workout;
+        @Override
+        public void updateItem(WorkoutExt item, boolean empty) {
+            super.updateItem(item, empty);
+           if (item != null) {
+             workout = item;
              title = new Text();
-             title.textProperty().bind(workout.getSportsTypeProperty());
-             intensity = new Text(String.valueOf(workout.getIntensity()));
-             volume = new Text(String.valueOf(workout.getVolume()));
-             TrainingCalendarDuration td = (TrainingCalendarDuration) workout.getDuration();
+             title.textProperty().bind(item.getSportsTypeNameProperty());
+            
+             intensity = new Text(String.valueOf(item.getIntensity()));
+             volume = new Text(String.valueOf(item.getVolume()));
+             TrainingCalendarDuration td = (TrainingCalendarDuration) item.getDuration();
              System.out.print(td.ToString());
              duration = new Text("0");
+             
              setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                  @Override
@@ -266,15 +286,7 @@ public PaperBackController(){
                      setSelected((WorkoutHBox)t.getSource());
                  }
              });
-         }
-         
-         WorkoutHBox(){
-             this(new WorkoutExt());
-         }
-         
-        @Override
-        public void updateItem(WorkoutExt item, boolean empty) {
-            super.updateItem(item, empty);
+           }
             HBox rect = new HBox();
             rect.setSpacing(5.0);
             rect.setAlignment(Pos.CENTER_LEFT);
