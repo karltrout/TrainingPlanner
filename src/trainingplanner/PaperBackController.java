@@ -232,7 +232,10 @@ public PaperBackController(){
     private void setSelected(final WorkoutHBox wb){
         System.out.println(wb.workout.getSportType().name()+" Selected");
         sportsTypes.getSelectionModel().select(wb.workout.getSportType());
-        wb.workout.sportsProperty.bind(sportsTypes.itemsProperty());
+
+        wb.workout.getSportsTypeProperty().bindBidirectional(sportsTypes.itemsProperty());
+        //wb.workout.sportsProperty.bind(sportsTypes.itemsProperty());
+        
         intensity.setText(String.valueOf(wb.workout.getIntensity()));
         volume.setText(String.valueOf(wb.workout.getVolume()));
         //duration.setText(String.valueOf(wb.workout.getDuration()));
@@ -249,7 +252,8 @@ public PaperBackController(){
          
          WorkoutHBox(WorkoutExt _workout){
              workout = _workout;
-             title = new Text(workout.getSportType().name());
+             title = new Text();
+             title.textProperty().bind(workout.getSportsTypeProperty());
              intensity = new Text(String.valueOf(workout.getIntensity()));
              volume = new Text(String.valueOf(workout.getVolume()));
              TrainingCalendarDuration td = (TrainingCalendarDuration) workout.getDuration();
