@@ -133,6 +133,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
             thisDay.setTime(calendar.getTime());
             thisDay.add(Calendar.DAY_OF_MONTH, dayCounter);
             calendarDay.setCalendar(thisDay);
+            calendarDay.setTrainingDay(this.trainingCalendar.getTrainingDay((GregorianCalendar)thisDay));
             dayObjects[dayObjectsCnt]=calendarDay;
             dayObjectsCnt++;
         }
@@ -145,6 +146,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
             thisDay.add(Calendar.MONTH,1);
             thisDay.add(Calendar.DAY_OF_MONTH, nextMonthDays);
             calendarDay.setCalendar(thisDay);
+            calendarDay.setTrainingDay(this.trainingCalendar.getTrainingDay((GregorianCalendar)thisDay));
             dayObjects[dayObjectsCnt]=calendarDay;
             nextMonthDays++;
             dayObjectsCnt++;  

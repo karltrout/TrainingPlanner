@@ -111,15 +111,20 @@ public PaperBackController(){
     }
 
     public void setTrainingDay(TrainingCalendarDay _trainingCalendarDay) {    
-            trainingDay = _trainingCalendarDay;
-            trainingDate.setText(String.format("%1$tb %1$te,%1$tY",trainingDay.getCalendar()));
-            ObservableList<PieChart.Data> workoutLoadChartData = FXCollections.observableArrayList();
-            for(IWorkoutType workout :trainingDay.getTrainingDay().getWorkoutType()){
-                workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getIntensity()));
-                workouts.add((WorkoutExt)workout);
-            }
-            WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
-            
+        if (selected != null){
+            selected.workout.getSportsTypeProperty().unbind();
+        }  
+        trainingDay = _trainingCalendarDay;
+        trainingDate.setText(String.format("%1$tb %1$te,%1$tY",trainingDay.getCalendar()));
+        workouts.clear();
+
+        ObservableList<PieChart.Data> workoutLoadChartData = FXCollections.observableArrayList();
+        for(IWorkoutType workout :trainingDay.getTrainingDay().getWorkoutType()){
+            workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getIntensity()));
+            workouts.add((WorkoutExt)workout);
+        }
+        WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
+        workoutList.setItems(workouts);
     }
     
     private void editWorkoutInfo(){
@@ -127,23 +132,22 @@ public PaperBackController(){
     }
     
     private void addWorkout(){
-        if (selected != null){
-            SportTypes st = selected.workout.getSportType();
-            selected.workout.getSportsTypeProperty().unbind();
-            selected.workout.setSportType(st);
-        }
-       workoutList.getItems().add( new WorkoutExt());
+        WorkoutExt wo = new WorkoutExt();      
+        workoutList.getItems().add(wo);
+        trainingDay.getTrainingDay().getWorkoutType().add(wo);
     }
     
     private boolean deleteWorkout(){
         WorkoutExt selected = workoutList.getSelectionModel().getSelectedItem();       
         workoutList.getItems().remove(selected);
+        trainingDay.getTrainingDay().getWorkoutType().remove(selected);
         return true;
     }
     
     private boolean editWorkout(){
         //WorkoutExt selected = workoutList.getSelectionModel().getSelectedItem();
-       
+        trainingDay.getTrainingDay().getWorkoutType().clear();
+        trainingDay.getTrainingDay().getWorkoutType().addAll(workouts);
         return true;
     }
 
@@ -220,8 +224,6 @@ public PaperBackController(){
     }
 
     private void initializeWorkoutList() {
-        workoutList.setItems(workouts);
-        
         workoutList.setCellFactory(new Callback<ListView<WorkoutExt>, ListCell<WorkoutExt>>() {
            @Override public ListCell<WorkoutExt> call(ListView<WorkoutExt> list) {
                
@@ -231,20 +233,11 @@ public PaperBackController(){
         
         sportsTypes.getItems().clear();
         sportsTypes.getItems().addAll(Arrays.asList(SportTypes.values()));
-        sportsTypes.valueProperty().addListener(new ChangeListener() {
-
-            @Override
-            public void changed(ObservableValue ov, Object t, Object t1) {
-                System.err.println("Changed to "+t1.toString());
-            }
-        });
     }
     
     private void setSelected(final WorkoutHBox wb){
         if (selected != null){
-            SportTypes st = selected.workout.getSportType();
             selected.workout.getSportsTypeProperty().unbind();
-            selected.workout.setSportType(st);
         }
         System.out.println(wb.workout.getSportType().name()+" Selected");
         sportsTypes.getSelectionModel().select(wb.workout.getSportType());
@@ -268,34 +261,34 @@ public PaperBackController(){
         @Override
         public void updateItem(WorkoutExt item, boolean empty) {
             super.updateItem(item, empty);
-           if (item != null) {
-             workout = item;
-             title = new Text();
-             title.textProperty().bind(item.getSportsTypeNameProperty());
-            
-             intensity = new Text(String.valueOf(item.getIntensity()));
-             volume = new Text(String.valueOf(item.getVolume()));
-             TrainingCalendarDuration td = (TrainingCalendarDuration) item.getDuration();
-             System.out.print(td.ToString());
-             duration = new Text("0");
-             
-             setOnMouseClicked(new EventHandler<MouseEvent>() {
+            if (item != null) {
+                workout = item;
+                title = new Text();
+                title.textProperty().bind(item.getSportsTypeNameProperty());
 
-                 @Override
-                 public void handle(MouseEvent t) {
-                     setSelected((WorkoutHBox)t.getSource());
-                 }
-             });
-           }
+                intensity = new Text(String.valueOf(item.getIntensity()));
+                volume = new Text(String.valueOf(item.getVolume()));
+                TrainingCalendarDuration td = (TrainingCalendarDuration) item.getDuration();
+                System.out.print(td.ToString());
+                duration = new Text("0");
+
+                setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent t) {
+                        setSelected((WorkoutHBox)t.getSource());
+                    }
+                });
+            }
             HBox rect = new HBox();
             rect.setSpacing(5.0);
             rect.setAlignment(Pos.CENTER_LEFT);
             if (item != null) {
-             rect.getChildren().add(title);
-             rect.getChildren().add(intensity);
-             rect.getChildren().add(volume);
-             rect.getChildren().add(duration);
-             setGraphic(rect);
+                rect.getChildren().add(title);
+                rect.getChildren().add(intensity);
+                rect.getChildren().add(volume);
+                rect.getChildren().add(duration);
+                setGraphic(rect);
             }
         }
      }

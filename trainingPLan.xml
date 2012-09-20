@@ -33,4 +33,9 @@
             </KPI>
         </keyPerformanceIndicators>
     </Athlete>
+    <TrainingCalendar>
+        <numberOfMonths>0</numberOfMonths>
+        <numberOfWeeks>0</numberOfWeeks>
+        <numberOfDays>0</numberOfDays>
+    </TrainingCalendar>
 </TrainingPlan>
