@@ -39,16 +39,9 @@
 			<xs:documentation>Month details</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="monthName">
-				<xs:complexType>
-					<xs:simpleContent>
-						<xs:extension base="xs:gMonth">
-							<xs:attribute name="monthId" type="xs:gMonth"/>
-						</xs:extension>
-					</xs:simpleContent>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="year" type="xs:gYear"/>
+			<xs:element name="monthName" type="xs:string"/>
+			<xs:element name="year" type="xs:int"/>
+			<xs:element name="monthId" type="xs:int"/>
 			<xs:group ref="weeks"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
@@ -86,7 +79,7 @@
 		<xs:sequence>
 			<xs:element name="intensity" type="xs:double"/>
 			<xs:element name="Volume"/>
-			<xs:element name="duration" type="xs:duration"/>
+			<xs:element name="duration" type="xs:int"/>
 			<xs:element name="description" type="xs:string"/>
 			<xs:group ref="excersizes"/>
 		</xs:sequence>
@@ -283,7 +276,7 @@
 	<xs:complexType name="ExcersizeType">
 		<xs:sequence>
 			<xs:element name="intensity" type="xs:double"/>
-			<xs:element name="duration" type="xs:duration"/>
+			<xs:element name="duration" type="xs:int"/>
 			<xs:element name="volume" type="xs:double"/>
 			<xs:element name="focus" type="xs:string"/>
 			<xs:element name="description" type="xs:string"/>

@@ -51,15 +51,17 @@ public class TrainingPlanExt extends trainingplanner.org.xsd.TrainingPlan {
         super.setAthlete(new AthleteExt(root.getAthlete()));
         super.setId(root.getId());
         super.setPhaseStrategy(root.getPhaseStrategy());
-        super.setTrainingCalendar(root.getTrainingCalendar());
+        super.setTrainingCalendar(new TrainingCalendarExt(root.getTrainingCalendar()));
     }
     
     @Override
     public TrainingCalendarExt getTrainingCalendar(){
-        if (super.getTrainingCalendar() == null){
+        /*if (super.getTrainingCalendar() == null){
             super.setTrainingCalendar(new TrainingCalendarExt());
         }
-        return (TrainingCalendarExt) super.getTrainingCalendar();
+        return (TrainingCalendarExt) super.trainingCalendar;
+        * */
+        return (TrainingCalendarExt) this.trainingCalendar;
     }
 
 }

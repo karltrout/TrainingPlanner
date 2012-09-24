@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -58,9 +56,9 @@ public class PaperBackController extends AnchorPane implements Initializable {
     @FXML TextField intensity;
     @FXML TextField duration;
     @FXML TextField volume;
-    
     @FXML ListView<WorkoutExt> workoutList;
-    private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();;
+    
+    private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
     private TrainingCalendarDay trainingDay = new TrainingCalendarDay();;
     private WorkoutHBox selected;
 /* default Constructor 
@@ -116,14 +114,11 @@ public PaperBackController(){
         }  
         trainingDay = _trainingCalendarDay;
         trainingDate.setText(String.format("%1$tb %1$te,%1$tY",trainingDay.getCalendar()));
-        workouts.clear();
-
-        ObservableList<PieChart.Data> workoutLoadChartData = FXCollections.observableArrayList();
-        for(IWorkoutType workout :trainingDay.getTrainingDay().getWorkoutType()){
-            workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getIntensity()));
-            workouts.add((WorkoutExt)workout);
+        for(IWorkoutType wt: trainingDay.getWorkoutType()){
+            workouts.add((WorkoutExt) wt);
         }
-        WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
+        
+        WorkoutLoadChart.dataProperty().set(trainingDay.getWorkoutLoadChartData());
         workoutList.setItems(workouts);
     }
     
@@ -131,23 +126,16 @@ public PaperBackController(){
         workoutEditBox.setVisible(!workoutEditBox.isVisible());
     }
     
-    private void addWorkout(){
-        WorkoutExt wo = new WorkoutExt();      
-        workoutList.getItems().add(wo);
-        trainingDay.getTrainingDay().getWorkoutType().add(wo);
-    }
-    
     private boolean deleteWorkout(){
         WorkoutExt selected = workoutList.getSelectionModel().getSelectedItem();       
         workoutList.getItems().remove(selected);
-        trainingDay.getTrainingDay().getWorkoutType().remove(selected);
+        trainingDay.getWorkoutType().remove(selected);
         return true;
     }
     
     private boolean editWorkout(){
-        //WorkoutExt selected = workoutList.getSelectionModel().getSelectedItem();
-        trainingDay.getTrainingDay().getWorkoutType().clear();
-        trainingDay.getTrainingDay().getWorkoutType().addAll(workouts);
+      //  trainingDay.getTrainingDay().getWorkoutType().clear();
+      //  trainingDay.getTrainingDay().getWorkoutType().addAll(workouts);
         return true;
     }
 
@@ -176,7 +164,8 @@ public PaperBackController(){
         addWorkoutButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-               addWorkout();
+               //addWorkout();
+                trainingDay.getWorkoutType().add(new IWorkoutType());
             }
         });
 
@@ -189,22 +178,38 @@ public PaperBackController(){
     }
 
     private void initializeCharts() {
-        ObservableList<PieChart.Data> calorieChartData =
-               FXCollections.observableArrayList(
-               new PieChart.Data("Protein", 75),
-               new PieChart.Data("Fat", 40),
-               new PieChart.Data("Carbs", 130));
-                        
-        ObservableList<PieChart.Data> workoutLoadChartData =
-               FXCollections.observableArrayList(
-               new PieChart.Data("Swimming", 90),
-               new PieChart.Data("Running", 45),
-               new PieChart.Data("Cycling", 180),
-               new PieChart.Data("Weights", 45),
-               new PieChart.Data("Rest", 30));
+        refreshNutritionChart();
+        refreshWorkoutChart();
+    }
+
+    private void initializeWorkoutList() {
+        workoutList.setCellFactory(new Callback<ListView<WorkoutExt>, ListCell<WorkoutExt>>() {
+           @Override public ListCell<WorkoutExt> call(ListView<WorkoutExt> list) {
                
-        calorieChart.dataProperty().set(calorieChartData);
-        WorkoutLoadChart.dataProperty().set(workoutLoadChartData);
+                return new WorkoutHBox();
+           }
+        });
+        
+        sportsTypes.getItems().clear();
+        sportsTypes.getItems().addAll(Arrays.asList(SportTypes.values()));
+    }
+    
+    private void setSelectedWorkoutFromList(final WorkoutHBox wb){
+        if (selected != null){
+            selected.workout.getSportsTypeProperty().unbind();
+        }
+        
+        sportsTypes.getSelectionModel().select(wb.workout.getSportType());
+        wb.workout.getSportsTypeProperty().bind(sportsTypes.valueProperty());
+        selected = wb;
+        
+        intensity.setText(String.valueOf(wb.workout.getIntensity()));
+        volume.setText(String.valueOf(wb.workout.getVolume()));
+        //duration.setText(String.valueOf(wb.workout.getDuration()));
+    }
+
+    private void refreshWorkoutChart() {
+        trainingDay.refreshLoadChartData();
 
         final Label caption = new Label("");
             caption.setTextFill(Color.DARKORANGE);
@@ -223,30 +228,13 @@ public PaperBackController(){
         }
     }
 
-    private void initializeWorkoutList() {
-        workoutList.setCellFactory(new Callback<ListView<WorkoutExt>, ListCell<WorkoutExt>>() {
-           @Override public ListCell<WorkoutExt> call(ListView<WorkoutExt> list) {
-               
-                return new WorkoutHBox();
-           }
-        });
-        
-        sportsTypes.getItems().clear();
-        sportsTypes.getItems().addAll(Arrays.asList(SportTypes.values()));
-    }
-    
-    private void setSelected(final WorkoutHBox wb){
-        if (selected != null){
-            selected.workout.getSportsTypeProperty().unbind();
-        }
-        System.out.println(wb.workout.getSportType().name()+" Selected");
-        sportsTypes.getSelectionModel().select(wb.workout.getSportType());
-        wb.workout.getSportsTypeProperty().bind(sportsTypes.valueProperty());
-        selected = wb;
-        
-        intensity.setText(String.valueOf(wb.workout.getIntensity()));
-        volume.setText(String.valueOf(wb.workout.getVolume()));
-        //duration.setText(String.valueOf(wb.workout.getDuration()));
+    private void refreshNutritionChart() {
+        ObservableList<PieChart.Data> calorieChartData =
+               FXCollections.observableArrayList(
+               new PieChart.Data("Protein", 75),
+               new PieChart.Data("Fat", 40),
+               new PieChart.Data("Carbs", 130));
+        calorieChart.dataProperty().set(calorieChartData);
     }
     
      class Delta { double x, y; } 
@@ -268,18 +256,20 @@ public PaperBackController(){
 
                 intensity = new Text(String.valueOf(item.getIntensity()));
                 volume = new Text(String.valueOf(item.getVolume()));
-                TrainingCalendarDuration td = (TrainingCalendarDuration) item.getDuration();
-                System.out.print(td.ToString());
+                //TrainingCalendarDuration td = (TrainingCalendarDuration) item.getDuration();
+                //System.out.print(td.ToString());
                 duration = new Text("0");
 
                 setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     @Override
                     public void handle(MouseEvent t) {
-                        setSelected((WorkoutHBox)t.getSource());
+                        setSelectedWorkoutFromList((WorkoutHBox)t.getSource());
                     }
                 });
             }
+            refreshWorkoutChart();
+            
             HBox rect = new HBox();
             rect.setSpacing(5.0);
             rect.setAlignment(Pos.CENTER_LEFT);

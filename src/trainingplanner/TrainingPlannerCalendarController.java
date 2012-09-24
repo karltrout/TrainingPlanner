@@ -118,36 +118,34 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                 lmdCal.setTime(calendar.getTime());
                 int neglmd = 1-lmd;
                 lmdCal.set(Calendar.DAY_OF_MONTH,neglmd);
-                TrainingCalendarDay calendarDay = new TrainingCalendarDay();
-                calendarDay.setCalendar(lmdCal);
-                calendarDay.setTrainingDay(this.trainingCalendar.getTrainingDay((GregorianCalendar)lmdCal));
-                dayObjects[dayObjectsCnt]=calendarDay;
+                //TrainingCalendarDay calendarDay = trainingCalendar.getTrainingDay((GregorianCalendar)lmdCal));
+                dayObjects[dayObjectsCnt] = trainingCalendar.getTrainingDay((GregorianCalendar)lmdCal);
                 dayObjectsCnt++;
             }
         }
         //setall these months days
         int totalDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         for (int dayCounter = 0; dayCounter<totalDays; dayCounter++){
-            TrainingCalendarDay calendarDay = new TrainingCalendarDay();
-                Calendar thisDay = Calendar.getInstance();
+            //TrainingCalendarDay calendarDay = new TrainingCalendarDay();
+            Calendar thisDay = Calendar.getInstance();
             thisDay.setTime(calendar.getTime());
             thisDay.add(Calendar.DAY_OF_MONTH, dayCounter);
-            calendarDay.setCalendar(thisDay);
-            calendarDay.setTrainingDay(this.trainingCalendar.getTrainingDay((GregorianCalendar)thisDay));
-            dayObjects[dayObjectsCnt]=calendarDay;
+            //calendarDay.setCalendar(thisDay);
+            //calendarDay.setTrainingDay(trainingCalendar.getTrainingDay((GregorianCalendar)thisDay));
+            dayObjects[dayObjectsCnt]=trainingCalendar.getTrainingDay((GregorianCalendar)thisDay);//calendarDay;
             dayObjectsCnt++;
         }
        //setRemeaingDays from next month
         int nextMonthDays = 0;
         while(dayObjectsCnt<42){
-            TrainingCalendarDay calendarDay = new TrainingCalendarDay();
+            //TrainingCalendarDay calendarDay = new TrainingCalendarDay();
             Calendar thisDay = Calendar.getInstance();
             thisDay.setTime(calendar.getTime());
             thisDay.add(Calendar.MONTH,1);
             thisDay.add(Calendar.DAY_OF_MONTH, nextMonthDays);
-            calendarDay.setCalendar(thisDay);
-            calendarDay.setTrainingDay(this.trainingCalendar.getTrainingDay((GregorianCalendar)thisDay));
-            dayObjects[dayObjectsCnt]=calendarDay;
+            //calendarDay.setCalendar(thisDay);
+            //calendarDay.setTrainingDay(trainingCalendar.getTrainingDay((GregorianCalendar)thisDay));
+            dayObjects[dayObjectsCnt]=trainingCalendar.getTrainingDay((GregorianCalendar)thisDay);
             nextMonthDays++;
             dayObjectsCnt++;  
         }
@@ -248,10 +246,6 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     /**
      * @param selectedTrainingDay the selectedTrainingDay to set
      */
-    public void setSelectedTrainingDay(SimpleObjectProperty<TrainingCalendarDay> selectedTrainingDay) throws PropertyVetoException {
-        javafx.beans.property.SimpleObjectProperty<trainingplanner.org.calendar.TrainingCalendarDay> oldSelectedTrainingDay = selectedTrainingDay;
-        vetoableChangeSupport.fireVetoableChange(PROP_SELECTEDTRAININGDAY, oldSelectedTrainingDay, selectedTrainingDay);
-        this.selectedTrainingDay = selectedTrainingDay;
-        propertyChangeSupport.firePropertyChange(PROP_SELECTEDTRAININGDAY, oldSelectedTrainingDay, selectedTrainingDay);
-    }
+    public void setSelectedTrainingDay(SimpleObjectProperty<TrainingCalendarDay> selectedTrainingDay){
+       this.selectedTrainingDay = selectedTrainingDay; }
 }

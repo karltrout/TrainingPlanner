@@ -11,7 +11,6 @@ import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import trainingplanner.org.calendar.TrainingCalendarDuration;
 import trainingplanner.org.xsd.IWorkoutType;
 import trainingplanner.org.xsd.SportTypes;
 
@@ -22,25 +21,28 @@ import trainingplanner.org.xsd.SportTypes;
 public class WorkoutExt extends IWorkoutType {
     private SimpleObjectProperty<SportTypes> sportsTypeProperty;
     private SimpleStringProperty sportsTypeNameProperty;
+    
     public WorkoutExt(){
-        super();
-        this.sportType = SportTypes.OTHER;
-        this.description = "New Workout.";
-        this.duration = new TrainingCalendarDuration();
-        this.excersize = FXCollections.observableArrayList();
-        this.intensity = 0.0;
-        this.volume = 0;
-        sportsTypeNameProperty = new SimpleStringProperty(this.sportType.toString());
-        //sportsTypeNameProperty.bind(this.sportType.value());
-        sportsTypeProperty = new SimpleObjectProperty<SportTypes>(this.sportType);
+        sportType = SportTypes.OTHER;
+        description = "New Workout.";
+        duration = 0;//new TrainingCalendarDuration();
+        excersize = FXCollections.observableArrayList();
+        intensity = 1.0;
+        volume = 1;
         
-        sportsTypeProperty.addListener(new ChangeListener<SportTypes>() {
+        setProperties();
+    }
 
-            @Override
-            public void changed(ObservableValue<? extends SportTypes> ov, SportTypes t, SportTypes t1) {
-                sportsTypeNameProperty.set(t1.value());
-            }
-        });
+    public WorkoutExt(IWorkoutType wo) {
+        this.description = wo.getDescription();
+        this.duration = wo.getDuration();
+        this.excersize = wo.getExcersize();
+        this.id = wo.getId();
+        this.intensity = wo.getIntensity();
+        this.parentId = wo.getParentId();
+        this.sportType = wo.getSportType();
+        
+        setProperties();
     }
     
     public StringProperty getSportsTypeNameProperty(){
@@ -54,7 +56,10 @@ public class WorkoutExt extends IWorkoutType {
     
     @Override
     public void setSportType(SportTypes value) {
-        sportsTypeProperty.set(value);
+        
+        super.setSportType(value);
+        sportType = value;
+        //sportsTypeProperty.set(value);
     }
     
     public ObjectProperty<SportTypes> getSportsTypeProperty(){
@@ -64,4 +69,24 @@ public class WorkoutExt extends IWorkoutType {
     public String ToString(){
         return sportType.name();
     }  
+    
+    public String getSuperSportstype(){
+        return super.getSportType().value();
+    }
+
+    private void setProperties() {
+        sportsTypeNameProperty = new SimpleStringProperty(sportType.toString());
+        //sportsTypeNameProperty.bind(this.sportType.value());
+        sportsTypeProperty = new SimpleObjectProperty<SportTypes>(sportType);
+        
+        sportsTypeProperty.addListener(new ChangeListener<SportTypes>() {
+
+            @Override
+            public void changed(ObservableValue<? extends SportTypes> ov, SportTypes t, SportTypes t1) {
+                sportsTypeNameProperty.set(t1.value());
+                setSportType(t1);
+                
+            }
+        });
+    }
 }

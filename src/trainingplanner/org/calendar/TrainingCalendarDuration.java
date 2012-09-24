@@ -87,7 +87,7 @@ public class TrainingCalendarDuration extends Duration {
         throw new UnsupportedOperationException("Not supported yet.");
     }
  
-    public String ToString(){
+    /*public String ToString(){
         String s = "";
         if(isSet(DatatypeConstants.YEARS)) s.concat(getYears()+"y:");
         if(isSet(DatatypeConstants.MONTHS)) s.concat(getMonths()+"mo:");
@@ -96,5 +96,5 @@ public class TrainingCalendarDuration extends Duration {
         if(isSet(DatatypeConstants.MINUTES)) s.concat(getMinutes()+"mm:+");
         s.concat(":"+(isSet(DatatypeConstants.SECONDS)?getSeconds():0)+"ss");
         return s;
-    }
+    }*/
 }
