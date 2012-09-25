@@ -4,15 +4,14 @@
  */
 package trainingplanner;
 
-import java.beans.PropertyChangeSupport;
-import java.beans.PropertyVetoException;
-import java.beans.VetoableChangeSupport;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -44,11 +43,10 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     @FXML private Polygon previousMonthButton;
     private GregorianCalendar calendar;
     private SimpleObjectProperty<TrainingCalendarDay> selectedTrainingDay;
+    ObservableList<TrainingCalendarDay> calendarDays;
     private TrainingCalendarExt trainingCalendar;
 
     @FXML private Region firstDay;
-    private final transient PropertyChangeSupport propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
-    private final transient VetoableChangeSupport vetoableChangeSupport = new java.beans.VetoableChangeSupport(this);
     /**
      * Initializes the controller class.
      */
@@ -56,6 +54,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     public void initialize(URL url, ResourceBundle rb) {
         if (this.trainingCalendar == null) trainingCalendar = new TrainingCalendarExt();
         calendar = new GregorianCalendar();
+        calendarDays = FXCollections.observableArrayList();
         //this.selectedTrainingDay = new SimpleObjectProperty<>();
         updateCalendar();
     }  
@@ -101,7 +100,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                 prevMonth();
             }
         });
-        
+      updateCalendar();  
     }
     
     private TrainingCalendarDay[] setCalendar() {
@@ -133,6 +132,9 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
             //calendarDay.setCalendar(thisDay);
             //calendarDay.setTrainingDay(trainingCalendar.getTrainingDay((GregorianCalendar)thisDay));
             dayObjects[dayObjectsCnt]=trainingCalendar.getTrainingDay((GregorianCalendar)thisDay);//calendarDay;
+            if (dayObjectsCnt == 13){
+                System.out.println("13"+dayObjects[dayObjectsCnt].getobservableWorkOuts().size());
+            }
             dayObjectsCnt++;
         }
        //setRemeaingDays from next month
@@ -155,7 +157,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     private void updateCalendar() {
         //calendar.setTime(new Date());
         monthName.setText(String.format("%1$tY %1$tB", calendar));
-        final TrainingCalendarDay[] calendarDays = setCalendar();
+        calendarDays.setAll(setCalendar());
 
         for(Object calObj : calendarGridPane.getChildren()){
             if (calObj instanceof Group){
@@ -164,7 +166,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                 int column = (Integer)properties.get("gridpane-column");
                 int row = (Integer)properties.get("gridpane-row");
                 int calNumber = ((row-1)*7)+column;
-                TrainingCalendarDay trainingDay = calendarDays[calNumber];
+                TrainingCalendarDay trainingDay = calendarDays.get(calNumber);
                 Calendar curCal = trainingDay.getCalendar();
                 
                 for(Object child : group.getChildren()){
@@ -205,7 +207,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                 String rowClass = (row % 2 == 0)? "evenWeek":"oddWeek"; 
                 region.getStyleClass().add(rowClass);
                 final int calNumber = ((row-1)*7)+column;
-                TrainingCalendarDay trainingDay = calendarDays[calNumber];
+                TrainingCalendarDay trainingDay = calendarDays.get(calNumber);
                 Calendar curCal = trainingDay.getCalendar();
                 
                 region.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -213,7 +215,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                     @Override
                     public void handle(MouseEvent t) {
                         
-                        selectedTrainingDay.set(calendarDays[calNumber]);
+                        selectedTrainingDay.set(calendarDays.get(calNumber));
                     }
                 });
                 
@@ -242,10 +244,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     public SimpleObjectProperty<TrainingCalendarDay> getSelectedTrainingDay() {
         return selectedTrainingDay;
     }
-
+}
     /**
      * @param selectedTrainingDay the selectedTrainingDay to set
      */
-    public void setSelectedTrainingDay(SimpleObjectProperty<TrainingCalendarDay> selectedTrainingDay){
-       this.selectedTrainingDay = selectedTrainingDay; }
-}

@@ -75,6 +75,24 @@
                 </DayType>
                 <DayType>
                     <date>2012-09-08-04:00</date>
+                    <WorkoutType sportType="Day Off">
+                        <intensity>1.0</intensity>
+                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <duration>0</duration>
+                        <description>New Workout.</description>
+                    </WorkoutType>
+                    <WorkoutType sportType="Race">
+                        <intensity>1.0</intensity>
+                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <duration>0</duration>
+                        <description>New Workout.</description>
+                    </WorkoutType>
+                    <WorkoutType sportType="Strength">
+                        <intensity>1.0</intensity>
+                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <duration>0</duration>
+                        <description>New Workout.</description>
+                    </WorkoutType>
                 </DayType>
             </WeekType>
             <WeekType weekNumber="3">
@@ -197,6 +215,18 @@
                 </DayType>
                 <DayType>
                     <date>2012-10-13-04:00</date>
+                    <WorkoutType sportType="Strength">
+                        <intensity>1.0</intensity>
+                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <duration>0</duration>
+                        <description>New Workout.</description>
+                    </WorkoutType>
+                    <WorkoutType sportType="Bike">
+                        <intensity>1.0</intensity>
+                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <duration>0</duration>
+                        <description>New Workout.</description>
+                    </WorkoutType>
                 </DayType>
             </WeekType>
             <WeekType weekNumber="3">
@@ -303,6 +333,75 @@
                     <date>2012-11-10-05:00</date>
                 </DayType>
             </WeekType>
+            <WeekType weekNumber="3">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-11-11-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-12-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-13-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-14-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-15-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-16-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-17-05:00</date>
+                </DayType>
+            </WeekType>
+            <WeekType weekNumber="4">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-11-18-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-19-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-20-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-21-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-22-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-23-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-24-05:00</date>
+                </DayType>
+            </WeekType>
+            <WeekType weekNumber="5">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-11-25-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-26-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-27-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-28-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-29-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-11-30-05:00</date>
+                </DayType>
+            </WeekType>
         </MonthType>
         <MonthType>
             <monthName>August</monthName>
@@ -327,6 +426,157 @@
                 </DayType>
                 <DayType>
                     <date>2012-08-31-04:00</date>
+                </DayType>
+            </WeekType>
+        </MonthType>
+        <MonthType>
+            <monthName>December</monthName>
+            <year>2012</year>
+            <monthId>11</monthId>
+            <WeekType weekNumber="1">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-12-01-05:00</date>
+                </DayType>
+            </WeekType>
+            <WeekType weekNumber="2">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-12-02-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-03-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-04-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-05-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-06-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-07-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-08-05:00</date>
+                </DayType>
+            </WeekType>
+            <WeekType weekNumber="3">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-12-09-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-10-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-11-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-12-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-13-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-14-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-15-05:00</date>
+                </DayType>
+            </WeekType>
+            <WeekType weekNumber="4">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-12-16-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-17-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-18-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-19-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-20-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-21-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-22-05:00</date>
+                </DayType>
+            </WeekType>
+            <WeekType weekNumber="5">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-12-23-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-24-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-25-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-26-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-27-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-28-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2012-12-29-05:00</date>
+                </DayType>
+            </WeekType>
+            <WeekType weekNumber="6">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-12-30-05:00</date>
+                    <WorkoutType sportType="Day Off">
+                        <intensity>1.0</intensity>
+                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <duration>0</duration>
+                        <description>New Workout.</description>
+                    </WorkoutType>
+                </DayType>
+                <DayType>
+                    <date>2012-12-31-05:00</date>
+                    <WorkoutType sportType="Day Off">
+                        <intensity>1.0</intensity>
+                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <duration>0</duration>
+                        <description>New Workout.</description>
+                    </WorkoutType>
+                </DayType>
+            </WeekType>
+        </MonthType>
+        <MonthType>
+            <monthName>January</monthName>
+            <year>2013</year>
+            <monthId>0</monthId>
+            <WeekType weekNumber="1">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2013-01-01-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2013-01-02-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2013-01-03-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2013-01-04-05:00</date>
+                </DayType>
+                <DayType>
+                    <date>2013-01-05-05:00</date>
                 </DayType>
             </WeekType>
         </MonthType>

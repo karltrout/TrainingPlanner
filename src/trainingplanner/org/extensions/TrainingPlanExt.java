@@ -6,6 +6,7 @@ package trainingplanner.org.extensions;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 import javax.xml.datatype.DatatypeConfigurationException;
+import trainingplanner.org.xsd.ICalendarType;
 import trainingplanner.org.xsd.TrainingPlan;
 
 /**
@@ -56,12 +57,12 @@ public class TrainingPlanExt extends trainingplanner.org.xsd.TrainingPlan {
     
     @Override
     public TrainingCalendarExt getTrainingCalendar(){
-        /*if (super.getTrainingCalendar() == null){
-            super.setTrainingCalendar(new TrainingCalendarExt());
+        if (super.getTrainingCalendar() == null){
+            super.setTrainingCalendar(new TrainingCalendarExt(new ICalendarType()));
         }
         return (TrainingCalendarExt) super.trainingCalendar;
-        * */
-        return (TrainingCalendarExt) this.trainingCalendar;
+        
+        //return (TrainingCalendarExt) trainingCalendar;
     }
 
 }

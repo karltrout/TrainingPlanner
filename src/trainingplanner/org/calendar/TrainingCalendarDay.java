@@ -28,10 +28,25 @@ public class TrainingCalendarDay extends DayType {
     //private TrainingDay trainingDay;
     private ObservableList<PieChart.Data> workoutLoadChartData = FXCollections.observableArrayList(); 
     private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
+    private DayType _dayType = new DayType();
     
     public TrainingCalendarDay(){
         this.setCalendar(Calendar.getInstance());
     }
+    
+    public TrainingCalendarDay(DayType dayType){
+        _dayType = dayType;
+        setCalendar(dayType.getDate().toGregorianCalendar());
+        details = dayType.getDetails();
+        id = dayType.getId();
+        parentId = dayType.getParentId();
+        for(IWorkoutType wo : dayType.getWorkoutType()){
+            workouts.add(new WorkoutExt(wo));
+        }
+        refreshLoadChartData();
+    
+    }
+    
     
     public TrainingCalendarDay(GregorianCalendar day){
         super.setDate(new XMLGregorianCalendarImpl(day));
@@ -99,30 +114,37 @@ public class TrainingCalendarDay extends DayType {
         this.trainingDay = trainingDay;
     }*/
 
-    public void addWorkout(WorkoutExt wo){ 
+    public final void addWorkout(WorkoutExt wo){ 
         workouts.add(wo);
-        this.workoutType.add(wo);
+        this._dayType.getWorkoutType().add(wo);
+        //super.orkoutType.add(wo);
         //trainingDay.getWorkoutType().add(wo);
         workoutLoadChartData.add(new PieChart.Data(wo.getSportType().name(), wo.getIntensity()));
     }
     
     public ObservableList<PieChart.Data> getWorkoutLoadChartData(){
+        refreshLoadChartData();
         return workoutLoadChartData;
     }
-    public void refreshLoadChartData(){
+    public final void refreshLoadChartData(){
         workoutLoadChartData.clear();
-        for(IWorkoutType workout :getWorkoutType()){
+        for(IWorkoutType workout :this._dayType.getWorkoutType()){
             workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getIntensity()));
         }
     }
+    
+    public ObservableList<WorkoutExt> getobservableWorkOuts(){
+        return workouts;
+    } 
 
     public void setDayType(DayType dayType) {
         setCalendar(dayType.getDate().toGregorianCalendar());
+        this._dayType = dayType;
         this.details = dayType.getDetails();
         this.id = dayType.getId();
         this.parentId = dayType.getParentId();
         for(IWorkoutType wo : dayType.getWorkoutType()){
-            addWorkout(new WorkoutExt(wo));
+            workouts.add(new WorkoutExt(wo));
         }
         refreshLoadChartData();
     }

@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.xsd.ICalendarType;
+import trainingplanner.org.xsd.IWorkoutType;
 import trainingplanner.org.xsd.MonthType.WeekType;
 import trainingplanner.org.xsd.WeekType.DayType;
 
@@ -61,9 +62,18 @@ public class TrainingCalendarExt extends ICalendarType {
                         for(DayType dayType:weekType.getDayType()){
                             
                             if(dayType.getDate().getDay() == dayOfMonth) {
-                                //newTrainingDay.setDayType(dayType);
+                                newTrainingDay.setDayType(dayType);
+                               /* if (
+                                        month == 8 && dayOfMonth == 8
+                                )
+                                {
+                                    WorkoutExt wot = new WorkoutExt();
+                                    dayType.getWorkoutType().add(wot);
+                                    System.out.println(" New workout for :"+wot.getSportType().value());
+                                }*/
+                                
                                 //dayType = newTrainingDay;
-                                return (TrainingCalendarDay) dayType;
+                                return newTrainingDay;
                             }
                         }
                         // Did not find the Day in the week

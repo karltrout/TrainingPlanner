@@ -21,7 +21,7 @@ import trainingplanner.org.xsd.SportTypes;
 public class WorkoutExt extends IWorkoutType {
     private SimpleObjectProperty<SportTypes> sportsTypeProperty;
     private SimpleStringProperty sportsTypeNameProperty;
-    
+    private IWorkoutType woType = new IWorkoutType();
     public WorkoutExt(){
         sportType = SportTypes.OTHER;
         description = "New Workout.";
@@ -30,10 +30,12 @@ public class WorkoutExt extends IWorkoutType {
         intensity = 1.0;
         volume = 1;
         
+        
         setProperties();
     }
 
     public WorkoutExt(IWorkoutType wo) {
+        this.woType = wo;
         this.description = wo.getDescription();
         this.duration = wo.getDuration();
         this.excersize = wo.getExcersize();
@@ -59,6 +61,7 @@ public class WorkoutExt extends IWorkoutType {
         
         super.setSportType(value);
         sportType = value;
+        woType.setSportType(value);
         //sportsTypeProperty.set(value);
     }
     
@@ -85,7 +88,6 @@ public class WorkoutExt extends IWorkoutType {
             public void changed(ObservableValue<? extends SportTypes> ov, SportTypes t, SportTypes t1) {
                 sportsTypeNameProperty.set(t1.value());
                 setSportType(t1);
-                
             }
         });
     }

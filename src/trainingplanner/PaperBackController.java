@@ -31,7 +31,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import trainingplanner.org.calendar.TrainingCalendarDay;
-import trainingplanner.org.calendar.TrainingCalendarDuration;
 import trainingplanner.org.extensions.WorkoutExt;
 import trainingplanner.org.xsd.IWorkoutType;
 import trainingplanner.org.xsd.SportTypes;
@@ -114,12 +113,13 @@ public PaperBackController(){
         }  
         trainingDay = _trainingCalendarDay;
         trainingDate.setText(String.format("%1$tb %1$te,%1$tY",trainingDay.getCalendar()));
-        for(IWorkoutType wt: trainingDay.getWorkoutType()){
+        //workouts = trainingDay.getobservableWorkOuts();
+        /*for(IWorkoutType wt: trainingDay.getWorkoutType()){
             workouts.add((WorkoutExt) wt);
-        }
+        }*/
         
         WorkoutLoadChart.dataProperty().set(trainingDay.getWorkoutLoadChartData());
-        workoutList.setItems(workouts);
+        workoutList.setItems(trainingDay.getobservableWorkOuts());
     }
     
     private void editWorkoutInfo(){
@@ -165,7 +165,8 @@ public PaperBackController(){
             @Override
             public void handle(MouseEvent t) {
                //addWorkout();
-                trainingDay.getWorkoutType().add(new IWorkoutType());
+                //trainingDay.getWorkoutType().add(new IWorkoutType());
+                trainingDay.addWorkout(new WorkoutExt());
             }
         });
 
