@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="35.0" prefWidth="380.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerGoalController">
+<fx:root type="javafx.scene.layout.AnchorPane" prefHeight="35.0" prefWidth="380.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
   <children>
     <Group id="Group" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
       <children>
@@ -31,4 +31,4 @@
   <stylesheets>
     <URL value="@css/trainingplannergoal.css" />
   </stylesheets>
-</AnchorPane>
+</fx:root>

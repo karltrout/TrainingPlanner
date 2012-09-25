@@ -6,7 +6,6 @@ package trainingplanner;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
@@ -20,11 +19,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -49,10 +45,10 @@ import trainingplanner.org.xsd.TrainingPlan;
  * @author troutk
  */
 public class TrainingPlannerWindowController implements Initializable {
+    
     private JAXBContext jc;
     final private String dateFormatString = "%1$tb %1$te, %1$tY";
     private SimpleObjectProperty<Color> color = new SimpleObjectProperty<>(this, "color", Color.LIME);
-    
     private TrainingPlanExt trainingPlan;
     private AthleteExt athlete;
     
@@ -83,13 +79,12 @@ public class TrainingPlannerWindowController implements Initializable {
         System.out.println("Saving... "+trainingPlan.getAthlete().getFullName());
         if( null != trainingPlan)
         {
+            trainingPlan.getTrainingCalendar().prune();
             try {
                 serializeObjectToXML(planFile,trainingPlan);
             } catch (Exception ex) {
                 Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
         }
     }
     
@@ -112,6 +107,9 @@ public class TrainingPlannerWindowController implements Initializable {
             trainingPlan.initialize();
         } 
         
+        color.bind(colorPicker.valueProperty());
+        colorPicker.valueProperty().setValue(Color.LIME);
+        
         selectedCalendarDate = new SimpleObjectProperty<>();
         selectedCalendarDate.addListener(new ChangeListener<TrainingCalendarDay>() {
             @Override
@@ -128,32 +126,15 @@ public class TrainingPlannerWindowController implements Initializable {
         athleteAge.setText(String.valueOf(athlete.getAge()));
         athleteWeight.setText(String.valueOf(athlete.getWeight()));
         athleteDOB.setText(String.format(dateFormatString,athlete.getDateOfBirth().toGregorianCalendar()));
-        colorPicker.valueProperty().setValue(Color.LIME);
         
         calendarPane.getChildren().clear();
         TrainingPlannerCalendarController calendar = new TrainingPlannerCalendarController(selectedCalendarDate, trainingPlan.getTrainingCalendar());
         calendarPane.getChildren().add(calendar);
         
-        URL location = getClass().getResource("FXML/TrainingPlannerGoals.fxml");
-        FXMLLoader goalsLoader = new FXMLLoader();
-        goalsLoader.setLocation(location);
-        goalsLoader.setBuilderFactory(new JavaFXBuilderFactory());
-        Parent goalsPaneParent;
-            
-        try {
-            goalsPaneParent = (Parent) goalsLoader.load(location.openStream());          
-            goalsPane.getChildren().clear();
-            goalsPane.getChildren().add(goalsPaneParent);  
-            
-        } catch (IOException ex) {
-            Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        color.bind(colorPicker.valueProperty());
-
-        TrainingPlannerGoalsController goalsControler = goalsLoader.getController();
+        goalsPane.getChildren().clear();       
+        TrainingPlannerGoalsController goalsControler = new TrainingPlannerGoalsController();
         goalsControler.setKPIs(athlete.getKeyPerformanceIndicators());
-        goalsControler.setGoals();
+        goalsPane.getChildren().add(goalsControler);  
 
         ObservableList<Node> goals = goalIcons.getChildren();
         goals.clear();
@@ -173,38 +154,33 @@ public class TrainingPlannerWindowController implements Initializable {
     }
     
     
-            private void displayNotePad(PaperBackController _currentNotePad) {
-                
-                if (!_currentNotePad.isVisible()){
-                    _currentNotePad.setVisible(true);
-                }
-                _currentNotePad.setTrainingDay(selectedCalendarDate.get());
-                
-                System.out.println( "selected date is :"+selectedCalendarDate.getValue().getCalendar().getTime());
-            }
-            /**
-	 * This method saves (serializes) any java bean object into xml file
-	 */
-	public void serializeObjectToXML(String xmlFileLocation,
-		Object objectToSerialize) throws Exception {
-                Marshaller m = jc.createMarshaller();
-                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		FileOutputStream os = new FileOutputStream(xmlFileLocation);
-                
-                m.marshal( objectToSerialize, os);
-                os.close();
-                
-	}
+    private void displayNotePad(PaperBackController _currentNotePad) {
+        if (!_currentNotePad.isVisible()){
+            _currentNotePad.setVisible(true);
+        }
+        _currentNotePad.setTrainingDay(selectedCalendarDate.get()); 
+    }
+    
+    /**
+    * This method saves (serializes) any java bean object into xml file
+    */
+    public void serializeObjectToXML(String xmlFileLocation, Object objectToSerialize) throws Exception {
+        Marshaller m = jc.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        FileOutputStream os = new FileOutputStream(xmlFileLocation);
 
-	/**
-	 * Reads Java Bean Object From XML File
-	 */
-	public TrainingPlan deserializeXMLToTrainingPlan(String xmlFileLocation)
-		throws Exception {
-		FileInputStream is = new FileInputStream(xmlFileLocation);
-		Unmarshaller u = jc.createUnmarshaller();
-                TrainingPlan tp = (TrainingPlan)u.unmarshal(is);
-		return tp;
-	}
+        m.marshal( objectToSerialize, os);
+        os.close();
+    }
 
+    /**
+     * Reads Java Bean Object From XML File
+     */
+    public TrainingPlan deserializeXMLToTrainingPlan(String xmlFileLocation)
+        throws Exception {
+        FileInputStream is = new FileInputStream(xmlFileLocation);
+        Unmarshaller u = jc.createUnmarshaller();
+        TrainingPlan tp = (TrainingPlan)u.unmarshal(is);
+        return tp;
+    }
 }

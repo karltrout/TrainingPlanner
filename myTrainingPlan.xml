@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TrainingPlan>
+    <Athlete id="693f63ff-bc0d-4ba5-8937-ebafaa938689">
+        <firstName>Karl</firstName>
+        <lastName>Trout</lastName>
+        <dateOfBirth>1970-09-23-04:00</dateOfBirth>
+        <age>42</age>
+        <weight>180</weight>
+        <keyPerformanceIndicators>
+            <KPI>
+                <SportsType>Swim</SportsType>
+                <goalValue workoutId="000000003" value="75"/>
+                <currentValue workoutId="000000002" value="95"/>
+                <Measurement measureType="pace" distanceMeasure="yard" timeMeasure="minute"></Measurement>
+            </KPI>
+            <KPI>
+                <SportsType>Bike</SportsType>
+                <goalValue workoutId="000000001" value="133832714.4"/>
+                <currentValue workoutId="000000000" value="122245466.4"/>
+                <Measurement measureType="speed" distanceMeasure="mile" timeMeasure="hour"></Measurement>
+            </KPI>
+        </keyPerformanceIndicators>
+    </Athlete>
+    <TrainingCalendar>
+        <numberOfMonths>0</numberOfMonths>
+        <numberOfWeeks>0</numberOfWeeks>
+        <numberOfDays>0</numberOfDays>
+    </TrainingCalendar>
+</TrainingPlan>

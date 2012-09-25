@@ -5,11 +5,11 @@
 package trainingplanner.org.extensions;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.xsd.ICalendarType;
-import trainingplanner.org.xsd.IWorkoutType;
 import trainingplanner.org.xsd.MonthType.WeekType;
 import trainingplanner.org.xsd.WeekType.DayType;
 
@@ -63,16 +63,6 @@ public class TrainingCalendarExt extends ICalendarType {
                             
                             if(dayType.getDate().getDay() == dayOfMonth) {
                                 newTrainingDay.setDayType(dayType);
-                               /* if (
-                                        month == 8 && dayOfMonth == 8
-                                )
-                                {
-                                    WorkoutExt wot = new WorkoutExt();
-                                    dayType.getWorkoutType().add(wot);
-                                    System.out.println(" New workout for :"+wot.getSportType().value());
-                                }*/
-                                
-                                //dayType = newTrainingDay;
                                 return newTrainingDay;
                             }
                         }
@@ -110,5 +100,26 @@ public class TrainingCalendarExt extends ICalendarType {
         defaultWeek.setTrainingPlanWeek(gCal.getWeeksInWeekYear());
         defaultWeek.setWeekNumber(gCal.get(Calendar.WEEK_OF_MONTH));
         return defaultWeek;
+    }
+
+    public void prune() {
+        ArrayList<MonthType> prunableMonths= new ArrayList<>();
+        for( MonthType mType: getMonthType() ){
+            ArrayList<WeekType> prunableWeeks= new ArrayList<>();
+            for (WeekType weekType:mType.getWeekType()){
+                ArrayList<DayType> prunableDays = new ArrayList<>();
+                for(DayType dayType:weekType.getDayType()){
+                    if(dayType.getWorkoutType().isEmpty()) 
+                        prunableDays.add(dayType);
+                }
+                weekType.getDayType().removeAll(prunableDays);
+                if (weekType.getDayType().isEmpty())
+                    prunableWeeks.add(weekType);
+            }
+            mType.getWeekType().removeAll(prunableWeeks);
+            if (mType.getWeekType().isEmpty()) 
+                prunableMonths.add(mType);
+        }
+        getMonthType().removeAll(prunableMonths);
     }
 }

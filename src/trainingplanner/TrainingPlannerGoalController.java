@@ -4,13 +4,16 @@
  */
 package trainingplanner;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import trainingplanner.org.extensions.KPI;
 import trainingplanner.org.xsd.IKPIType;
 import trainingplanner.org.xsd.KpiValueType;
 
@@ -19,13 +22,31 @@ import trainingplanner.org.xsd.KpiValueType;
  *
  * @author Karl
  */
-public class TrainingPlannerGoalController implements Initializable {
+public class TrainingPlannerGoalController extends AnchorPane implements Initializable {
 
     @FXML private Text goalSportTitle;
     @FXML private Text sportTimeCurrent;
     @FXML private Text sportTimeGoal;
     
     private IKPIType kpi;
+    
+        public TrainingPlannerGoalController(){                   
+        URL location = getClass().getResource("FXML/TrainingPlannerGoal.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(location);
+        fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+        
+    }
+    
+    
     /**
      * Initializes the controller class.
      */

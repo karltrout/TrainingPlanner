@@ -23,66 +23,49 @@ import trainingplanner.org.xsd.WeekType.DayType;
 public class TrainingCalendarDay extends DayType {
     private Calendar calendar;
     private int week;
-    private SimpleStringProperty date = new SimpleStringProperty();
-    //private TrainingDay trainingDay;
+    private SimpleStringProperty dateProperty = new SimpleStringProperty();
     private ObservableList<PieChart.Data> workoutLoadChartData = FXCollections.observableArrayList(); 
     private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
     private DayType _dayType = new DayType();
+    private double totalVolume = 0.0;
     
     public TrainingCalendarDay(){
         this.setCalendar(Calendar.getInstance());
     }
     
     public TrainingCalendarDay(DayType dayType){
-        _dayType = dayType;
+        _dayType    = dayType;
         setCalendar(dayType.getDate().toGregorianCalendar());
-        details = dayType.getDetails();
-        id = dayType.getId();
-        parentId = dayType.getParentId();
+        details     = dayType.getDetails();
+        id          = dayType.getId();
+        parentId    = dayType.getParentId();
         for(IWorkoutType wo : dayType.getWorkoutType()){
             workouts.add(new WorkoutExt(wo));
         }
         refreshLoadChartData();
-    
     }
-    
-    
+
     public TrainingCalendarDay(GregorianCalendar day){
         super.setDate(new XMLGregorianCalendarImpl(day));
         calendar = day;
     }
-    /**
-     * @return the calendar
-     */
+
     public Calendar getCalendar() {
         return calendar;
     }
-
-    /**
-     * @param calendar the calendar to set
-     */
     public final void setCalendar(Calendar calendar) {
         this.calendar = calendar;
-        date.set(calendar.getTime().toString());
+        dateProperty.set(calendar.getTime().toString());
     }
 
-    /**
-     * @return the week
-     */
     public int getWeek() {
         return week;
     }
 
-    /**
-     * @param week the week to set
-     */
     public void setWeek(int week) {
         this.week = week;
     }
 
-    /**
-     * @return the isToday
-     */
     public boolean isToday() {
         Calendar today = Calendar.getInstance();
         int dayOfYear = this.calendar.get(Calendar.DAY_OF_YEAR);
@@ -91,27 +74,8 @@ public class TrainingCalendarDay extends DayType {
     }
     
     public StringProperty getDateProperty(){
-        return date;
+        return dateProperty;
     }
-
-    /**
-     * @return the trainingDay
-     */
-   /* public DayType getTrainingDay() {
-        if( trainingDay == null ){
-            GregorianCalendar gCal = new GregorianCalendar();
-            gCal.setTimeInMillis(calendar.getTimeInMillis());
-            trainingDay = new TrainingDay(gCal);
-        }
-        return trainingDay;
-    }*/
-
-    /**
-     * @param trainingDay the trainingDay to set
-     */
-    /*public void setTrainingDay(TrainingDay trainingDay) {
-        this.trainingDay = trainingDay;
-    }*/
 
     public final void addWorkout(WorkoutExt wo){ 
         workouts.add(wo);
@@ -131,6 +95,7 @@ public class TrainingCalendarDay extends DayType {
         refreshLoadChartData();
         return workoutLoadChartData;
     }
+    
     public final void refreshLoadChartData(){
         workoutLoadChartData.clear();
         for(IWorkoutType workout :workouts){
@@ -138,10 +103,13 @@ public class TrainingCalendarDay extends DayType {
         }
     }
     
-    public ObservableList<WorkoutExt> getobservableWorkOuts(){
+    public ObservableList<WorkoutExt> getObservableWorkOuts(){
         return workouts;
     } 
 
+    public int getWorkoutCount(){ return workouts.size(); }
+    
+    
     public void setDayType(DayType dayType) {
         setCalendar(dayType.getDate().toGregorianCalendar());
         this._dayType = dayType;
@@ -152,6 +120,13 @@ public class TrainingCalendarDay extends DayType {
             workouts.add(new WorkoutExt(wo));
         }
         refreshLoadChartData();
+    }
+
+    public double getTotalVolume() {
+        for (WorkoutExt workout: workouts){
+            totalVolume =+ workout.getVolume();
+        }
+        return totalVolume;
     }
 
 }

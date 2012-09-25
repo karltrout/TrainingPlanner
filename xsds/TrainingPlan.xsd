@@ -78,7 +78,7 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="intensity" type="xs:double"/>
-			<xs:element name="Volume"/>
+			<xs:element name="volume" type="xs:double"/>
 			<xs:element name="duration" type="xs:int"/>
 			<xs:element name="description" type="xs:string"/>
 			<xs:group ref="excersizes"/>

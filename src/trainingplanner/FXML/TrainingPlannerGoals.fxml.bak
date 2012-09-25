@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" minHeight="-Infinity" prefHeight="150.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="trainingplanner.TrainingPlannerGoalsController">
+<fx:root type="javafx.scene.layout.AnchorPane" minHeight="-Infinity" prefHeight="150.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
   <children>
     <Separator id="separatorHorizontal1" prefWidth="200.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0" />
     <Separator id="separatorVertical1" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="36.0" />
@@ -19,18 +19,6 @@
         <AnchorPane id="goalsPane" fx:id="goalsListPane">
           <children>
             <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="30.0" layoutY="30.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="40.0" layoutY="40.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="50.0" layoutY="50.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="60.0" layoutY="60.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="70.0" layoutY="70.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="80.0" layoutY="80.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="90.0" layoutY="90.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="100.0" layoutY="100.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="110.0" layoutY="110.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
-            <fx:include id="goalsPane" source="TrainingPlannerGoal.fxml" layoutX="120.0" layoutY="120.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="370.0" />
           </children>
         </AnchorPane>
       </content>
@@ -43,7 +31,7 @@
         <URL value="@css/trainingPlanner.css" />
       </stylesheets>
     </Label>
-    <ImageView id="editImageButton" fitHeight="16.0" fitWidth="16.0" onMouseClicked="#editGoals" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+    <ImageView fx:id="editGoalsButton" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <image>
         <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="true" />
       </image>
@@ -52,4 +40,4 @@
   <stylesheets>
     <URL value="@css/trainingPlanningGoals.css" />
   </stylesheets>
-</AnchorPane>
+</fx:root>

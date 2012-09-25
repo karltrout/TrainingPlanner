@@ -32,7 +32,6 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.WorkoutExt;
-import trainingplanner.org.xsd.IWorkoutType;
 import trainingplanner.org.xsd.SportTypes;
 /**
  * FXML Controller class
@@ -63,7 +62,7 @@ public class PaperBackController extends AnchorPane implements Initializable {
 /* default Constructor 
  * 
  */
-public PaperBackController(){                   
+    public PaperBackController(){                   
         URL location = getClass().getResource("FXML/PaperBack.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);
@@ -77,7 +76,7 @@ public PaperBackController(){
             throw new RuntimeException(exception);
         }
         
-}
+    }
     /**
      * Initializes the controller class.
      */
@@ -113,13 +112,13 @@ public PaperBackController(){
         }  
         trainingDay = _trainingCalendarDay;
         trainingDate.setText(String.format("%1$tb %1$te,%1$tY",trainingDay.getCalendar()));
-        //workouts = trainingDay.getobservableWorkOuts();
+        //workouts = trainingDay.getObservableWorkOuts();
         /*for(IWorkoutType wt: trainingDay.getWorkoutType()){
             workouts.add((WorkoutExt) wt);
         }*/
         
         WorkoutLoadChart.dataProperty().set(trainingDay.getWorkoutLoadChartData());
-        workoutList.setItems(trainingDay.getobservableWorkOuts());
+        workoutList.setItems(trainingDay.getObservableWorkOuts());
     }
     
     private void editWorkoutInfo(){

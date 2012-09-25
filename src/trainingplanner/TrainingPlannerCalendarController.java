@@ -6,6 +6,7 @@ package trainingplanner;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
@@ -18,17 +19,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.TrainingCalendarExt;
+import trainingplanner.org.extensions.WorkoutExt;
 
 /**
  * FXML Controller class
@@ -55,8 +60,6 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
         if (this.trainingCalendar == null) trainingCalendar = new TrainingCalendarExt();
         calendar = new GregorianCalendar();
         calendarDays = FXCollections.observableArrayList();
-        //this.selectedTrainingDay = new SimpleObjectProperty<>();
-        updateCalendar();
     }  
     
     @FXML private void nextMonth(){
@@ -104,7 +107,6 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     }
     
     private TrainingCalendarDay[] setCalendar() {
-        //String dateFormatString = "%1$tb %1$te, %1$tY";
         int dayObjectsCnt = 0; 
         TrainingCalendarDay[] dayObjects = new TrainingCalendarDay[42];    
         calendar.set(Calendar.DAY_OF_MONTH, 1);
@@ -117,36 +119,26 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                 lmdCal.setTime(calendar.getTime());
                 int neglmd = 1-lmd;
                 lmdCal.set(Calendar.DAY_OF_MONTH,neglmd);
-                //TrainingCalendarDay calendarDay = trainingCalendar.getTrainingDay((GregorianCalendar)lmdCal));
                 dayObjects[dayObjectsCnt] = trainingCalendar.getTrainingDay((GregorianCalendar)lmdCal);
                 dayObjectsCnt++;
             }
         }
-        //setall these months days
+        //set all current months days
         int totalDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         for (int dayCounter = 0; dayCounter<totalDays; dayCounter++){
-            //TrainingCalendarDay calendarDay = new TrainingCalendarDay();
             Calendar thisDay = Calendar.getInstance();
             thisDay.setTime(calendar.getTime());
             thisDay.add(Calendar.DAY_OF_MONTH, dayCounter);
-            //calendarDay.setCalendar(thisDay);
-            //calendarDay.setTrainingDay(trainingCalendar.getTrainingDay((GregorianCalendar)thisDay));
-            dayObjects[dayObjectsCnt]=trainingCalendar.getTrainingDay((GregorianCalendar)thisDay);//calendarDay;
-            if (dayObjectsCnt == 13){
-                System.out.println("13"+dayObjects[dayObjectsCnt].getobservableWorkOuts().size());
-            }
+            dayObjects[dayObjectsCnt]=trainingCalendar.getTrainingDay((GregorianCalendar)thisDay);
             dayObjectsCnt++;
         }
-       //setRemeaingDays from next month
+       //set Remeaing Days from next month
         int nextMonthDays = 0;
         while(dayObjectsCnt<42){
-            //TrainingCalendarDay calendarDay = new TrainingCalendarDay();
             Calendar thisDay = Calendar.getInstance();
             thisDay.setTime(calendar.getTime());
             thisDay.add(Calendar.MONTH,1);
             thisDay.add(Calendar.DAY_OF_MONTH, nextMonthDays);
-            //calendarDay.setCalendar(thisDay);
-            //calendarDay.setTrainingDay(trainingCalendar.getTrainingDay((GregorianCalendar)thisDay));
             dayObjects[dayObjectsCnt]=trainingCalendar.getTrainingDay((GregorianCalendar)thisDay);
             nextMonthDays++;
             dayObjectsCnt++;  
@@ -155,11 +147,17 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     }
 
     private void updateCalendar() {
-        //calendar.setTime(new Date());
         monthName.setText(String.format("%1$tY %1$tB", calendar));
         calendarDays.setAll(setCalendar());
 
+        ArrayList<Rectangle> woRectangles = new ArrayList<>();
+        ArrayList<Rectangle> removedRectangles = new ArrayList<>();
         for(Object calObj : calendarGridPane.getChildren()){
+            
+            if (calObj instanceof Rectangle){
+                removedRectangles.add((Rectangle)calObj);
+            }
+            
             if (calObj instanceof Group){
                 Group group = (Group) calObj;
                 ObservableMap<Object, Object> properties = group.getProperties();
@@ -197,6 +195,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                     }
                 }
             }
+            
             if (calObj instanceof Region){
                 Region region = (Region)calObj;
                 region.getStyleClass().clear();
@@ -209,11 +208,34 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                 final int calNumber = ((row-1)*7)+column;
                 TrainingCalendarDay trainingDay = calendarDays.get(calNumber);
                 Calendar curCal = trainingDay.getCalendar();
+                // add workout graphbar to region area
+                //int numberOfWorkouts = trainingDay.getWorkoutCount();
+                //double totalWoVolume = trainingDay.getTotalVolume();
+                double layoutX = 0;
+                for(WorkoutExt wo : trainingDay.getObservableWorkOuts()){
+                    double woWidth = 5;//region.getWidth()/numberOfWorkouts;
+                    double woHeight = 20;//region.getHeight()*(wo.getVolume()/totalWoVolume);
+                    Rectangle woGraphBar = new Rectangle();
+                    woGraphBar.setWidth(woWidth);
+                    woGraphBar.setHeight(woHeight);
+                    woGraphBar.setLayoutX(layoutX);
+                    layoutX = layoutX-woWidth;
+                    woGraphBar.setFill(Color.LIME);
+                    ObservableMap<Object, Object> graphBarProperties = woGraphBar.getProperties();
+                    
+                    graphBarProperties.put("gridpane-column", column);
+                    graphBarProperties.put("gridpane-row", row);
+                    graphBarProperties.put("gridpane-halignment", HPos.RIGHT);
+                    graphBarProperties.put("gridpane-valignment", VPos.BOTTOM);
+                    woRectangles.add(woGraphBar);
+                }
+                region.setOpacity(.75);
                 
                 region.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
                     @Override
                     public void handle(MouseEvent t) {
+                        if(selectedTrainingDay.get() != null && selectedTrainingDay.get().equals(calendarDays.get(calNumber)))
+                            selectedTrainingDay.set(new TrainingCalendarDay());
                         
                         selectedTrainingDay.set(calendarDays.get(calNumber));
                     }
@@ -236,6 +258,8 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                 
             }
         }
+        calendarGridPane.getChildren().removeAll(removedRectangles);
+        calendarGridPane.getChildren().addAll(woRectangles);
     }
 
     /**
@@ -245,6 +269,3 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
         return selectedTrainingDay;
     }
 }
-    /**
-     * @param selectedTrainingDay the selectedTrainingDay to set
-     */

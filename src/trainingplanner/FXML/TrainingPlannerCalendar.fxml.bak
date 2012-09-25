@@ -18,7 +18,12 @@
     <Region id="headerRegionColor" blendMode="MULTIPLY" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <GridPane fx:id="calendarGridPane" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
       <children>
-        <Region id="region4" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" fill="#fff500" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="10.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+          <GridPane.margin>
+            <Insets />
+          </GridPane.margin>
+        </Rectangle>
+        <Region id="region4" blendMode="MULTIPLY" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         <Region id="region3" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="5" GridPane.rowIndex="1" />
         <Region id="region3" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="3" GridPane.rowIndex="1" />
         <Region id="region6" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="6" GridPane.rowIndex="1" />
@@ -330,7 +335,7 @@
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -351,7 +356,7 @@
         <InnerShadow color="#606060" height="2.0" offsetX="1.0" radius="0.5" width="2.0" />
       </effect>
     </Text>
-    <Polygon id="nextMonthArrow" fill="DODGERBLUE" layoutY="14.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="6.0">
+    <Polygon id="nextMonthArrow" fx:id="nextMonthButton" fill="DODGERBLUE" layoutY="14.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="6.0">
       <points>
         <Double fx:value="-8.0" />
         <Double fx:value="8.0" />
@@ -361,7 +366,7 @@
         <Double fx:value="-8.0" />
       </points>
     </Polygon>
-    <Polygon id="previousMonthArrow" fill="DODGERBLUE" layoutY="15.0" rotate="-90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="6.0">
+    <Polygon id="previousMonthArrow" fx:id="previousMonthButton" fill="DODGERBLUE" layoutY="15.0" rotate="-90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="6.0">
       <points>
         <Double fx:value="-8.0" />
         <Double fx:value="8.0" />
