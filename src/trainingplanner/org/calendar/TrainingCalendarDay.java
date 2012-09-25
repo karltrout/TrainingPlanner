@@ -7,7 +7,6 @@ package trainingplanner.org.calendar;
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -117,9 +116,15 @@ public class TrainingCalendarDay extends DayType {
     public final void addWorkout(WorkoutExt wo){ 
         workouts.add(wo);
         this._dayType.getWorkoutType().add(wo);
-        //super.orkoutType.add(wo);
-        //trainingDay.getWorkoutType().add(wo);
         workoutLoadChartData.add(new PieChart.Data(wo.getSportType().name(), wo.getIntensity()));
+    }
+    
+    public final void removeWorkout(WorkoutExt wo){
+        workouts.remove(wo);
+        if (_dayType.getWorkoutType().contains(wo.getWorkOutType())){
+        _dayType.getWorkoutType().remove(wo.getWorkOutType());}
+        
+        refreshLoadChartData();
     }
     
     public ObservableList<PieChart.Data> getWorkoutLoadChartData(){
@@ -128,7 +133,7 @@ public class TrainingCalendarDay extends DayType {
     }
     public final void refreshLoadChartData(){
         workoutLoadChartData.clear();
-        for(IWorkoutType workout :this._dayType.getWorkoutType()){
+        for(IWorkoutType workout :workouts){
             workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getIntensity()));
         }
     }

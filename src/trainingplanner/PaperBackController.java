@@ -129,7 +129,8 @@ public PaperBackController(){
     private boolean deleteWorkout(){
         WorkoutExt selected = workoutList.getSelectionModel().getSelectedItem();       
         workoutList.getItems().remove(selected);
-        trainingDay.getWorkoutType().remove(selected);
+        //trainingDay.getWorkoutType().remove(selected);
+        trainingDay.removeWorkout(selected);
         return true;
     }
     
