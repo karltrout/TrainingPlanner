@@ -128,7 +128,7 @@ public class TrainingPlannerWindowController implements Initializable {
         athleteDOB.setText(String.format(dateFormatString,athlete.getDateOfBirth().toGregorianCalendar()));
         
         calendarPane.getChildren().clear();
-        TrainingPlannerCalendarController calendar = new TrainingPlannerCalendarController(selectedCalendarDate, trainingPlan.getTrainingCalendar());
+        TrainingPlannerCalendarController calendar = new TrainingPlannerCalendarController(selectedCalendarDate, trainingPlan.getTrainingCalendar(), color);
         calendarPane.getChildren().add(calendar);
         
         goalsPane.getChildren().clear();       

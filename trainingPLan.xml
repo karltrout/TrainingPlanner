@@ -47,19 +47,31 @@
                     <date>2012-09-08-04:00</date>
                     <WorkoutType sportType="Race">
                         <intensity>1.0</intensity>
-                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">9</Volume>
+                        <volume>1.0</volume>
                         <duration>0</duration>
                         <description>New Workout.</description>
                     </WorkoutType>
                     <WorkoutType sportType="Day Off">
                         <intensity>1.0</intensity>
-                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <volume>1.0</volume>
                         <duration>0</duration>
                         <description>New Workout.</description>
                     </WorkoutType>
                     <WorkoutType sportType="Strength">
                         <intensity>1.0</intensity>
-                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <volume>2.0</volume>
+                        <duration>0</duration>
+                        <description>New Workout.</description>
+                    </WorkoutType>
+                </DayType>
+            </WeekType>
+            <WeekType weekNumber="3">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-09-14-04:00</date>
+                    <WorkoutType sportType="Day Off">
+                        <intensity>1.0</intensity>
+                        <volume>1.0</volume>
                         <duration>0</duration>
                         <description>New Workout.</description>
                     </WorkoutType>
@@ -76,13 +88,25 @@
                     <date>2012-10-13-04:00</date>
                     <WorkoutType sportType="Strength">
                         <intensity>1.0</intensity>
-                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <volume>2.0</volume>
                         <duration>0</duration>
                         <description>New Workout.</description>
                     </WorkoutType>
                     <WorkoutType sportType="Bike">
                         <intensity>1.0</intensity>
-                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <volume>3.0</volume>
+                        <duration>0</duration>
+                        <description>New Workout.</description>
+                    </WorkoutType>
+                </DayType>
+            </WeekType>
+            <WeekType weekNumber="3">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-10-20-04:00</date>
+                    <WorkoutType sportType="Race">
+                        <intensity>1.0</intensity>
+                        <volume>1.0</volume>
                         <duration>0</duration>
                         <description>New Workout.</description>
                     </WorkoutType>
@@ -99,7 +123,7 @@
                     <date>2012-12-30-05:00</date>
                     <WorkoutType sportType="Day Off">
                         <intensity>1.0</intensity>
-                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <volume>0.5</volume>
                         <duration>0</duration>
                         <description>New Workout.</description>
                     </WorkoutType>
@@ -108,7 +132,7 @@
                     <date>2012-12-31-05:00</date>
                     <WorkoutType sportType="Day Off">
                         <intensity>1.0</intensity>
-                        <Volume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">1</Volume>
+                        <volume>0.0</volume>
                         <duration>0</duration>
                         <description>New Workout.</description>
                     </WorkoutType>

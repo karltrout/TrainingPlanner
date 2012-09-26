@@ -11,6 +11,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -20,11 +22,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.geometry.HPos;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -46,12 +51,14 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     @FXML Text monthName;
     @FXML private Polygon nextMonthButton;
     @FXML private Polygon previousMonthButton;
+    @FXML private Region firstDay;
+    
     private GregorianCalendar calendar;
     private SimpleObjectProperty<TrainingCalendarDay> selectedTrainingDay;
     ObservableList<TrainingCalendarDay> calendarDays;
     private TrainingCalendarExt trainingCalendar;
+    private Color color = Color.RED;
 
-    @FXML private Region firstDay;
     /**
      * Initializes the controller class.
      */
@@ -71,8 +78,9 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
         updateCalendar();
     } 
 
-    public TrainingPlannerCalendarController(SimpleObjectProperty<TrainingCalendarDay> _selectedTrainingDay, TrainingCalendarExt _trainingCalendar){
-            
+    public TrainingPlannerCalendarController(SimpleObjectProperty<TrainingCalendarDay> _selectedTrainingDay, TrainingCalendarExt _trainingCalendar,
+            SimpleObjectProperty<Color> _color){
+        
         URL location = getClass().getResource("FXML/TrainingPlannerCalendar.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);
@@ -85,6 +93,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+        this.setColor(_color);
         this.selectedTrainingDay = _selectedTrainingDay;
         this.trainingCalendar = _trainingCalendar;
         
@@ -150,12 +159,13 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
         monthName.setText(String.format("%1$tY %1$tB", calendar));
         calendarDays.setAll(setCalendar());
 
-        ArrayList<Rectangle> woRectangles = new ArrayList<>();
-        ArrayList<Rectangle> removedRectangles = new ArrayList<>();
+        ArrayList<FlowPane> woRectangles = new ArrayList<>();
+        ArrayList<FlowPane> removedRectangles = new ArrayList<>();
         for(Object calObj : calendarGridPane.getChildren()){
             
-            if (calObj instanceof Rectangle){
-                removedRectangles.add((Rectangle)calObj);
+            if (calObj instanceof FlowPane){
+                //FlowPane flow = (FlowPane) calObj;
+                removedRectangles.add((FlowPane)calObj);
             }
             
             if (calObj instanceof Group){
@@ -209,29 +219,33 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                 TrainingCalendarDay trainingDay = calendarDays.get(calNumber);
                 Calendar curCal = trainingDay.getCalendar();
                 // add workout graphbar to region area
-                //int numberOfWorkouts = trainingDay.getWorkoutCount();
-                //double totalWoVolume = trainingDay.getTotalVolume();
-                double layoutX = 0;
+                int numberOfWorkouts = trainingDay.getWorkoutCount();
+                double totalWoVolume = (trainingDay.getTotalVolume()==0)?1.0:trainingDay.getTotalVolume();
+                //double layoutX = 0;
+                FlowPane flowPane = new FlowPane();
+                flowPane.setOrientation(Orientation.HORIZONTAL);
+                flowPane.setAlignment(Pos.BOTTOM_RIGHT);
+                flowPane.setColumnHalignment(HPos.RIGHT);
+                flowPane.setRowValignment(VPos.BOTTOM);
+                ObservableMap<Object, Object> graphBarProperties = flowPane.getProperties();
+                graphBarProperties.put("gridpane-column", column);
+                graphBarProperties.put("gridpane-row", row);
+                  
                 for(WorkoutExt wo : trainingDay.getObservableWorkOuts()){
                     double woWidth = 5;//region.getWidth()/numberOfWorkouts;
-                    double woHeight = 20;//region.getHeight()*(wo.getVolume()/totalWoVolume);
+                    double volume = (wo.getVolume()==0)?1.0:wo.getVolume();
+                    double woHeight = 25*(volume/totalWoVolume);
                     Rectangle woGraphBar = new Rectangle();
                     woGraphBar.setWidth(woWidth);
                     woGraphBar.setHeight(woHeight);
-                    woGraphBar.setLayoutX(layoutX);
-                    layoutX = layoutX-woWidth;
-                    woGraphBar.setFill(Color.LIME);
-                    ObservableMap<Object, Object> graphBarProperties = woGraphBar.getProperties();
-                    
-                    graphBarProperties.put("gridpane-column", column);
-                    graphBarProperties.put("gridpane-row", row);
-                    graphBarProperties.put("gridpane-halignment", HPos.RIGHT);
-                    graphBarProperties.put("gridpane-valignment", VPos.BOTTOM);
-                    woRectangles.add(woGraphBar);
+                    woGraphBar.setFill(color);
+                    flowPane.getChildren().add(woGraphBar);
                 }
+                    woRectangles.add(flowPane);
+                
                 region.setOpacity(.75);
                 
-                region.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                flowPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent t) {
                         if(selectedTrainingDay.get() != null && selectedTrainingDay.get().equals(calendarDays.get(calNumber)))
@@ -267,5 +281,19 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
      */
     public SimpleObjectProperty<TrainingCalendarDay> getSelectedTrainingDay() {
         return selectedTrainingDay;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    private void setColor(SimpleObjectProperty<Color> _color) {
+        this.color = _color.getValue();
+        _color.addListener(new ChangeListener<Color>() {
+            @Override
+            public void changed(ObservableValue<? extends Color> ov, Color t, Color t1) {
+                color = t1;
+                updateCalendar();
+            }
+        });
     }
 }

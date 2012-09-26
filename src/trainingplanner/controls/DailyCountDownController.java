@@ -54,13 +54,8 @@ public class DailyCountDownController extends AnchorPane implements Initializabl
                setNumbers();
             }
         });
-        //this.numberProperty = _number;
+        
         this.color = color;
-        color.addListener(new ChangeListener<Color>() {
-            @Override
-            public void changed(ObservableValue<? extends Color> ov, Color t, Color t1) {
-            }
-        });
         
         URL location = getClass().getResource("DailyCountDown.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();

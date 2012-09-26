@@ -18,7 +18,7 @@
     <Region id="headerRegionColor" blendMode="MULTIPLY" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <GridPane fx:id="calendarGridPane" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
       <children>
-        <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" fill="#fff500" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="10.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+        <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" fill="#fff500" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="5.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
           <GridPane.margin>
             <Insets />
           </GridPane.margin>
