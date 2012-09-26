@@ -59,6 +59,7 @@ public class PaperBackController extends AnchorPane implements Initializable {
     private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
     private TrainingCalendarDay trainingDay = new TrainingCalendarDay();;
     private WorkoutHBox selected;
+    private TrainingPlannerCalendarController parentCalendar;
 /* default Constructor 
  * 
  */
@@ -104,6 +105,7 @@ public class PaperBackController extends AnchorPane implements Initializable {
     
     private void hidePaperBackWindow(){
         this.setVisible(false);
+        this.parentCalendar.updateCalendar();
     }
 
     public void setTrainingDay(TrainingCalendarDay _trainingCalendarDay) {    
@@ -236,6 +238,13 @@ public class PaperBackController extends AnchorPane implements Initializable {
                new PieChart.Data("Fat", 40),
                new PieChart.Data("Carbs", 130));
         calorieChart.dataProperty().set(calorieChartData);
+    }
+
+    /**
+     * @param parentCalendar the parentCalendar to set
+     */
+    public void setParentCalendar(TrainingPlannerCalendarController parentCalendar) {
+        this.parentCalendar = parentCalendar;
     }
     
      class Delta { double x, y; } 

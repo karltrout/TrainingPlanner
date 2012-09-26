@@ -48,7 +48,7 @@ public class TrainingPlannerWindowController implements Initializable {
     
     private JAXBContext jc;
     final private String dateFormatString = "%1$tb %1$te, %1$tY";
-    private SimpleObjectProperty<Color> color = new SimpleObjectProperty<>(this, "color", Color.LIME);
+    private SimpleObjectProperty<Color> color = new SimpleObjectProperty<>(this, "color", new Color(1,1,0.4,1));
     private TrainingPlanExt trainingPlan;
     private AthleteExt athlete;
     
@@ -129,6 +129,8 @@ public class TrainingPlannerWindowController implements Initializable {
         
         calendarPane.getChildren().clear();
         TrainingPlannerCalendarController calendar = new TrainingPlannerCalendarController(selectedCalendarDate, trainingPlan.getTrainingCalendar(), color);
+        calendar.updateCalendar();
+        currentNotePad.setParentCalendar(calendar);
         calendarPane.getChildren().add(calendar);
         
         goalsPane.getChildren().clear();       

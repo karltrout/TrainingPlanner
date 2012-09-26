@@ -14,6 +14,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.EventHandler;
@@ -22,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -35,6 +38,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.TrainingCalendarExt;
@@ -52,6 +56,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
     @FXML private Polygon nextMonthButton;
     @FXML private Polygon previousMonthButton;
     @FXML private Region firstDay;
+    @FXML private Rectangle calendarBackGround;
     
     private GregorianCalendar calendar;
     private SimpleObjectProperty<TrainingCalendarDay> selectedTrainingDay;
@@ -64,9 +69,11 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (this.trainingCalendar == null) trainingCalendar = new TrainingCalendarExt();
-        calendar = new GregorianCalendar();
+        if (this.trainingCalendar == null) 
+            trainingCalendar = new TrainingCalendarExt();
+        calendar = (GregorianCalendar) Calendar.getInstance();
         calendarDays = FXCollections.observableArrayList();
+        calendarDays.setAll(setCalendar());
     }  
     
     @FXML private void nextMonth(){
@@ -93,9 +100,11 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        this.setColor(_color);
-        this.selectedTrainingDay = _selectedTrainingDay;
-        this.trainingCalendar = _trainingCalendar;
+        //calendarBackGround.setFill(_color.getValue());
+        setColor(_color);
+        
+        selectedTrainingDay = _selectedTrainingDay;
+        trainingCalendar = _trainingCalendar;
         
         nextMonthButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -155,10 +164,9 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
         return dayObjects;
     }
 
-    private void updateCalendar() {
+    public final void updateCalendar() {
         monthName.setText(String.format("%1$tY %1$tB", calendar));
         calendarDays.setAll(setCalendar());
-
         ArrayList<FlowPane> woRectangles = new ArrayList<>();
         ArrayList<FlowPane> removedRectangles = new ArrayList<>();
         for(Object calObj : calendarGridPane.getChildren()){
@@ -227,18 +235,24 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                 flowPane.setAlignment(Pos.BOTTOM_RIGHT);
                 flowPane.setColumnHalignment(HPos.RIGHT);
                 flowPane.setRowValignment(VPos.BOTTOM);
+                flowPane.setHgap(1);
+                flowPane.setPadding(new Insets(2, 2, 2, 2));
+                
                 ObservableMap<Object, Object> graphBarProperties = flowPane.getProperties();
                 graphBarProperties.put("gridpane-column", column);
                 graphBarProperties.put("gridpane-row", row);
                   
                 for(WorkoutExt wo : trainingDay.getObservableWorkOuts()){
-                    double woWidth = 5;//region.getWidth()/numberOfWorkouts;
+                    double woWidth = 10;//region.getWidth()/numberOfWorkouts;
                     double volume = (wo.getVolume()==0)?1.0:wo.getVolume();
-                    double woHeight = 25*(volume/totalWoVolume);
+                    double woHeight = 45*(volume/totalWoVolume);
                     Rectangle woGraphBar = new Rectangle();
                     woGraphBar.setWidth(woWidth);
                     woGraphBar.setHeight(woHeight);
                     woGraphBar.setFill(color);
+                    woGraphBar.setStroke(color.darker());
+                    woGraphBar.setStrokeWidth(0.5);
+                    woGraphBar.setStrokeType(StrokeType.INSIDE);
                     flowPane.getChildren().add(woGraphBar);
                 }
                     woRectangles.add(flowPane);
@@ -292,6 +306,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
             @Override
             public void changed(ObservableValue<? extends Color> ov, Color t, Color t1) {
                 color = t1;
+                 //calendarBackGround.setFill(color);
                 updateCalendar();
             }
         });

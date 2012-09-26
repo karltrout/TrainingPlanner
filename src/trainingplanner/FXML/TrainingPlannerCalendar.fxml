@@ -12,13 +12,14 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root type="javafx.scene.layout.AnchorPane" prefHeight="325.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="javafx.scene.layout.AnchorPane" id="" fx:id="calendarPane" prefHeight="325.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
   <children>
+    <Rectangle fx:id="calendarBackGround" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="325.0" stroke="BLACK" strokeType="INSIDE" width="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <Region id="headerRegionGradient" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <Region id="headerRegionColor" blendMode="MULTIPLY" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <GridPane fx:id="calendarGridPane" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
       <children>
-        <Region id="region4" blendMode="MULTIPLY" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Region id="region4" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         <Region id="region3" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="5" GridPane.rowIndex="1" />
         <Region id="region3" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="3" GridPane.rowIndex="1" />
         <Region id="region6" prefHeight="200.0" prefWidth="200.0" styleClass="oddWeek" GridPane.columnIndex="6" GridPane.rowIndex="1" />
@@ -326,7 +327,7 @@
             <Text fill="$x3" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="30" textAlignment="CENTER" translateX="1.0" translateY="1.0" />
           </children>
         </Group>
-        <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" prefHeight="200.0" prefWidth="200.0" rowValignment="BOTTOM" GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="2.0" prefHeight="200.0" prefWidth="200.0" rowValignment="BOTTOM" vgap="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
           <children>
             <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="5.0">
               <fill>
@@ -336,7 +337,7 @@
                 <Insets />
               </FlowPane.margin>
             </Rectangle>
-            <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" fill="$x2" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="5.0">
+            <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" fill="#ffff66" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="5.0">
               <FlowPane.margin>
                 <Insets />
               </FlowPane.margin>
@@ -347,6 +348,9 @@
               </FlowPane.margin>
             </Rectangle>
           </children>
+          <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+          </padding>
         </FlowPane>
       </children>
       <columnConstraints>

@@ -27,7 +27,6 @@ public class TrainingCalendarDay extends DayType {
     private ObservableList<PieChart.Data> workoutLoadChartData = FXCollections.observableArrayList(); 
     private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
     private DayType _dayType = new DayType();
-    private double totalVolume = 0.0;
     
     public TrainingCalendarDay(){
         this.setCalendar(Calendar.getInstance());
@@ -99,7 +98,7 @@ public class TrainingCalendarDay extends DayType {
     public final void refreshLoadChartData(){
         workoutLoadChartData.clear();
         for(IWorkoutType workout :workouts){
-            workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getIntensity()));
+            workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getVolume()));
         }
     }
     
@@ -123,8 +122,9 @@ public class TrainingCalendarDay extends DayType {
     }
 
     public double getTotalVolume() {
+        double totalVolume = 0;
         for (WorkoutExt workout: workouts){
-            totalVolume =+ workout.getVolume();
+            totalVolume = totalVolume + workout.getVolume();
         }
         return totalVolume;
     }

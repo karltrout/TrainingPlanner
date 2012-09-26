@@ -18,6 +18,8 @@ import trainingplanner.org.xsd.WeekType.DayType;
  * @author troutk
  */
 public class TrainingCalendarExt extends ICalendarType {
+    //private ICalendarType calType;
+    
     public TrainingCalendarExt(){
         //GregorianCalendar gCal = (GregorianCalendar) Calendar.getInstance();
         //WeekType defaultWeek = new WeekType();
@@ -29,6 +31,7 @@ public class TrainingCalendarExt extends ICalendarType {
         //defaultMonth.setYear(new XMLGregorianCalendarImpl(gCal));
         //defaultMonth.getWeekType().add(defaultWeek);
         //getMonthType().add(defaultMonth);
+        //calType = new ICalendarType();
     }
 
     public TrainingCalendarExt(ICalendarType cal){
@@ -36,6 +39,7 @@ public class TrainingCalendarExt extends ICalendarType {
         {
             cal = new ICalendarType();
         }
+        //calType = cal;
         endDate = cal.getEndDate();
         id = cal.getId();
         monthType = cal.getMonthType();
@@ -44,6 +48,7 @@ public class TrainingCalendarExt extends ICalendarType {
         numberOfWeeks = cal.getNumberOfWeeks();
         parentId = cal.getParentId();
         startDate = cal.getEndDate();
+        getTrainingDay((GregorianCalendar)Calendar.getInstance());
     }
     
     public TrainingCalendarDay getTrainingDay(GregorianCalendar gCal) {
@@ -84,6 +89,7 @@ public class TrainingCalendarExt extends ICalendarType {
         nWeek.getDayType().add(newTrainingDay);
         nMonth.getWeekType().add(nWeek);
         monthType.add(nMonth);
+        //calType.getMonthType().add(nMonth);
         return newTrainingDay;
     }
     
