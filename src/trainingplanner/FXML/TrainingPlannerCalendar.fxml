@@ -327,7 +327,7 @@
             <Text fill="$x3" font="$x1" layoutX="3.0" layoutY="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="monthDateBoxActiveText" text="30" textAlignment="CENTER" translateX="1.0" translateY="1.0" />
           </children>
         </Group>
-        <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="2.0" prefHeight="200.0" prefWidth="200.0" rowValignment="BOTTOM" vgap="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="2.0" prefHeight="200.0" prefWidth="200.0" rowValignment="BOTTOM" snapToPixel="false" vgap="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
           <children>
             <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="5.0">
               <fill>
@@ -337,7 +337,7 @@
                 <Insets />
               </FlowPane.margin>
             </Rectangle>
-            <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" fill="#ffff66" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="5.0">
+            <Rectangle id="rectangle1" arcHeight="5.0" arcWidth="5.0" blendMode="ADD" fill="#ffff66" height="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="5.0">
               <FlowPane.margin>
                 <Insets />
               </FlowPane.margin>

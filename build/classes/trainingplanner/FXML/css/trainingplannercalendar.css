@@ -94,3 +94,12 @@
 #nextMonthArrow:hover{
      -fx-fill: grey;
 }
+
+FlowPane{
+    -fx-background-color: rgba(0,0,0,0);
+}
+FlowPane:hover{
+    -fx-background-color: rgba(250, 250, 255, .4);
+    -fx-border-color: blue;
+    -fx-border-width: .5px; 
+}
