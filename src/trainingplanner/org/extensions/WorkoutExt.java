@@ -5,6 +5,7 @@
 package trainingplanner.org.extensions;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -24,13 +25,11 @@ public class WorkoutExt extends IWorkoutType {
     private IWorkoutType workOutType = new IWorkoutType();
     public WorkoutExt(){
         sportType = SportTypes.OTHER;
-        description = "New Workout.";
+        description = "New Workout";
         duration = 0;//new TrainingCalendarDuration();
         excersize = FXCollections.observableArrayList();
         intensity = 1.0;
         volume = 1;
-        
-        
         setProperties();
     }
 
@@ -78,7 +77,7 @@ public class WorkoutExt extends IWorkoutType {
     }
 
     private void setProperties() {
-        sportsTypeNameProperty = new SimpleStringProperty(sportType.toString());
+        sportsTypeNameProperty = new SimpleStringProperty(sportType.value());
         //sportsTypeNameProperty.bind(this.sportType.value());
         sportsTypeProperty = new SimpleObjectProperty<SportTypes>(sportType);
         
@@ -90,12 +89,39 @@ public class WorkoutExt extends IWorkoutType {
                 setSportType(t1);
             }
         });
+        
     }
-
-    /**
-     * @return the workOutType
-     */
     public IWorkoutType getWorkOutType() {
         return workOutType;
     }
+
+    @Override
+    public void setIntensity(double value) {
+        super.setIntensity(value);
+        workOutType.setIntensity(value);
+    }
+
+    @Override
+    public void setDescription(String value) {
+        super.setDescription(value);
+        workOutType.setDescription(value);
+    }
+
+    @Override
+    public void setDuration(int value) {
+        super.setDuration(value);
+        workOutType.setDuration(value);
+    }
+
+    @Override
+    public void setVolume(double value) {
+        workOutType.setVolume(value);
+        super.setVolume(value);
+    }
+    
+    
+     
+             
+    
+    
 }

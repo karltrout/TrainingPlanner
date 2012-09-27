@@ -7,6 +7,7 @@ package trainingplanner;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -54,12 +56,25 @@ public class PaperBackController extends AnchorPane implements Initializable {
     @FXML TextField intensity;
     @FXML TextField duration;
     @FXML TextField volume;
+    @FXML TextArea description;
     @FXML ListView<WorkoutExt> workoutList;
     
-    private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
+    @FXML Text noteHoursSlept;
+    @FXML Text noteSleepQuality;
+    @FXML Text noteEnergyLevel;
+    @FXML Text noteMoodLevel;    
+    
+    @FXML Text noteSportsName;
+    @FXML Text noteIntensity;
+    @FXML Text noteDuration;
+    @FXML Text noteVolume;
+    @FXML TextArea noteDescription;
+
+    //private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
     private TrainingCalendarDay trainingDay = new TrainingCalendarDay();;
     private WorkoutHBox selected;
     private TrainingPlannerCalendarController parentCalendar;
+    private boolean editing;
 /* default Constructor 
  * 
  */
@@ -114,10 +129,6 @@ public class PaperBackController extends AnchorPane implements Initializable {
         }  
         trainingDay = _trainingCalendarDay;
         trainingDate.setText(String.format("%1$tb %1$te,%1$tY",trainingDay.getCalendar()));
-        //workouts = trainingDay.getObservableWorkOuts();
-        /*for(IWorkoutType wt: trainingDay.getWorkoutType()){
-            workouts.add((WorkoutExt) wt);
-        }*/
         
         WorkoutLoadChart.dataProperty().set(trainingDay.getWorkoutLoadChartData());
         workoutList.setItems(trainingDay.getObservableWorkOuts());
@@ -128,17 +139,38 @@ public class PaperBackController extends AnchorPane implements Initializable {
     }
     
     private boolean deleteWorkout(){
-        WorkoutExt selected = workoutList.getSelectionModel().getSelectedItem();       
-        workoutList.getItems().remove(selected);
+        WorkoutExt woselected = workoutList.getSelectionModel().getSelectedItem();       
+        workoutList.getItems().remove(woselected);
         //trainingDay.getWorkoutType().remove(selected);
-        trainingDay.removeWorkout(selected);
+        trainingDay.removeWorkout(woselected);
         return true;
     }
     
     private boolean editWorkout(){
-      //  trainingDay.getTrainingDay().getWorkoutType().clear();
-      //  trainingDay.getTrainingDay().getWorkoutType().addAll(workouts);
-        return true;
+        WorkoutExt woselected = workoutList.getSelectionModel().getSelectedItem();
+        if (woselected == null ) return false;
+        editing =(editing)?false:true;
+        intensity.setEditable(editing);
+        duration.setEditable(editing);
+        volume.setEditable(editing);
+        description.setEditable(editing);
+        if (editing){
+            intensity.getStyleClass().remove("workout-editor-text-field");
+            duration.getStyleClass().remove("workout-editor-text-field");
+            volume.getStyleClass().remove("workout-editor-text-field");
+        }
+        else{
+            intensity.getStyleClass().add("workout-editor-text-field");
+            duration.getStyleClass().add("workout-editor-text-field");
+            volume.getStyleClass().add("workout-editor-text-field");
+            selected.workout.setVolume(Double.parseDouble(volume.getText()));
+            selected.workout.setDuration(Integer.parseInt(duration.getText()));
+            selected.workout.setIntensity(Double.parseDouble(intensity.getText()));
+            selected.workout.setDescription(description.getText());            
+            refreshWorkoutChart();
+            this.parentCalendar.updateCalendar();
+        }
+        return editing;
     }
 
     private void initializeButtonActions() {
@@ -159,7 +191,7 @@ public class PaperBackController extends AnchorPane implements Initializable {
         editWorkoutButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-               editWorkout();
+              editing = editWorkout();
             }
         });
         
@@ -204,16 +236,19 @@ public class PaperBackController extends AnchorPane implements Initializable {
         
         sportsTypes.getSelectionModel().select(wb.workout.getSportType());
         wb.workout.getSportsTypeProperty().bind(sportsTypes.valueProperty());
-        selected = wb;
+
         
         intensity.setText(String.valueOf(wb.workout.getIntensity()));
         volume.setText(String.valueOf(wb.workout.getVolume()));
-        //duration.setText(String.valueOf(wb.workout.getDuration()));
+        duration.setText(String.valueOf(wb.workout.getDuration()));
+        description.setText(wb.workout.getDescription());
+        
+        selected = wb;
     }
 
     private void refreshWorkoutChart() {
         trainingDay.refreshLoadChartData();
-
+        final HashMap<PieChart.Data, WorkoutExt> dataMap = trainingDay.getDataMap();
         final Label caption = new Label("");
             caption.setTextFill(Color.DARKORANGE);
             caption.setStyle("-fx-font: 24 arial;");
@@ -225,7 +260,13 @@ public class PaperBackController extends AnchorPane implements Initializable {
                     caption.setTranslateX(e.getSceneX());
                     caption.setTranslateY(e.getSceneY());
                     caption.setText(String.valueOf(data.getPieValue()) + "%");
-                    System.out.println("clicked on "+data.getName());
+                    WorkoutExt workout = dataMap.get(data);
+                    noteSportsName.setText(workout.getSportType().value());
+                    noteIntensity.setText(String.valueOf(workout.getIntensity()));
+                    noteDuration.setText(String.valueOf(workout.getDuration()));
+                    noteVolume.setText(String.valueOf(workout.getVolume()));
+                    noteDescription.setText(workout.getDescription());
+                    
                 }
             });
         }
@@ -251,9 +292,9 @@ public class PaperBackController extends AnchorPane implements Initializable {
      
      class WorkoutHBox extends ListCell<WorkoutExt>{
          private Text title;
-         private  Text intensity;
-         private  Text volume;
-         private  Text duration;
+         private  Text intensityTxt;
+         private  Text volumeTxt;
+         private  Text durationTxt;
          private WorkoutExt workout;
          
         @Override
@@ -262,13 +303,14 @@ public class PaperBackController extends AnchorPane implements Initializable {
             if (item != null) {
                 workout = item;
                 title = new Text();
+                volumeTxt = new Text();
                 title.textProperty().bind(item.getSportsTypeNameProperty());
 
-                intensity = new Text(String.valueOf(item.getIntensity()));
-                volume = new Text(String.valueOf(item.getVolume()));
+                intensityTxt = new Text(String.valueOf(item.getIntensity()));
+                volumeTxt.textProperty().set(String.valueOf(item.getVolume()));
                 //TrainingCalendarDuration td = (TrainingCalendarDuration) item.getDuration();
                 //System.out.print(td.ToString());
-                duration = new Text("0");
+                durationTxt = new Text("0");
 
                 setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -285,9 +327,9 @@ public class PaperBackController extends AnchorPane implements Initializable {
             rect.setAlignment(Pos.CENTER_LEFT);
             if (item != null) {
                 rect.getChildren().add(title);
-                rect.getChildren().add(intensity);
-                rect.getChildren().add(volume);
-                rect.getChildren().add(duration);
+                rect.getChildren().add(intensityTxt);
+                rect.getChildren().add(volumeTxt);
+                rect.getChildren().add(durationTxt);
                 setGraphic(rect);
             }
         }

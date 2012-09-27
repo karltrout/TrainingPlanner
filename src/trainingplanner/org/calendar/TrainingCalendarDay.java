@@ -7,6 +7,7 @@ package trainingplanner.org.calendar;
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -27,6 +28,7 @@ public class TrainingCalendarDay extends DayType {
     private ObservableList<PieChart.Data> workoutLoadChartData = FXCollections.observableArrayList(); 
     private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
     private DayType _dayType = new DayType();
+    private HashMap<PieChart.Data, WorkoutExt> dataMap = new HashMap();
     
     public TrainingCalendarDay(){
         this.setCalendar(Calendar.getInstance());
@@ -97,8 +99,11 @@ public class TrainingCalendarDay extends DayType {
     
     public final void refreshLoadChartData(){
         workoutLoadChartData.clear();
-        for(IWorkoutType workout :workouts){
-            workoutLoadChartData.add(new PieChart.Data(workout.getSportType().name(), workout.getVolume()));
+        dataMap.clear();
+        for(WorkoutExt workout :workouts){
+            PieChart.Data data = new PieChart.Data(workout.getSportType().value(), workout.getVolume());
+            dataMap.put(data, workout);
+            workoutLoadChartData.add(data);
         }
     }
     
@@ -127,6 +132,10 @@ public class TrainingCalendarDay extends DayType {
             totalVolume = totalVolume + workout.getVolume();
         }
         return totalVolume;
+    }
+    
+    public HashMap<PieChart.Data, WorkoutExt> getDataMap(){
+        return dataMap;
     }
 
 }

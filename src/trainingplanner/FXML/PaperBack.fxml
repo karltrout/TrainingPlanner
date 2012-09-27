@@ -58,6 +58,50 @@
         <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="575.0" startX="10.0" startY="30.0" stroke="$x1" />
         <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="595.0" startX="10.0" startY="30.0" stroke="$x1" />
         <Line endX="40.0" endY="640.0" layoutX="-5.0" layoutY="-5.0" startX="40.0" startY="10.0" stroke="#8f86ff" />
+        <GridPane layoutX="40.0" layoutY="286.0" prefHeight="99.5" prefWidth="170.0">
+          <children>
+            <Label id="label3" text="Duration" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Label id="label1" text="Sport" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label id="label2" text="Intensity" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label id="label4" text="Volume" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Text fx:id="noteSportsName" strokeType="OUTSIDE" strokeWidth="0.0" text="Sport" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Text fx:id="noteIntensity" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text fx:id="noteDuration" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Text fx:id="noteVolume" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+        <GridPane layoutX="40.0" layoutY="66.0" prefHeight="99.5" prefWidth="170.0">
+          <children>
+            <Text id="noteSportsName" fx:id="noteHoursSlept" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Text id="noteIntensity" fx:id="noteSleepQuality" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text id="noteDuration" fx:id="noteEnergyLevel" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Text id="noteVolume" fx:id="noteMoodLevel" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label id="label1" text="Hours Slept" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label id="label2" text="Sleep Quality" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label id="label3" text="Energy Level" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Label id="label4" text="Mood Level" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
       </children>
     </Group>
     <Group id="notePadCloseBox" fx:id="closeButton" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -84,36 +128,14 @@
         <Font name="Courier New Bold" size="18.0" fx:id="x2" />
       </font>
     </Text>
-    <Group id="Group" layoutX="37.0" layoutY="63.0">
-      <children>
-        <Label id="label1" layoutY="8.0" text="hours slept" />
-        <Label id="label2" layoutY="28.0" text="Sleep Quality" />
-        <Label id="label3" layoutY="48.0" text="Energy Level" />
-        <Label id="label4" layoutY="68.0" text="Mood Level" />
-        <TextField id="textField1" editable="false" layoutX="145.0" prefWidth="20.0" />
-        <TextField id="textField2" editable="false" layoutX="145.0" layoutY="21.0" prefWidth="20.0" />
-        <TextField id="textField2" editable="false" layoutX="145.0" layoutY="42.0" prefWidth="19.9998779296875" />
-        <TextField id="textField2" editable="false" layoutX="145.0" layoutY="62.0" prefWidth="20.0" />
-      </children>
-    </Group>
+    <Group id="Group" layoutX="37.0" layoutY="63.0" />
     <Text id="heading" font="$x2" strokeType="OUTSIDE" strokeWidth="0.0" text="Workout Information" x="60.0" y="264.0" />
     <ImageView id="editImageButton" fx:id="editWorkoutInfoButton" fitHeight="15.0" fitWidth="20.0" layoutX="40.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="false" />
       </image>
     </ImageView>
-    <Group id="Group" layoutX="37.0" layoutY="283.0">
-      <children>
-        <Label id="label1" layoutY="8.0" text="Sport" />
-        <Label id="label2" layoutY="28.0" text="Intensity" />
-        <Label id="label3" layoutY="48.0" text="Duration" />
-        <Label id="label4" layoutY="68.0" text="Volume" />
-        <TextField id="textField1" layoutX="65.0" prefWidth="100.0" />
-        <TextField id="textField2" layoutX="145.0" layoutY="20.0" prefWidth="20.0" />
-        <TextField id="textField2" layoutX="145.0" layoutY="40.0" prefWidth="19.9998779296875" />
-        <TextField id="textField2" layoutX="145.0" layoutY="60.0" prefWidth="20.0" />
-      </children>
-    </Group>
+    <Group id="Group" layoutX="37.0" layoutY="283.0" />
     <HBox id="dateBox" alignment="BOTTOM_RIGHT" layoutX="210.0" layoutY="27.0" prefHeight="20.390625" prefWidth="195.0" spacing="5.0">
       <children>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Today is:">
@@ -131,11 +153,11 @@
     <PieChart id="PieChart" fx:id="WorkoutLoadChart" labelLineLength="10.0" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Workouts" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="260.0" />
     <PieChart id="PieChart" fx:id="calorieChart" labelLineLength="10.0" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Calories" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="40.0" />
     <Label id="label4" layoutX="43.0" layoutY="408.0" text="Description" />
-    <TextArea id="textArea1" layoutX="40.0" layoutY="425.0" prefHeight="197.5" prefWidth="362.0" text="blah blah blah&#10;" wrapText="true" />
-    <AnchorPane layoutX="37.0" layoutY="48.0" prefHeight="198.0" prefWidth="369.0" />
-    <AnchorPane fx:id="workoutEditBox" layoutX="38.0" layoutY="269.0" minHeight="156.5" prefHeight="170.0" prefWidth="362.0" visible="false">
+    <TextArea id="textArea1" fx:id="noteDescription" layoutX="40.0" layoutY="425.0" prefHeight="197.5" prefWidth="362.0" text="blah blah blah&#10;" wrapText="true" />
+    <AnchorPane layoutX="37.0" layoutY="48.0" prefHeight="198.0" prefWidth="369.0" visible="false" />
+    <AnchorPane fx:id="workoutEditBox" layoutX="38.0" layoutY="269.0" minHeight="156.5" prefHeight="355.5" prefWidth="362.0" visible="false">
       <children>
-        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="159.99998474121094" layoutX="5.0" layoutY="3.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="352.0" />
+        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="332.5" layoutX="5.0" layoutY="3.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="352.0" />
         <VBox id="VBox" alignment="CENTER" layoutX="29.0" layoutY="16.0" spacing="5.0">
           <children>
             <Group id="notePadCloseBox" fx:id="deleteWorkoutButton">
@@ -183,11 +205,13 @@
               </items>
             </ChoiceBox>
             <Label id="label2" layoutX="29.0" layoutY="29.0" text="Intensity" />
-            <TextField id="textField2" fx:id="intensity" editable="false" layoutX="85.0" layoutY="25.0" prefWidth="20.0" />
-            <Label id="label3" layoutX="123.0" layoutY="28.0" text="Duration" />
-            <TextField id="textField2" fx:id="duration" editable="false" layoutX="179.0" layoutY="25.0" prefWidth="19.9998779296875" />
-            <Label id="label4" layoutX="218.0" layoutY="27.0" text="Volume" />
-            <TextField id="textField2" fx:id="volume" editable="false" layoutX="270.0" layoutY="25.0" prefWidth="20.0" />
+            <TextField id="textField2" fx:id="intensity" layoutX="85.0" layoutY="25.0" prefWidth="205.2333984375" styleClass="workout-editor-text-field" />
+            <Label id="label3" layoutX="29.0" layoutY="55.0" text="Duration" />
+            <TextField id="textField2" fx:id="duration" layoutX="85.0" layoutY="52.0" prefWidth="205.2333984375" styleClass="workout-editor-text-field" />
+            <Label id="label4" layoutX="33.0" layoutY="81.0" text="Volume" />
+            <TextField id="textField2" fx:id="volume" layoutX="85.0" layoutY="79.0" prefWidth="205.2333984375" styleClass="workout-editor-text-field" />
+            <Label id="label4" layoutX="-7.0" layoutY="101.0" text="Description" />
+            <TextArea id="textArea1" fx:id="description" layoutX="-9.0" layoutY="120.0" prefHeight="83.9609375" prefWidth="299.0" wrapText="true" />
           </children>
         </Group>
         <ListView fx:id="workoutList" layoutX="56.0" layoutY="16.0" prefHeight="70.0" prefWidth="272.0" />
