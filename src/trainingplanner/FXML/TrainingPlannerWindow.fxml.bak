@@ -17,7 +17,7 @@
         <Menu mnemonicParsing="false" text="File">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#quitAction" text="Close" />
-            <MenuItem mnemonicParsing="false" onAction="#quitAction" text="Save" />
+            <MenuItem mnemonicParsing="false" onAction="#saveAction" text="Save" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
@@ -36,17 +36,21 @@
       <content>
         <AnchorPane fx:id="dashBoardPane" minHeight="-Infinity" minWidth="798.0" prefHeight="512.0" prefWidth="798.0">
           <children>
-            <ScrollPane id="scrollPane3" hbarPolicy="NEVER" pannable="true" prefHeight="161.0" prefWidth="360.9999000000025" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="10.0">
-              <content>
-                <FlowPane id="flowPane1" fx:id="goalIcons" alignment="CENTER" columnHalignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="145.0" prefWidth="765.0" prefWrapLength="0.0">
-                  <children>
-                    <fx:include source="../controls/PaceClock.fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" scaleX="0.5" scaleY="0.5" />
-                    <fx:include source="../controls/DailyCountDown.fxml" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="150.0" />
-                    <fx:include source="../controls/SpeedOMeter.fxml" scaleX="0.5" scaleY="0.5" />
-                  </children>
-                </FlowPane>
-              </content>
-            </ScrollPane>
+            <AnchorPane id="anchorPane1" prefHeight="163.0" prefWidth="761.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="427.0" AnchorPane.rightAnchor="10.0">
+              <children>
+                <ScrollPane id="scrollPane3" hbarPolicy="NEVER" pannable="true" prefHeight="161.0" prefWidth="768.0" styleClass="goals-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <content>
+                    <FlowPane id="flowPane1" fx:id="goalIcons" alignment="CENTER" columnHalignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="125.0" prefWidth="730.0" prefWrapLength="0.0">
+                      <children>
+                        <fx:include source="../controls/PaceClock.fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" scaleX="0.5" scaleY="0.5" />
+                        <fx:include source="../controls/DailyCountDown.fxml" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="150.0" />
+                        <fx:include source="../controls/SpeedOMeter.fxml" scaleX="0.5" scaleY="0.5" />
+                      </children>
+                    </FlowPane>
+                  </content>
+                </ScrollPane>
+              </children>
+            </AnchorPane>
             <StackPane id="StackPane" fx:id="calendarPane" layoutX="14.0" layoutY="14.0">
               <children>
                 <fx:include source="TrainingPlannerCalendar.fxml" styleClass="widgetPane" />
@@ -65,6 +69,7 @@
                 <NumberAxis id="yAxis1" side="LEFT" />
               </yAxis>
             </AreaChart>
+            <Region id="Region8" layoutX="700.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
           </children>
         </AnchorPane>
       </content>

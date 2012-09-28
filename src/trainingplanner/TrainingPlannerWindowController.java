@@ -63,6 +63,7 @@ public class TrainingPlannerWindowController implements Initializable {
     @FXML  private FlowPane goalIcons;
     @FXML  private ColorPicker colorPicker;
     @FXML  private AreaChart volumeChart;
+    @FXML  private AnchorPane rootPane;
     
     private SimpleObjectProperty<TrainingCalendarDay> selectedCalendarDate;
     final private PaperBackController currentNotePad = new PaperBackController();
@@ -119,7 +120,7 @@ public class TrainingPlannerWindowController implements Initializable {
         });
         
         currentNotePad.setVisible(false);
-        dashBoardPane.getChildren().add(currentNotePad);
+        rootPane.getChildren().add(currentNotePad);
         
         athlete = trainingPlan.getAthlete();
         athleteName.setText(athlete.getFullName());

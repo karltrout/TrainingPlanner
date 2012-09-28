@@ -67,4 +67,19 @@ root {
     -fx-background-color: rgba(255,255,255,0.25);
 }
 
+.goals-pane {
+    -fx-background-image: url('images/carbon-fiber.png');
+    -fx-background-repeat: space;
+}
 
+.edit-Button:hover{
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.7) , 5, 0.0 , 0 , 1 );
+    -fx-cursor: hand;
+}
+
+#anchorPane1{
+  -fx-border-color: derive(black, -20%);
+  -fx-border-width: 10;
+  -fx-border-radius: 8;
+  -fx-background-radius: 16;
+}

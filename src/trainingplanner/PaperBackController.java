@@ -34,6 +34,7 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.WorkoutExt;
+import trainingplanner.org.xsd.ExcersizeType;
 import trainingplanner.org.xsd.SportTypes;
 /**
  * FXML Controller class
@@ -69,6 +70,8 @@ public class PaperBackController extends AnchorPane implements Initializable {
     @FXML Text noteDuration;
     @FXML Text noteVolume;
     @FXML TextArea noteDescription;
+    
+    @FXML ListView<ExcersizeType> noteDetailList;
 
     //private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
     private TrainingCalendarDay trainingDay = new TrainingCalendarDay();;
@@ -237,11 +240,12 @@ public class PaperBackController extends AnchorPane implements Initializable {
         sportsTypes.getSelectionModel().select(wb.workout.getSportType());
         wb.workout.getSportsTypeProperty().bind(sportsTypes.valueProperty());
 
-        
         intensity.setText(String.valueOf(wb.workout.getIntensity()));
         volume.setText(String.valueOf(wb.workout.getVolume()));
         duration.setText(String.valueOf(wb.workout.getDuration()));
         description.setText(wb.workout.getDescription());
+        
+        noteDetailList.setItems(wb.workout.getExcersizes());
         
         selected = wb;
     }

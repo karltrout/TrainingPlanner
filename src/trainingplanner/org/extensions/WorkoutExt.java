@@ -5,13 +5,14 @@
 package trainingplanner.org.extensions;
 
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import trainingplanner.org.xsd.ExcersizeType;
 import trainingplanner.org.xsd.IWorkoutType;
 import trainingplanner.org.xsd.SportTypes;
 
@@ -23,6 +24,8 @@ public class WorkoutExt extends IWorkoutType {
     private SimpleObjectProperty<SportTypes> sportsTypeProperty;
     private SimpleStringProperty sportsTypeNameProperty;
     private IWorkoutType workOutType = new IWorkoutType();
+    private ObservableList<ExcersizeType> excersizes = FXCollections.observableArrayList();
+        
     public WorkoutExt(){
         sportType = SportTypes.OTHER;
         description = "New Workout";
@@ -43,6 +46,7 @@ public class WorkoutExt extends IWorkoutType {
         this.parentId = wo.getParentId();
         this.sportType = wo.getSportType();
         this.volume = wo.getVolume();
+        this.excersizes.addAll(wo.getExcersize());
         setProperties();
     }
     
@@ -118,10 +122,12 @@ public class WorkoutExt extends IWorkoutType {
         workOutType.setVolume(value);
         super.setVolume(value);
     }
-    
-    
-     
-             
-    
-    
+
+    /**
+     * @return the excersizes
+     */
+    public ObservableList<ExcersizeType> getExcersizes() {
+        return excersizes;
+    }
+   
 }

@@ -58,7 +58,7 @@
         <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="575.0" startX="10.0" startY="30.0" stroke="$x1" />
         <Line endX="410.0" endY="30.0" layoutX="-5.0" layoutY="595.0" startX="10.0" startY="30.0" stroke="$x1" />
         <Line endX="40.0" endY="640.0" layoutX="-5.0" layoutY="-5.0" startX="40.0" startY="10.0" stroke="#8f86ff" />
-        <GridPane layoutX="40.0" layoutY="286.0" prefHeight="99.5" prefWidth="170.0">
+        <GridPane layoutX="40.0" layoutY="226.0" prefHeight="99.5" prefWidth="170.0">
           <children>
             <Label id="label3" text="Duration" GridPane.columnIndex="0" GridPane.rowIndex="2" />
             <Label id="label1" text="Sport" GridPane.columnIndex="0" GridPane.rowIndex="0" />
@@ -118,19 +118,20 @@
         <URL value="@css/trainingPlanner.css" />
       </stylesheets>
     </Group>
-    <ImageView id="editImageButton" fitHeight="15.0" fitWidth="20.0" layoutX="40.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="edit-activity-eButton" fitHeight="15.0" fitWidth="20.0" layoutX="40.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" styleClass="edit-Button">
       <image>
         <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="false" />
       </image>
     </ImageView>
-    <Text id="heading" strokeType="OUTSIDE" strokeWidth="0.0" text="Daily Activity" x="60.0" y="44.0">
+    <Text id="daily-heading" strokeType="OUTSIDE" strokeWidth="0.0" text="Daily Activity" x="60.0" y="44.0">
       <font>
         <Font name="Courier New Bold" size="18.0" fx:id="x2" />
       </font>
     </Text>
     <Group id="Group" layoutX="37.0" layoutY="63.0" />
-    <Text id="heading" font="$x2" strokeType="OUTSIDE" strokeWidth="0.0" text="Workout Information" x="60.0" y="264.0" />
-    <ImageView id="editImageButton" fx:id="editWorkoutInfoButton" fitHeight="15.0" fitWidth="20.0" layoutX="40.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+    <ListView id="notes-detail-list" fx:id="noteDetailList" layoutX="43.0" layoutY="489.0" prefHeight="132.5" prefWidth="357.0" />
+    <Text id="workout-heading" font="$x2" layoutY="-60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workout Information" x="60.0" y="264.0" />
+    <ImageView id="edit-workout-Button" fx:id="editWorkoutInfoButton" fitHeight="15.0" fitWidth="20.0" layoutX="40.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" styleClass="edit-Button">
       <image>
         <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="false" />
       </image>
@@ -150,14 +151,14 @@
         </Text>
       </children>
     </HBox>
-    <PieChart id="PieChart" fx:id="WorkoutLoadChart" labelLineLength="10.0" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Workouts" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="260.0" />
+    <PieChart id="PieChart" fx:id="WorkoutLoadChart" labelLineLength="10.0" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Workouts" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="200.0" />
     <PieChart id="PieChart" fx:id="calorieChart" labelLineLength="10.0" maxHeight="100.0" maxWidth="125.0" prefHeight="100.0" prefWidth="125.0" startAngle="15.0" title="Calories" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="40.0" />
-    <Label id="label4" layoutX="43.0" layoutY="408.0" text="Description" />
-    <TextArea id="textArea1" layoutX="40.0" layoutY="425.0" prefHeight="197.5" prefWidth="362.0" text="blah blah blah&#10;" wrapText="true" />
+    <Label id="label4" layoutX="43.0" layoutY="330.0" text="Notes" />
+    <TextArea id="textArea1" fx:id="noteDescription" layoutX="40.0" layoutY="346.0" opacity="0.7" prefHeight="100.0" prefWidth="360.0" text="blah blah blah&#10;" wrapText="true" />
     <AnchorPane layoutX="37.0" layoutY="48.0" prefHeight="198.0" prefWidth="369.0" visible="false" />
-    <AnchorPane fx:id="workoutEditBox" layoutX="38.0" layoutY="269.0" minHeight="156.5" prefHeight="355.5" prefWidth="362.0" visible="false">
+    <AnchorPane fx:id="workoutEditBox" layoutX="38.0" layoutY="210.0" minHeight="156.5" prefHeight="330.5" prefWidth="362.0" visible="false">
       <children>
-        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="332.5" layoutX="5.0" layoutY="3.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="352.0" />
+        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="332.5" layoutX="5.0" layoutY="-1.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="352.0" />
         <VBox id="VBox" alignment="CENTER" layoutX="29.0" layoutY="16.0" spacing="5.0">
           <children>
             <Group id="notePadCloseBox" fx:id="deleteWorkoutButton">
@@ -217,6 +218,12 @@
         <ListView fx:id="workoutList" layoutX="56.0" layoutY="16.0" prefHeight="70.0" prefWidth="272.0" />
       </children>
     </AnchorPane>
+    <Text id="workout-heading" font="$x2" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Detail splits" x="60.0" y="264.0" />
+    <ImageView id="detail-edit-Button" fitHeight="15.0" fitWidth="20.0" layoutX="40.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true" styleClass="edit-Button">
+      <image>
+        <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="false" />
+      </image>
+    </ImageView>
   </children>
   <stylesheets>
     <URL value="@css/trainingPlanner.css" />

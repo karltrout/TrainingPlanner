@@ -99,5 +99,22 @@
                 </DayType>
             </WeekType>
         </MonthType>
+        <MonthType>
+            <monthName>December</monthName>
+            <year>2012</year>
+            <monthId>11</monthId>
+            <WeekType weekNumber="6">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-12-31-05:00</date>
+                    <WorkoutType sportType="Day Off">
+                        <intensity>1.0</intensity>
+                        <volume>24.0</volume>
+                        <duration>0</duration>
+                        <description>New Workout</description>
+                    </WorkoutType>
+                </DayType>
+            </WeekType>
+        </MonthType>
     </TrainingCalendar>
 </TrainingPlan>
