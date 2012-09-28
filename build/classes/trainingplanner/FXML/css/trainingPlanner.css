@@ -8,6 +8,7 @@
 
 root { 
     display: block;
+    -fx-base: rgb(61,84,255);
 }
 .widgetPane{
     -fx-border-color: black;
@@ -15,18 +16,39 @@ root {
     
 }
 
-.bigGreyBlueText {
+/*.bigGreyBlueText {
     -fx-font:24pt "Tw Cen MT Condensed Extra Bold";
-    -fx-text-fill: #cbcffe;
+    -fx-text-fill: derive(-fx-base,-20%);
     -fx-font-weight:bolder;
     color:#cbcffe
 }
 
 .bigDarkGreyBlueText {
     -fx-font:24pt "Tw Cen MT Condensed Extra Bold";
-    -fx-text-fill: #60607d;
+    -fx-text-fill: derive(-fx-base,+20%); 
     -fx-font-weight:bolder;
     color:#cbcffe
+}*/
+
+.tab-header-text{
+    -fx-font:24pt "Tw Cen MT Condensed Extra Bold";
+    -fx-font-weight:bolder;
+    -fx-text-fill: derive(-fx-base,+20%);
+}
+
+.tab-header-text:hover{
+    -fx-cursor: hand;
+    -fx-text-fill: derive(-fx-base,0%);
+}
+
+.tab-header-text-selected{
+    -fx-text-fill: derive(-fx-base,-20%);
+}
+
+.main-tab-header{
+    -fx-border-color: derive(-fx-base,+50%);
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-border-style: solid inside;
 }
 
 .labelText {
