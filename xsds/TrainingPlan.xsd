@@ -273,7 +273,12 @@
 			<xs:enumeration value="pace"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:complexType name="ExcersizeType">
+	<xs:complexType name="ExtensionType">
+		<xs:sequence>
+			<xs:element name="Extension" type="xs:anyType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExcersizeType" abstract="true">
 		<xs:sequence>
 			<xs:element name="intensity" type="xs:double"/>
 			<xs:element name="duration" type="xs:int"/>
@@ -281,6 +286,7 @@
 			<xs:element name="focus" type="xs:string"/>
 			<xs:element name="description" type="xs:string"/>
 			<xs:element name="sportType" type="sportTypes" default="Other"/>
+			<xs:element name="Extensions" type="xs:anyType"/>
 		</xs:sequence>
 		<xs:attribute name="parentId" type="xs:string"/>
 		<xs:attribute name="name" type="xs:string"/>
@@ -288,9 +294,35 @@
 	</xs:complexType>
 	<xs:group name="excersizes">
 		<xs:sequence>
-			<xs:element name="Excersize" type="ExcersizeType" maxOccurs="unbounded"/>
+			<xs:element name="Excersize" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="ExcersizeType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
 		</xs:sequence>
 	</xs:group>
+	<xs:complexType name="WeightLiftingExtension">
+		<xs:sequence>
+			<xs:element name="muscleGroup" type="xs:string"/>
+			<xs:element name="secondaryMuscleGroup" type="xs:string"/>
+			<xs:sequence>
+				<xs:element name="step" type="xs:string" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:element name="repitions" type="xs:int"/>
+			<xs:element name="sets" type="xs:int"/>
+			<xs:element name="weight" type="xs:double"/>
+			<xs:element name="oneRepMax" type="xs:double"/>
+			<xs:element name="restInterval" type="xs:double"/>
+		</xs:sequence>
+		<xs:attribute name="plan" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>true if this is a planned workout, false if this is an actual workout. data for planed workout is scheduled not planned is actual work done</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="date" type="xs:date"/>
+	</xs:complexType>
 	<xs:group name="nutrition">
 		<xs:sequence>
 			<xs:element name="protein" type="xs:int"/>

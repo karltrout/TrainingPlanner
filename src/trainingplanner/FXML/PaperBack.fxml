@@ -186,10 +186,10 @@
                 <URL value="@css/trainingPlanner.css" />
               </stylesheets>
             </Group>
-            <Group id="Group" fx:id="editWorkoutButton">
+            <Group id="notePadCloseBox" fx:id="editWorkoutButton">
               <children>
                 <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" stroke="$x3" strokeType="INSIDE" strokeWidth="2.0" width="20.0" />
-                <ImageView id="editImageButton" fitHeight="13.0" fitWidth="18.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="13.0" fitWidth="18.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="false" />
                   </image>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" prefHeight="515.0" prefWidth="1198.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <Label id="" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="250.9998779296875" styleClass="tab-header-text, tab-header-text-selected" text="Training Days">
+      <font>
+        <Font size="24.0" fx:id="x1" />
+      </font>
+    </Label>
+    <ListView id="listView1" layoutX="10.0" layoutY="36.0" prefHeight="470.0" prefWidth="251.0" />
+    <LineChart id="maxLapSpeed" layoutX="269.0" layoutY="36.0" prefHeight="216.0" prefWidth="919.0" title="Overall Activity chart">
+      <xAxis>
+        <NumberAxis id="xAxis2" side="BOTTOM" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis id="yAxis2" side="LEFT" />
+      </yAxis>
+    </LineChart>
+    <ListView id="listView2" layoutX="297.0" layoutY="290.0" prefHeight="216.0" prefWidth="255.0" />
+    <AnchorPane id="anchorPane2" layoutX="562.0" layoutY="270.0" prefHeight="235.0" prefWidth="626.0">
+      <children>
+        <Text id="text2" layoutX="200.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tab-header-text" text="Training Day Details here" />
+      </children>
+    </AnchorPane>
+    <Label id="" alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="297.0" layoutY="263.0" prefWidth="255.0" styleClass="tab-header-text, tab-header-text-selected" text="Days Excersizes" />
+    <VBox id="VBox" alignment="CENTER" layoutX="275.0" layoutY="290.0" spacing="5.0">
+      <children>
+        <Group id="notePadCloseBox">
+          <children>
+            <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" strokeType="INSIDE" strokeWidth="2.0" width="20.0">
+              <stroke>
+                <Color blue="0.600" green="0.094" red="0.000" fx:id="x2" />
+              </stroke>
+            </Rectangle>
+            <Line id="line1" endX="14.0" endY="14.0" startX="6.0" startY="6.0" stroke="RED" strokeWidth="2.0" />
+            <Line id="line1" endX="14.0" endY="6.0" startX="6.0" startY="14.0" stroke="RED" strokeWidth="2.0" />
+          </children>
+          <stylesheets>
+            <URL value="@css/trainingPlanner.css" />
+          </stylesheets>
+        </Group>
+        <Group id="notePadCloseBox">
+          <children>
+            <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" stroke="$x2" strokeType="INSIDE" strokeWidth="2.0" width="20.0" />
+            <Line id="line1" endX="14.0" endY="10.0" startX="6.0" startY="10.0" stroke="GREEN" strokeWidth="2.0" />
+            <Line id="line1" endX="10.0" endY="14.0" startX="10.0" startY="6.0" stroke="GREEN" strokeWidth="2.0" />
+          </children>
+          <stylesheets>
+            <URL value="@css/trainingPlanner.css" />
+          </stylesheets>
+        </Group>
+        <Group id="notePadCloseBox">
+          <children>
+            <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" stroke="$x2" strokeType="INSIDE" strokeWidth="2.0" width="20.0" />
+            <ImageView fitHeight="13.0" fitWidth="18.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@images/blue_file_edit.png" preserveRatio="false" smooth="false" />
+              </image>
+            </ImageView>
+          </children>
+        </Group>
+      </children>
+      <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@css/trainingPlanner.css" />
+  </stylesheets>
+</fx:root>

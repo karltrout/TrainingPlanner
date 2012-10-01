@@ -32,7 +32,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane layoutY="25.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" prefWidth="798.0" styleClass="main-tab-header" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
+    <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" prefWidth="798.0" styleClass="main-tab-header" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="25.0">
       <children>
         <Label fx:id="athleteName" alignment="CENTER" labelFor="$athleteName" layoutY="12.0" styleClass="tab-header-text, tab-header-text-selected" text="Atheletes Name" textAlignment="CENTER" textFill="#60607d" AnchorPane.leftAnchor="20.0">
           <font>
@@ -64,7 +64,7 @@
         </HBox>
       </children>
     </AnchorPane>
-    <AnchorPane fx:id="dashBoardPane" minHeight="-Infinity" minWidth="798.0" prefHeight="512.0" prefWidth="798.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
+    <AnchorPane fx:id="dashBoardPane" minHeight="-Infinity" minWidth="798.0" prefHeight="512.0" prefWidth="798.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
       <children>
         <StackPane id="StackPane" fx:id="calendarPane" layoutX="14.0" layoutY="14.0">
           <children>
@@ -99,16 +99,18 @@
             </ScrollPane>
           </children>
         </AnchorPane>
+        <AnchorPane id="anchorPane3" layoutX="599.0" layoutY="258.0" prefHeight="200.0" prefWidth="200.0" />
       </children>
     </AnchorPane>
-    <AnchorPane id="workoutPane" fx:id="workoutsPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
-      <children>
-        <Text id="text2" layoutX="588.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tab-header-text" text="Workout Pane Goes Here" />
-      </children>
-    </AnchorPane>
-    <AnchorPane id="workoutPane" fx:id="trainingPane" prefHeight="515.0" prefWidth="1198.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
+    <AnchorPane id="workoutPane" fx:id="trainingPane" prefHeight="515.0" prefWidth="1198.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
       <children>
         <Text id="text2" layoutX="588.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tab-header-text" text="Training Pane Goes Here" />
+        <fx:include source="TrainingPane.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      </children>
+    </AnchorPane>
+    <AnchorPane id="anchorPane4" fx:id="workoutsPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
+      <children>
+        <fx:include id="workoutPane" source="WorkoutsPane.fxml" prefWidth="1198.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       </children>
     </AnchorPane>
   </children>

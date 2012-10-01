@@ -10,4 +10,24 @@
 		</bindings>
 		<catalog/>
 	</schema>
+	<schema type='-xmlschema' package='trainingplanner.org.xsd.garmin' name='TrainingCenterDatabase'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='xml-resources/jaxb/TrainingCenterDatabase/TrainingCenterDatabase.xsd' origLocation='xsds/TrainingCenterDatabase.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+	<schema type='-xmlschema' package='trainingplanner.org.xsd.garmin.extension' name='ActivityExtensionV2'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='xml-resources/jaxb/ActivityExtensionV2/ActivityExtensionV2.xsd' origLocation='xsds/ActivityExtensionV2.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
 </schemas>

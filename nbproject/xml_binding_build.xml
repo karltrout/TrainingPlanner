@@ -25,5 +25,33 @@
         <copy todir="${build.generated.sources.dir}/jaxb">
             <fileset dir="build/generated/jaxbCache/trainerPlan"/>
         </copy>
+        <mkdir dir="build/generated/jaxbCache/TrainingCenterDatabase"/>
+        <xjc package="trainingplanner.org.xsd.garmin" destdir="build/generated/jaxbCache/TrainingCenterDatabase" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="xml-resources/jaxb/TrainingCenterDatabase/TrainingCenterDatabase.xsd"/>
+            <depends file="xml-resources/jaxb/TrainingCenterDatabase/TrainingCenterDatabase.xsd"/>
+            <produces dir="build/generated/jaxbCache/TrainingCenterDatabase"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/TrainingCenterDatabase"/>
+        </copy>
+        <mkdir dir="build/generated/jaxbCache/ActivityExtensionV2"/>
+        <xjc package="trainingplanner.org.xsd.garmin.extension" destdir="build/generated/jaxbCache/ActivityExtensionV2" catalog="catalog.xml">
+            <classpath>
+                <pathelement location="${src.dir}"/>
+                <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
+            </classpath>
+            <arg value="-xmlschema"/>
+            <schema file="xml-resources/jaxb/ActivityExtensionV2/ActivityExtensionV2.xsd"/>
+            <depends file="xml-resources/jaxb/ActivityExtensionV2/ActivityExtensionV2.xsd"/>
+            <produces dir="build/generated/jaxbCache/ActivityExtensionV2"/>
+        </xjc>
+        <copy todir="${build.generated.sources.dir}/jaxb">
+            <fileset dir="build/generated/jaxbCache/ActivityExtensionV2"/>
+        </copy>
     </target>
 </project>

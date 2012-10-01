@@ -19,7 +19,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -42,6 +41,7 @@ import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.AthleteExt;
 import trainingplanner.org.extensions.TrainingPlanExt;
 import trainingplanner.org.xsd.TrainingPlan;
+import trainingplanner.org.xsd.garmin.TrainingCenterDatabaseT;
 
 /**
  *
@@ -79,6 +79,9 @@ public class TrainingPlannerWindowController implements Initializable {
     private SimpleObjectProperty<TrainingCalendarDay> selectedCalendarDate;
     final private PaperBackController currentNotePad = new PaperBackController();
     final private String planFile = "trainingPLan.xml";
+    private String tcdFile = "data/bike_test.tcx";
+    private JAXBContext jcTCD;
+    private TrainingCenterDatabaseT tcd;
     
     
     @FXML
@@ -133,6 +136,7 @@ public class TrainingPlannerWindowController implements Initializable {
         
         loadTrainingPlan();
         initializeDashBoard();        
+        initializeWorkouts();
         
         switchWindowViewTo("dashboard");
     }
@@ -161,13 +165,21 @@ public class TrainingPlannerWindowController implements Initializable {
      * Reads Java Bean Object From XML File
      */
     public TrainingPlan deserializeXMLToTrainingPlan(String xmlFileLocation)
-        throws Exception {
+      throws Exception {
         FileInputStream is = new FileInputStream(xmlFileLocation);
         Unmarshaller u = jc.createUnmarshaller();
         TrainingPlan tp = (TrainingPlan)u.unmarshal(is);
         return tp;
     }
-
+    
+    public TrainingCenterDatabaseT XMLToTCD(String xmlFileLocation)
+      throws Exception {
+        FileInputStream is = new FileInputStream(xmlFileLocation);
+        Unmarshaller u = jcTCD.createUnmarshaller();
+        javax.xml.bind.JAXBElement tcd = (javax.xml.bind.JAXBElement)u.unmarshal(is);
+        return (TrainingCenterDatabaseT)tcd.getValue();   
+    }
+    
     private void initializeDashBoard() {
         selectedCalendarDate = new SimpleObjectProperty<>();
         selectedCalendarDate.addListener(new ChangeListener<TrainingCalendarDay>() {
@@ -216,13 +228,15 @@ public class TrainingPlannerWindowController implements Initializable {
     private void loadTrainingPlan() {
         try {
             jc = JAXBContext.newInstance( "trainingplanner.org.xsd" );
+            jcTCD = JAXBContext.newInstance("trainingplanner.org.xsd.garmin");
+            
         } catch (JAXBException ex) {
             Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
         trainingPlan = new TrainingPlanExt();
         try {
             trainingPlan.setRoot(deserializeXMLToTrainingPlan(planFile));
-            
+            tcd = XMLToTCD(tcdFile);
         } catch (Exception ex) {
             Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
             trainingPlan.initialize();
@@ -230,24 +244,39 @@ public class TrainingPlannerWindowController implements Initializable {
     }
     
     private void switchWindowViewTo(String mainWindowView) {
-                if(mainWindowView == null){ return;}
-                
-                if (mainWindowView.equals("dashboard")){
-                    dashBoardPane.setVisible(true);
-                    workoutsPane.setVisible(false);
-                    trainingPane.setVisible(false);
-                    return;
-                }
-                if (mainWindowView.equals("training")){
-                    dashBoardPane.setVisible(false);
-                    workoutsPane.setVisible(false);
-                    trainingPane.setVisible(true);                  
-                    return;
-                }
-                if (mainWindowView.equals("workouts")){
-                    dashBoardPane.setVisible(false);
-                    workoutsPane.setVisible(true);
-                    trainingPane.setVisible(false);                 
-                }
-            }
+        if(mainWindowView == null){ return;}             
+        dashboardButton.getStyleClass().remove("tab-header-text-selected");  
+        workoutButton.getStyleClass().remove("tab-header-text-selected");
+        trainingButton.getStyleClass().remove("tab-header-text-selected");
+
+        if (mainWindowView.equals("dashboard")){
+            dashBoardPane.setVisible(true);
+            workoutsPane.setVisible(false);
+            trainingPane.setVisible(false);
+            dashboardButton.getStyleClass().add("tab-header-text-selected"); 
+            return;
+        }
+        if (mainWindowView.equals("training")){
+            dashBoardPane.setVisible(false);
+            workoutsPane.setVisible(false);
+            trainingPane.setVisible(true);
+            trainingButton.getStyleClass().add("tab-header-text-selected");           
+            return;
+        }
+        if (mainWindowView.equals("workouts")){
+            dashBoardPane.setVisible(false);
+            workoutsPane.setVisible(true);
+            trainingPane.setVisible(false);                 
+            workoutButton.getStyleClass().add("tab-header-text-selected");
+        }
+    }
+
+    private void initializeWorkouts() {
+        workoutsPane.getChildren().clear();
+        WorkoutsPaneController workouts = new WorkoutsPaneController();
+        workouts.setActivities(tcd);
+        workoutsPane.getChildren().add(workouts);
+        workoutsPane.setVisible(false);
+    }
+
 }
