@@ -137,6 +137,7 @@ public class TrainingPlannerWindowController implements Initializable {
         loadTrainingPlan();
         initializeDashBoard();        
         initializeWorkouts();
+        initializeTrainingPane();
         
         switchWindowViewTo("dashboard");
     }
@@ -278,5 +279,11 @@ public class TrainingPlannerWindowController implements Initializable {
         workoutsPane.getChildren().add(workouts);
         workoutsPane.setVisible(false);
     }
-
+    private void initializeTrainingPane() {
+        trainingPane.getChildren().clear();
+        TrainingPaneController training = new TrainingPaneController();
+        //workouts.setActivities(tcd);
+        trainingPane.getChildren().add(training);
+        trainingPane.setVisible(false);
+    }
 }
