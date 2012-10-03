@@ -102,9 +102,9 @@
         <AnchorPane id="anchorPane3" layoutX="599.0" layoutY="258.0" prefHeight="200.0" prefWidth="200.0" />
       </children>
     </AnchorPane>
-    <AnchorPane id="workoutPane" fx:id="trainingPane" prefHeight="515.0" prefWidth="1198.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
+    <AnchorPane id="workoutPane" fx:id="trainingPane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
       <children>
-        <fx:include source="TrainingPane.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <fx:include source="TrainingPane.fxml" maxHeight="100.0" maxWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       </children>
     </AnchorPane>
     <AnchorPane id="anchorPane4" fx:id="workoutsPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">

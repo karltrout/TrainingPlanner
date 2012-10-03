@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -31,14 +32,26 @@ import trainingplanner.controls.CalendarPickerController;
  * @author troutk
  */
 public class TrainingPaneController extends AnchorPane  implements Initializable {
-   @FXML private AnchorPane tdCalendar;
-   @FXML private Text startDate;
-   @FXML private Label sDateLabel;
+   @FXML private AnchorPane tdStartCalendar;
+   @FXML private AnchorPane tdEndCalendar;
    
-   private SimpleObjectProperty<Calendar> selectedDate;
+   @FXML private Text startDate;
+   @FXML private Text endDate;
+   @FXML private Label sDateLabel;
+   @FXML private Label eDateLabel;
+   
+   @FXML private Group addTrainingDays;
+   @FXML private AnchorPane trainingPlanWorkoutDialog;
+   
+   
+   private SimpleObjectProperty<Calendar> selectedStartDate;
    private SimpleObjectProperty<Color> color = new SimpleObjectProperty<>(Color.ALICEBLUE);
-   private CalendarPickerController calendar;
+   private CalendarPickerController startCalendar;
+   private CalendarPickerController endCalendar;
    private DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+   
+   private SimpleObjectProperty<Calendar> selectedEndDate;
+   
     public TrainingPaneController(){
                 
         URL location = getClass().getResource("FXML/TrainingPane.fxml");
@@ -58,37 +71,80 @@ public class TrainingPaneController extends AnchorPane  implements Initializable
 
             @Override
             public void handle(MouseEvent t) {
-                showStartDateCalendar();
+                showHidePane(tdStartCalendar);
             }
         });
         
+        eDateLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent t) {
+                showHidePane(tdEndCalendar);
+            }
+        });
         color = new SimpleObjectProperty<>(Color.ALICEBLUE);
-        //calendar = new CalendarPickerController(selectedDate, color);
-       // tdCalendar.getChildren().add(calendar);
     }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        selectedDate = new SimpleObjectProperty<>(Calendar.getInstance());
-        selectedDate.addListener(new ChangeListener<Calendar>() {
+        
+        addTrainingDays.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
-            public void changed(ObservableValue<? extends Calendar> ov, Calendar t, Calendar t1) {
-                startDate.setText(df.format(t1.getTime()));
-                System.out.print("selected calendarday Changed");
+            public void handle(MouseEvent t) {
+                showHidePane(trainingPlanWorkoutDialog);
             }
-            
         });
-       calendar = new CalendarPickerController(selectedDate, color);
+        
+        startDate.setText(df.format(Calendar.getInstance().getTime()));
+        endDate.setText(df.format(Calendar.getInstance().getTime()));
+        
+        selectedStartDate = new SimpleObjectProperty<>(Calendar.getInstance());
+        
+        startCalendar = new CalendarPickerController(selectedStartDate, color);
+        tdStartCalendar.getChildren().clear();
+        tdStartCalendar.getChildren().add(startCalendar);
+        selectedEndDate = new SimpleObjectProperty<>(Calendar.getInstance());
+
+        selectedStartDate.addListener(new ChangeListener<Calendar>() {
+            @Override
+            public void changed(ObservableValue<? extends Calendar> ov, Calendar t, Calendar t1) {
+                if(t1.before(selectedEndDate.getValue())){
+                startDate.setText(df.format(t1.getTime()));
+                startDate.setFill(Color.BLACK);
+                showHidePane(tdStartCalendar);
+                }
+                else {
+                    //selectedStartDate.setValue(t);
+                    startDate.setFill(Color.RED);
+                }
+            }
+        });
        
-        //Scale scaleTransform = new Scale(.5, .5, 0, 0);
-       // calendar.getTransforms().add(scaleTransform);
-       tdCalendar.getChildren().add(calendar);
+       selectedEndDate.addListener(new ChangeListener<Calendar>() {
+           @Override
+           public void changed(ObservableValue<? extends Calendar> ov, Calendar t, Calendar t1) {
+               if(t1.after(selectedStartDate.getValue())){
+                    endDate.setText(df.format(t1.getTime()));
+                   endDate.setFill(Color.BLACK);
+                    showHidePane(tdEndCalendar);
+                }
+               else{
+                   //selectedEndDate.set(t);
+                   endDate.setFill(Color.RED);
+               }
+           }
+       });
+       endCalendar = new CalendarPickerController(selectedEndDate, color);
+       tdEndCalendar.getChildren().clear();
+       tdEndCalendar.getChildren().add(endCalendar);
+       
+       
     }
     
-    private void showStartDateCalendar(){
-        tdCalendar.setVisible(!tdCalendar.isVisible());
+    private void showHidePane(AnchorPane pane){
+        pane.setVisible(!pane.isVisible());
     }
 }

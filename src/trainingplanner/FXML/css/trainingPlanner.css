@@ -77,7 +77,7 @@ root {
 
 .goals-pane {
     -fx-background-image: url('images/carbon-fiber.png');
-    -fx-background-repeat: space;
+    -fx-background-repeat: repeat-x;
 }
 
 .edit-Button:hover{

@@ -30,6 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Scale;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -213,8 +214,10 @@ public class TrainingPlannerWindowController implements Initializable {
         ObservableList<Node> goals = goalIcons.getChildren();
         goals.clear();
         SpeedOMeterController bikeSpeed = new SpeedOMeterController(new SimpleDoubleProperty(21.4),color);
-        bikeSpeed.setScaleX(0.5);
-        bikeSpeed.setScaleY(0.5);
+        Scale scaleTransform = new Scale(.5, .5, 100, 100);
+       bikeSpeed.getTransforms().add(scaleTransform);
+        //bikeSpeed.setScaleX(0.5);
+        //bikeSpeed.setScaleY(0.5);
         goalIcons.getChildren().add(bikeSpeed);
         
         DailyCountDownController counter = new DailyCountDownController(new SimpleObjectProperty<>(new GregorianCalendar(2013, 7, 18) ), color);
@@ -282,6 +285,13 @@ public class TrainingPlannerWindowController implements Initializable {
     private void initializeTrainingPane() {
         trainingPane.getChildren().clear();
         TrainingPaneController training = new TrainingPaneController();
+        training.getProperties().put("pane-right-anchor", 0.0);
+        training.getProperties().put("pane-left-anchor", 0.0);
+        training.getProperties().put("pane-bottom-anchor", 0.0);
+        training.getProperties().put("pane-top-anchor", 0.0);
+        
+        training.setMaxHeight(training.USE_COMPUTED_SIZE);
+        training.setMaxWidth(training.USE_COMPUTED_SIZE);
         //workouts.setActivities(tcd);
         trainingPane.getChildren().add(training);
         trainingPane.setVisible(false);

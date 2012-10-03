@@ -93,7 +93,6 @@ public class CalendarPickerController  extends AnchorPane implements Initializab
         }
         //calendarBackGround.setFill(_color.getValue());
         setColor(_color);
-        
         selectedDay = _selectedDay;
         
         nextMonthButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -231,7 +230,6 @@ public class CalendarPickerController  extends AnchorPane implements Initializab
                     public void handle(MouseEvent t) {
                         if(selectedDay.get() != null && selectedDay.get().equals(calendarDays.get(calNumber)))
                             selectedDay.set(Calendar.getInstance());
-                        System.out.println("clicked; "+calNumber);
                         selectedDay.set(calendarDays.get(calNumber));
                     }
                 });
