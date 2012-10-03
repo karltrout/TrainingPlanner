@@ -135,6 +135,10 @@ public class PaperBackController extends AnchorPane implements Initializable {
         
         WorkoutLoadChart.dataProperty().set(trainingDay.getWorkoutLoadChartData());
         workoutList.setItems(trainingDay.getObservableWorkOuts());
+        if(workoutList.getItems().size()>0){
+            setWorkoutDetails(workoutList.getItems().get(0));
+        }
+        else setWorkoutDetails(null);
     }
     
     private void editWorkoutInfo(){
@@ -266,17 +270,28 @@ public class PaperBackController extends AnchorPane implements Initializable {
                     caption.setTranslateY(e.getSceneY());
                     caption.setText(String.valueOf(data.getPieValue()) + "%");
                     WorkoutExt workout = dataMap.get(data);
-                    noteSportsName.setText(workout.getSportType().value());
-                    noteIntensity.setText(String.valueOf(workout.getIntensity()));
-                    noteDuration.setText(String.valueOf(workout.getDuration()));
-                    noteVolume.setText(String.valueOf(workout.getVolume()));
-                    noteDescription.setText(workout.getDescription());
-                    
+                    setWorkoutDetails(workout);
                 }
             });
         }
     }
 
+    private void setWorkoutDetails(WorkoutExt workout) {
+        if (null == workout){
+            noteSportsName.setText("");
+            noteIntensity.setText("");
+            noteDuration.setText("");
+            noteVolume.setText("");
+            noteDescription.setText("");
+            return;
+        }
+        noteSportsName.setText(workout.getSportType().value());
+        noteIntensity.setText(String.valueOf(workout.getIntensity()));
+        noteDuration.setText(String.valueOf(workout.getDuration()));
+        noteVolume.setText(String.valueOf(workout.getVolume()));
+        noteDescription.setText(workout.getDescription());
+    }
+    
     private void refreshNutritionChart() {
         ObservableList<PieChart.Data> calorieChartData =
                FXCollections.observableArrayList(
