@@ -143,10 +143,11 @@ public class PaperBackController extends AnchorPane implements Initializable {
     
     private boolean deleteWorkout(){
         WorkoutExt woselected = workoutList.getSelectionModel().getSelectedItem();       
-        workoutList.getItems().remove(woselected);
-        //trainingDay.getWorkoutType().remove(selected);
-        trainingDay.removeWorkout(woselected);
-        return true;
+        if (null != woselected){
+            workoutList.getItems().remove(woselected);
+            trainingDay.removeWorkout(woselected);
+        return true;}
+        else return false;
     }
     
     private boolean editWorkout(){

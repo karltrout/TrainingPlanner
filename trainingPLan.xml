@@ -132,6 +132,19 @@
                     </WorkoutType>
                 </DayType>
             </WeekType>
+            <WeekType weekNumber="1">
+                <trainingPlanWeek>52</trainingPlanWeek>
+                <DayType>
+                    <date>2012-10-02-04:00</date>
+                    <WorkoutType sportType="Strength">
+                        <intensity>1.0</intensity>
+                        <volume>1.0</volume>
+                        <duration>0</duration>
+                        <description>F' you
+</description>
+                    </WorkoutType>
+                </DayType>
+            </WeekType>
         </MonthType>
     </TrainingCalendar>
 </TrainingPlan>
