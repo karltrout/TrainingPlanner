@@ -18,13 +18,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 import trainingplanner.controls.CalendarPickerController;
+import trainingplanner.org.calendar.TrainingCalendarDay;
+import trainingplanner.org.extensions.TrainingCalendarExt;
+import trainingplanner.org.extensions.WorkoutExt;
 
 /**
  * FXML Controller class
@@ -43,17 +51,21 @@ public class TrainingPaneController extends AnchorPane  implements Initializable
    @FXML private Group addTrainingDays;
    @FXML private AnchorPane trainingPlanWorkoutDialog;
    
+   @FXML private ListView trainingDaysList;
+   
    
    private SimpleObjectProperty<Calendar> selectedStartDate;
    private SimpleObjectProperty<Color> color = new SimpleObjectProperty<>(Color.ALICEBLUE);
    private CalendarPickerController startCalendar;
    private CalendarPickerController endCalendar;
    private DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+   private TrainingCalendarExt trainingCalendar;
    
    private SimpleObjectProperty<Calendar> selectedEndDate;
+    private WorkoutHBox selected;
    
-    public TrainingPaneController(){
-                
+    public TrainingPaneController(TrainingCalendarExt _trainingCalendar, SimpleObjectProperty<Color> color){  
+        trainingCalendar = _trainingCalendar;
         URL location = getClass().getResource("FXML/TrainingPane.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);
@@ -84,6 +96,7 @@ public class TrainingPaneController extends AnchorPane  implements Initializable
         });
         color = new SimpleObjectProperty<>(Color.ALICEBLUE);
     }
+
     /**
      * Initializes the controller class.
      */
@@ -141,10 +154,75 @@ public class TrainingPaneController extends AnchorPane  implements Initializable
        tdEndCalendar.getChildren().clear();
        tdEndCalendar.getChildren().add(endCalendar);
        
+       trainingDaysList.setCellFactory(new Callback<ListView<WorkoutExt>, ListCell<WorkoutExt>>() {
+           @Override public ListCell<WorkoutExt> call(ListView<WorkoutExt> list) {
+               
+                return new WorkoutHBox();
+           }
+        });
+       
+       for( TrainingCalendarDay trainingDay : trainingCalendar.getAllTrainingDays()){
+           for (WorkoutExt wo : trainingDay.getObservableWorkOuts()){
+               trainingDaysList.getItems().add(wo);
+           }
+       }
        
     }
     
     private void showHidePane(AnchorPane pane){
         pane.setVisible(!pane.isVisible());
     }
+    
+    private void setSelectedWorkoutFromList(final WorkoutHBox wb){
+        if (selected != null){
+            selected.workout.getSportsTypeProperty().unbind();
+        }
+        
+        selected = wb;
+    }
+    
+    class WorkoutHBox extends ListCell<WorkoutExt>{
+         private Text title;
+         private  Text intensityTxt;
+         private  Text volumeTxt;
+         private  Text durationTxt;
+         private  Text woDate;
+         private WorkoutExt workout;
+         
+        @Override
+        public void updateItem(WorkoutExt item, boolean empty) {
+            super.updateItem(item, empty);
+            if (item != null) {
+                
+                workout = item;
+                woDate = new Text(df.format(item.getWorkoutDate().getTime())+" - ");
+                title = new Text();
+                volumeTxt = new Text();
+                title.textProperty().bind(item.getSportsTypeNameProperty());
+                intensityTxt = new Text(String.valueOf(item.getIntensity()));
+                volumeTxt.textProperty().set(String.valueOf(item.getVolume()));
+                durationTxt = new Text("0");
+
+                setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent t) {
+                        setSelectedWorkoutFromList((WorkoutHBox)t.getSource());
+                    }
+                });
+            }
+            
+            HBox rect = new HBox();
+            rect.setSpacing(5.0);
+            rect.setAlignment(Pos.CENTER_LEFT);
+            if (item != null) {
+                rect.getChildren().add(woDate);
+                rect.getChildren().add(title);
+                rect.getChildren().add(intensityTxt);
+                rect.getChildren().add(volumeTxt);
+                rect.getChildren().add(durationTxt);
+                setGraphic(rect);
+            }
+        }
+     }
 }

@@ -41,8 +41,9 @@ public class TrainingCalendarDay extends DayType {
         id          = dayType.getId();
         parentId    = dayType.getParentId();
         for(IWorkoutType wo : dayType.getWorkoutType()){
-            workouts.add(new WorkoutExt(wo));
+            workouts.add(new WorkoutExt(wo, dayType.getDate().toGregorianCalendar()));
         }
+        this.date = dayType.getDate();
         refreshLoadChartData();
     }
 
@@ -121,7 +122,7 @@ public class TrainingCalendarDay extends DayType {
         this.id = dayType.getId();
         this.parentId = dayType.getParentId();
         for(IWorkoutType wo : dayType.getWorkoutType()){
-            workouts.add(new WorkoutExt(wo));
+            workouts.add(new WorkoutExt(wo, dayType.getDate().toGregorianCalendar()));
         }
         refreshLoadChartData();
     }

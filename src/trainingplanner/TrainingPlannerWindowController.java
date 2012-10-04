@@ -284,7 +284,7 @@ public class TrainingPlannerWindowController implements Initializable {
     }
     private void initializeTrainingPane() {
         trainingPane.getChildren().clear();
-        TrainingPaneController training = new TrainingPaneController();
+        TrainingPaneController training = new TrainingPaneController(trainingPlan.getTrainingCalendar(), color);
         training.getProperties().put("pane-right-anchor", 0.0);
         training.getProperties().put("pane-left-anchor", 0.0);
         training.getProperties().put("pane-bottom-anchor", 0.0);

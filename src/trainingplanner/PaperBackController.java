@@ -208,7 +208,7 @@ public class PaperBackController extends AnchorPane implements Initializable {
             public void handle(MouseEvent t) {
                //addWorkout();
                 //trainingDay.getWorkoutType().add(new IWorkoutType());
-                trainingDay.addWorkout(new WorkoutExt());
+                trainingDay.addWorkout(new WorkoutExt(trainingDay.getDate().toGregorianCalendar()));
             }
         });
 

@@ -7,7 +7,11 @@ package trainingplanner.org.extensions;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.xsd.ICalendarType;
 import trainingplanner.org.xsd.MonthType.WeekType;
@@ -20,18 +24,9 @@ import trainingplanner.org.xsd.WeekType.DayType;
 public class TrainingCalendarExt extends ICalendarType {
     //private ICalendarType calType;
     
+    private ObservableList<TrainingCalendarDay> allTrainingDays = FXCollections.observableArrayList();
+        
     public TrainingCalendarExt(){
-        //GregorianCalendar gCal = (GregorianCalendar) Calendar.getInstance();
-        //WeekType defaultWeek = new WeekType();
-        //defaultWeek.setTrainingPlanWeek(1);
-        //MonthType defaultMonth = new MonthType();
-        //MonthName mname = new MonthName();
-       // mname.setValue(new XMLGregorianCalendarImpl(gCal));
-        //defaultMonth.setMonthName(mname);
-        //defaultMonth.setYear(new XMLGregorianCalendarImpl(gCal));
-        //defaultMonth.getWeekType().add(defaultWeek);
-        //getMonthType().add(defaultMonth);
-        //calType = new ICalendarType();
     }
 
     public TrainingCalendarExt(ICalendarType cal){
@@ -127,5 +122,29 @@ public class TrainingCalendarExt extends ICalendarType {
                 prunableMonths.add(mType);
         }
         getMonthType().removeAll(prunableMonths);
+    }
+    
+    public ObservableList<TrainingCalendarDay> getAllTrainingDays(){
+        
+        for( MonthType mType: getMonthType() ){
+            for (WeekType weekType:mType.getWeekType()){
+                for(DayType dayType:weekType.getDayType()){
+                    if(! dayType.getWorkoutType().isEmpty()){
+                       allTrainingDays.add(new TrainingCalendarDay(dayType));
+                    }        
+                }
+            }
+        }
+        if (allTrainingDays != null){
+        Collections.sort(allTrainingDays, new Comparator<TrainingCalendarDay>() {
+            @Override
+            public int compare(TrainingCalendarDay t, TrainingCalendarDay t1) {
+                if (t.getDate().toGregorianCalendar().after(t.getDate().toGregorianCalendar())) return 1;
+                if (t.getDate().toGregorianCalendar().before(t.getDate().toGregorianCalendar())) return -1;
+                else return 0;
+            }
+        });
+        }
+        return allTrainingDays;
     }
 }

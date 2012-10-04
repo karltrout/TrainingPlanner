@@ -4,6 +4,8 @@
  */
 package trainingplanner.org.extensions;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,20 +25,24 @@ import trainingplanner.org.xsd.SportTypes;
 public class WorkoutExt extends IWorkoutType {
     private SimpleObjectProperty<SportTypes> sportsTypeProperty;
     private SimpleStringProperty sportsTypeNameProperty;
+    private GregorianCalendar workoutDate;
     private IWorkoutType workOutType = new IWorkoutType();
     private ObservableList<ExcersizeType> excersizes = FXCollections.observableArrayList();
+    
         
-    public WorkoutExt(){
+    public WorkoutExt(GregorianCalendar date){
         sportType = SportTypes.OTHER;
         description = "New Workout";
         duration = 0;//new TrainingCalendarDuration();
         excersize = FXCollections.observableArrayList();
         intensity = 1.0;
         volume = 1;
+        workoutDate = date;
         setProperties();
     }
 
-    public WorkoutExt(IWorkoutType wo) {
+    public WorkoutExt(IWorkoutType wo, GregorianCalendar date) {
+        workoutDate = date;
         this.workOutType = wo;
         this.description = wo.getDescription();
         this.duration = wo.getDuration();
@@ -128,6 +134,20 @@ public class WorkoutExt extends IWorkoutType {
      */
     public ObservableList<ExcersizeType> getExcersizes() {
         return excersizes;
+    }
+
+    /**
+     * @return the workoutDate
+     */
+    public GregorianCalendar getWorkoutDate() {
+        return workoutDate;
+    }
+
+    /**
+     * @param workoutDate the workoutDate to set
+     */
+    public void setWorkoutDate(GregorianCalendar workoutDate) {
+        this.workoutDate = workoutDate;
     }
    
 }

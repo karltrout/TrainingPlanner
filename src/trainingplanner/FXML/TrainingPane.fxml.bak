@@ -58,7 +58,7 @@
       </children>
     </VBox>
     <ListView id="listView1" prefHeight="470.0" prefWidth="251.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="36.0" />
-    <LineChart id="maxLapSpeed" prefHeight="216.0" prefWidth="895.0001220703125" title="Overall Activity chart" AnchorPane.bottomAnchor="263.0" AnchorPane.leftAnchor="293.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="36.0">
+    <LineChart id="maxLapSpeed" title="Overall Activity chart" AnchorPane.bottomAnchor="263.0" AnchorPane.leftAnchor="293.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="36.0">
       <xAxis>
         <NumberAxis id="xAxis2" side="BOTTOM" />
       </xAxis>
