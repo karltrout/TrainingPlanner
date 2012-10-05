@@ -264,7 +264,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                     @Override
                     public void handle(MouseEvent t) {
                         if(selectedTrainingDay.get() != null && selectedTrainingDay.get().equals(calendarDays.get(calNumber)))
-                            selectedTrainingDay.set(new TrainingCalendarDay());
+                            selectedTrainingDay.set(new TrainingCalendarDay(trainingCalendar));
                         
                         selectedTrainingDay.set(calendarDays.get(calNumber));
                     }

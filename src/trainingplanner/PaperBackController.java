@@ -7,6 +7,8 @@ package trainingplanner;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -33,6 +35,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import trainingplanner.org.calendar.TrainingCalendarDay;
+import trainingplanner.org.extensions.TrainingCalendarExt;
 import trainingplanner.org.extensions.WorkoutExt;
 import trainingplanner.org.xsd.ExcersizeType;
 import trainingplanner.org.xsd.SportTypes;
@@ -74,14 +77,18 @@ public class PaperBackController extends AnchorPane implements Initializable {
     @FXML ListView<ExcersizeType> noteDetailList;
 
     //private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
-    private TrainingCalendarDay trainingDay = new TrainingCalendarDay();;
+    private TrainingCalendarDay trainingDay;
     private WorkoutHBox selected;
     private TrainingPlannerCalendarController parentCalendar;
     private boolean editing;
+    private TrainingCalendarExt trainingCalendar;
 /* default Constructor 
  * 
  */
-    public PaperBackController(){                   
+    public PaperBackController(TrainingCalendarExt _trainingCalendar){  
+        trainingCalendar = _trainingCalendar;
+        trainingDay = trainingCalendar.getTrainingDay((GregorianCalendar)Calendar.getInstance());
+ 
         URL location = getClass().getResource("FXML/PaperBack.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);
@@ -94,7 +101,6 @@ public class PaperBackController extends AnchorPane implements Initializable {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        
     }
     /**
      * Initializes the controller class.
@@ -148,8 +154,7 @@ public class PaperBackController extends AnchorPane implements Initializable {
     private boolean deleteWorkout(){
         WorkoutExt woselected = workoutList.getSelectionModel().getSelectedItem();       
         if (null != woselected){
-            workoutList.getItems().remove(woselected);
-            trainingDay.removeWorkout(woselected);
+            trainingCalendar.removeWorkoutFromTrainingDay(trainingDay, woselected);  
         return true;}
         else return false;
     }
@@ -208,7 +213,8 @@ public class PaperBackController extends AnchorPane implements Initializable {
             public void handle(MouseEvent t) {
                //addWorkout();
                 //trainingDay.getWorkoutType().add(new IWorkoutType());
-                trainingDay.addWorkout(new WorkoutExt(trainingDay.getDate().toGregorianCalendar()));
+                //trainingDay.addWorkout(new WorkoutExt(trainingDay.getDate().toGregorianCalendar()));4
+                trainingCalendar.addWorkoutToTrainingDay(trainingDay, new WorkoutExt(trainingDay.getDate().toGregorianCalendar()));
             }
         });
 

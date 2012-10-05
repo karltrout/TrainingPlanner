@@ -40,6 +40,7 @@ import trainingplanner.controls.PaceClockController;
 import trainingplanner.controls.SpeedOMeterController;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.AthleteExt;
+import trainingplanner.org.extensions.TrainingCalendarExt;
 import trainingplanner.org.extensions.TrainingPlanExt;
 import trainingplanner.org.xsd.TrainingPlan;
 import trainingplanner.org.xsd.garmin.TrainingCenterDatabaseT;
@@ -78,11 +79,12 @@ public class TrainingPlannerWindowController implements Initializable {
     @FXML  private AnchorPane rootPane;
     
     private SimpleObjectProperty<TrainingCalendarDay> selectedCalendarDate;
-    final private PaperBackController currentNotePad = new PaperBackController();
+    private PaperBackController currentNotePad;
     final private String planFile = "trainingPLan.xml";
     private String tcdFile = "data/bike_test.tcx";
     private JAXBContext jcTCD;
     private TrainingCenterDatabaseT tcd;
+    private TrainingCalendarExt trainingCalendar;
     
     
     @FXML
@@ -191,6 +193,7 @@ public class TrainingPlannerWindowController implements Initializable {
             }
         });
         
+        currentNotePad = new PaperBackController(trainingCalendar);
         currentNotePad.setVisible(false);
         rootPane.getChildren().add(currentNotePad);
         
@@ -201,7 +204,7 @@ public class TrainingPlannerWindowController implements Initializable {
         athleteDOB.setText(String.format(dateFormatString,athlete.getDateOfBirth().toGregorianCalendar()));
         
         calendarPane.getChildren().clear();
-        TrainingPlannerCalendarController calendar = new TrainingPlannerCalendarController(selectedCalendarDate, trainingPlan.getTrainingCalendar(), color);
+        TrainingPlannerCalendarController calendar = new TrainingPlannerCalendarController(selectedCalendarDate, trainingCalendar, color);
         calendar.updateCalendar();
         currentNotePad.setParentCalendar(calendar);
         calendarPane.getChildren().add(calendar);
@@ -245,6 +248,8 @@ public class TrainingPlannerWindowController implements Initializable {
             Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
             trainingPlan.initialize();
         }
+        trainingCalendar = trainingPlan.getTrainingCalendar();
+        
     }
     
     private void switchWindowViewTo(String mainWindowView) {
@@ -277,14 +282,14 @@ public class TrainingPlannerWindowController implements Initializable {
 
     private void initializeWorkouts() {
         workoutsPane.getChildren().clear();
-        WorkoutsPaneController workouts = new WorkoutsPaneController();
+        WorkoutsPaneController workouts = new WorkoutsPaneController(trainingCalendar, color);
         workouts.setActivities(tcd);
         workoutsPane.getChildren().add(workouts);
         workoutsPane.setVisible(false);
     }
     private void initializeTrainingPane() {
         trainingPane.getChildren().clear();
-        TrainingPaneController training = new TrainingPaneController(trainingPlan.getTrainingCalendar(), color);
+        TrainingPaneController training = new TrainingPaneController(trainingCalendar, color);
         training.getProperties().put("pane-right-anchor", 0.0);
         training.getProperties().put("pane-left-anchor", 0.0);
         training.getProperties().put("pane-bottom-anchor", 0.0);

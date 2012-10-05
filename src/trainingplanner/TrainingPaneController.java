@@ -32,7 +32,6 @@ import javafx.util.Callback;
 import trainingplanner.controls.CalendarPickerController;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.TrainingCalendarExt;
-import trainingplanner.org.extensions.WorkoutExt;
 
 /**
  * FXML Controller class
@@ -58,11 +57,11 @@ public class TrainingPaneController extends AnchorPane  implements Initializable
    private SimpleObjectProperty<Color> color = new SimpleObjectProperty<>(Color.ALICEBLUE);
    private CalendarPickerController startCalendar;
    private CalendarPickerController endCalendar;
-   private DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+   private DateFormat df = new SimpleDateFormat("EEEE - MM/dd/yyyy");
    private TrainingCalendarExt trainingCalendar;
    
    private SimpleObjectProperty<Calendar> selectedEndDate;
-    private WorkoutHBox selected;
+    private TrainingCalendarDayHBox selected;
    
     public TrainingPaneController(TrainingCalendarExt _trainingCalendar, SimpleObjectProperty<Color> color){  
         trainingCalendar = _trainingCalendar;
@@ -130,7 +129,6 @@ public class TrainingPaneController extends AnchorPane  implements Initializable
                 showHidePane(tdStartCalendar);
                 }
                 else {
-                    //selectedStartDate.setValue(t);
                     startDate.setFill(Color.RED);
                 }
             }
@@ -145,7 +143,6 @@ public class TrainingPaneController extends AnchorPane  implements Initializable
                     showHidePane(tdEndCalendar);
                 }
                else{
-                   //selectedEndDate.set(t);
                    endDate.setFill(Color.RED);
                }
            }
@@ -154,18 +151,13 @@ public class TrainingPaneController extends AnchorPane  implements Initializable
        tdEndCalendar.getChildren().clear();
        tdEndCalendar.getChildren().add(endCalendar);
        
-       trainingDaysList.setCellFactory(new Callback<ListView<WorkoutExt>, ListCell<WorkoutExt>>() {
-           @Override public ListCell<WorkoutExt> call(ListView<WorkoutExt> list) {
+       trainingDaysList.setCellFactory(new Callback<ListView<TrainingCalendarDay>, ListCell<TrainingCalendarDay>>() {
+           @Override public ListCell<TrainingCalendarDay> call(ListView<TrainingCalendarDay> list) {
                
-                return new WorkoutHBox();
+                return new TrainingCalendarDayHBox();
            }
         });
-       
-       for( TrainingCalendarDay trainingDay : trainingCalendar.getAllTrainingDays()){
-           for (WorkoutExt wo : trainingDay.getObservableWorkOuts()){
-               trainingDaysList.getItems().add(wo);
-           }
-       }
+       trainingDaysList.setItems(trainingCalendar.getAllTrainingDays());
        
     }
     
@@ -173,41 +165,29 @@ public class TrainingPaneController extends AnchorPane  implements Initializable
         pane.setVisible(!pane.isVisible());
     }
     
-    private void setSelectedWorkoutFromList(final WorkoutHBox wb){
+    private void setSelectedWorkoutFromList(final TrainingCalendarDayHBox wb){
         if (selected != null){
-            selected.workout.getSportsTypeProperty().unbind();
+           // selected.workout.getSportsTypeProperty().unbind();
         }
         
         selected = wb;
     }
     
-    class WorkoutHBox extends ListCell<WorkoutExt>{
-         private Text title;
-         private  Text intensityTxt;
-         private  Text volumeTxt;
-         private  Text durationTxt;
+    class TrainingCalendarDayHBox extends ListCell<TrainingCalendarDay>{
          private  Text woDate;
-         private WorkoutExt workout;
          
         @Override
-        public void updateItem(WorkoutExt item, boolean empty) {
+        public void updateItem(TrainingCalendarDay item, boolean empty) {
             super.updateItem(item, empty);
             if (item != null) {
                 
-                workout = item;
-                woDate = new Text(df.format(item.getWorkoutDate().getTime())+" - ");
-                title = new Text();
-                volumeTxt = new Text();
-                title.textProperty().bind(item.getSportsTypeNameProperty());
-                intensityTxt = new Text(String.valueOf(item.getIntensity()));
-                volumeTxt.textProperty().set(String.valueOf(item.getVolume()));
-                durationTxt = new Text("0");
+                woDate = new Text(df.format(item.getCalendar().getTime()));
 
                 setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     @Override
                     public void handle(MouseEvent t) {
-                        setSelectedWorkoutFromList((WorkoutHBox)t.getSource());
+                        setSelectedWorkoutFromList((TrainingCalendarDayHBox)t.getSource());
                     }
                 });
             }
@@ -217,10 +197,6 @@ public class TrainingPaneController extends AnchorPane  implements Initializable
             rect.setAlignment(Pos.CENTER_LEFT);
             if (item != null) {
                 rect.getChildren().add(woDate);
-                rect.getChildren().add(title);
-                rect.getChildren().add(intensityTxt);
-                rect.getChildren().add(volumeTxt);
-                rect.getChildren().add(durationTxt);
                 setGraphic(rect);
             }
         }

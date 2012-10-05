@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.xsd.ICalendarType;
@@ -25,11 +27,12 @@ public class TrainingCalendarExt extends ICalendarType {
     //private ICalendarType calType;
     
     private ObservableList<TrainingCalendarDay> allTrainingDays = FXCollections.observableArrayList();
-        
+
     public TrainingCalendarExt(){
     }
 
     public TrainingCalendarExt(ICalendarType cal){
+        
         if (cal == null) 
         {
             cal = new ICalendarType();
@@ -43,7 +46,18 @@ public class TrainingCalendarExt extends ICalendarType {
         numberOfWeeks = cal.getNumberOfWeeks();
         parentId = cal.getParentId();
         startDate = cal.getEndDate();
-        getTrainingDay((GregorianCalendar)Calendar.getInstance());
+        //this.getTrainingDay((GregorianCalendar)Calendar.getInstance());
+        for( MonthType mType: getMonthType() ){
+            for (WeekType weekType:mType.getWeekType()){
+                for(DayType dayType:weekType.getDayType()){
+                    if(! dayType.getWorkoutType().isEmpty()){
+                        TrainingCalendarDay nreDay = new TrainingCalendarDay(dayType, this);
+                       allTrainingDays.add(nreDay);
+                    }        
+                }
+            }
+        }
+        sortAllTrainingDays();
     }
     
     public TrainingCalendarDay getTrainingDay(GregorianCalendar gCal) {
@@ -52,7 +66,14 @@ public class TrainingCalendarExt extends ICalendarType {
         int weekOfMonth = gCal.get(Calendar.WEEK_OF_MONTH);
         int dayOfMonth = gCal.get(Calendar.DAY_OF_MONTH);
         
+        for( TrainingCalendarDay day : allTrainingDays){
+            if (day.getCalendar().equals(gCal)){
+                return day;
+            }
+        }
+        
         TrainingCalendarDay newTrainingDay = new TrainingCalendarDay(gCal);
+       
         for( MonthType mType: getMonthType() ){
 
             if (mType.getYear() == year && 
@@ -125,26 +146,38 @@ public class TrainingCalendarExt extends ICalendarType {
     }
     
     public ObservableList<TrainingCalendarDay> getAllTrainingDays(){
-        
-        for( MonthType mType: getMonthType() ){
-            for (WeekType weekType:mType.getWeekType()){
-                for(DayType dayType:weekType.getDayType()){
-                    if(! dayType.getWorkoutType().isEmpty()){
-                       allTrainingDays.add(new TrainingCalendarDay(dayType));
-                    }        
-                }
-            }
-        }
+          return allTrainingDays;
+    }
+    
+    public void addTrainingDay(TrainingCalendarDay day){
+        allTrainingDays.add(day);
+        sortAllTrainingDays();
+    }
+    
+    public void addWorkoutToTrainingDay(TrainingCalendarDay day, WorkoutExt workout){
+        day.addWorkout(workout);
+        if (!allTrainingDays.contains(day)) allTrainingDays.add(day);
+        sortAllTrainingDays();
+    }
+    
+    public void removeWorkoutFromTrainingDay (TrainingCalendarDay day, WorkoutExt workout){
+        if(day.getObservableWorkOuts().contains(workout)) day.getObservableWorkOuts().remove(workout);
+        if(day.getWorkoutCount() == 0 && allTrainingDays.contains(day) ) allTrainingDays.remove(day); 
+        sortAllTrainingDays();
+    }
+    
+    public void sortAllTrainingDays(){
         if (allTrainingDays != null){
         Collections.sort(allTrainingDays, new Comparator<TrainingCalendarDay>() {
             @Override
             public int compare(TrainingCalendarDay t, TrainingCalendarDay t1) {
-                if (t.getDate().toGregorianCalendar().after(t.getDate().toGregorianCalendar())) return 1;
-                if (t.getDate().toGregorianCalendar().before(t.getDate().toGregorianCalendar())) return -1;
+                if (t.getDate().toGregorianCalendar().after(t1.getDate().toGregorianCalendar())) return 1;
+                if (t.getDate().toGregorianCalendar().before(t1.getDate().toGregorianCalendar())) return -1;
                 else return 0;
             }
         });
         }
-        return allTrainingDays;
     }
+    
+    
 }

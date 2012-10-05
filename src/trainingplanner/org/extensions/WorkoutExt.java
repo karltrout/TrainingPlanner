@@ -4,7 +4,6 @@
  */
 package trainingplanner.org.extensions;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;

@@ -6,11 +6,10 @@ package trainingplanner;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -27,10 +26,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
-import trainingplanner.org.extensions.WorkoutExt;
-import trainingplanner.org.xsd.SportTypes;
+import trainingplanner.org.extensions.TrainingCalendarExt;
 import trainingplanner.org.xsd.garmin.ActivityLapT;
 import trainingplanner.org.xsd.garmin.ActivityT;
 import trainingplanner.org.xsd.garmin.TrainingCenterDatabaseT;
@@ -45,8 +44,12 @@ public class WorkoutsPaneController extends AnchorPane implements Initializable 
     private ObservableList<ActivityT> workouts = FXCollections.observableArrayList();
     @FXML private ListView workoutList;
     @FXML private LineChart maxLapSpeed;
+    private TrainingCalendarExt trainingCalendar;
+    private SimpleObjectProperty<Color> color;
     
-     public WorkoutsPaneController(){
+    WorkoutsPaneController(TrainingCalendarExt _trainingCalendar, SimpleObjectProperty<Color> _color){
+        trainingCalendar = _trainingCalendar;
+        color = _color;
                 
         URL location = getClass().getResource("FXML/WorkoutsPane.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -74,7 +77,6 @@ public class WorkoutsPaneController extends AnchorPane implements Initializable 
            }
         });
         workoutList.getItems().clear();
-     
        Axis yAxis =  maxLapSpeed.getYAxis();        
     }
 

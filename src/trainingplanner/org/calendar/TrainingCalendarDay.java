@@ -13,6 +13,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import trainingplanner.org.extensions.TrainingCalendarExt;
 import trainingplanner.org.extensions.WorkoutExt;
 import trainingplanner.org.xsd.IWorkoutType;
 import trainingplanner.org.xsd.WeekType.DayType;
@@ -29,12 +30,15 @@ public class TrainingCalendarDay extends DayType {
     private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
     private DayType _dayType = new DayType();
     private HashMap<PieChart.Data, WorkoutExt> dataMap = new HashMap();
+    private TrainingCalendarExt trainingCalendar;
     
-    public TrainingCalendarDay(){
+    public TrainingCalendarDay(TrainingCalendarExt _trainingCalendar){
+        trainingCalendar = _trainingCalendar;
         this.setCalendar(Calendar.getInstance());
     }
     
-    public TrainingCalendarDay(DayType dayType){
+    public TrainingCalendarDay(DayType dayType, TrainingCalendarExt _trainingCalendar){
+        trainingCalendar = _trainingCalendar;
         _dayType    = dayType;
         setCalendar(dayType.getDate().toGregorianCalendar());
         details     = dayType.getDetails();
