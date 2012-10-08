@@ -4,5 +4,6 @@
     <system systemId="file:/C:/Users/Karl/Documents/GitHub/TrainingPlanner/xsds/TrainingPlan.xsd" uri="xml-resources/jaxb/trainerPlan/TrainingPlan.xsd"/>
     <system systemId="file:/C:/Users/troutk/Documents/NetBeansProjects/TrainingPlanner/TrainingPlanner/xsds/TrainingCenterDatabase.xsd" uri="xml-resources/jaxb/TrainingCenterDatabase/TrainingCenterDatabase.xsd"/>
     <system systemId="file:/C:/Users/troutk/Documents/NetBeansProjects/TrainingPlanner/TrainingPlanner/xsds/ActivityExtensionV2.xsd" uri="xml-resources/jaxb/ActivityExtensionV2/ActivityExtensionV2.xsd"/>
+    <system systemId="file:/C:/Users/troutk/Documents/NetBeansProjects/TrainingPlanner/TrainingPlanner/xsds/WeightLiftingDatabase.xsd" uri="xml-resources/jaxb/WeightLiftingDatabase/WeightLiftingDatabase.xsd"/>
     <system systemId="file:/C:/Users/troutk/Documents/NetBeansProjects/TrainingPlanner/TrainingPlanner/xsds/TrainingPlan.xsd" uri="xml-resources/jaxb/trainerPlan/TrainingPlan.xsd"/>
 </catalog>

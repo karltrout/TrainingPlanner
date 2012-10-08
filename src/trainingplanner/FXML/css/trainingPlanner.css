@@ -99,3 +99,13 @@ root {
     -fx-stroke-borders: 0px 0px 3px 0px;
     -fx-stroke-type: inside;
 }
+
+.workout-listbox-title-text{
+    -fx-font:18pt "Tw Cen MT Condensed Extra Bold";
+    -fx-font-weight:bolder;
+    -fx-text-fill: derive(-fx-base,+20%);
+}
+
+.workout-listbox-text {
+    -fx-font-weight:bold;
+}

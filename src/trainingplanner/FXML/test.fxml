@@ -3,10 +3,34 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="400.0" styleClass="goals-pane" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="319.0" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <HBox id="hBox1" alignment="CENTER" minHeight="39.0" prefHeight="81.0" prefWidth="319.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <AnchorPane id="workout-list-boder-pane" HBox.hgrow="ALWAYS">
+          <children>
+            <ImageView id="emptyImageView1" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="5.0">
+              <image>
+                <Image url="@../images/icons-swimming.gif" preserveRatio="false" smooth="false" />
+              </image>
+            </ImageView>
+            <Text id="text3" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-listbox-title-text" text="Cycling" textAlignment="CENTER" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="8.0" />
+            <Text id="text1" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelText" text="Wendsday Sept. 15, 2012" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="30.0" />
+            <Text id="text2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelText" text="00:00:00 PM" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="10.0" />
+          </children>
+          <HBox.margin>
+            <Insets />
+          </HBox.margin>
+        </AnchorPane>
+      </children>
+    </HBox>
+  </children>
   <stylesheets>
     <URL value="@css/trainingPlanner.css" />
   </stylesheets>

@@ -257,7 +257,7 @@ public class TrainingPlannerCalendarController  extends AnchorPane implements In
                     flowPane.getChildren().add(woGraphBar);
                 }
                     woRectangles.add(flowPane);
-                
+               
                 region.setOpacity(.75);
                 
                 flowPane.setOnMouseClicked(new EventHandler<MouseEvent>() {

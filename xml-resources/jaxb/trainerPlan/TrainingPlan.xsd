@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2012 sp1 (x64) (http://www.altova.com) by Karl Trout (private) -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="trainingPlan" targetNamespace="trainingPlan" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:element name="TrainingPlan">
 		<xs:annotation>
 			<xs:documentation>the Root Element for a training plan object </xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="Athlete" type="Athlete"/>
-				<xs:element name="PhaseStrategy" type="IPhaseStrategyType"/>
-				<xs:element name="TrainingCalendar" type="ICalendarType"/>
+				<xs:element name="Athlete" type="ns1:Athlete"/>
+				<xs:element name="PhaseStrategy" type="ns1:IPhaseStrategyType"/>
+				<xs:element name="TrainingCalendar" type="ns1:ICalendarType"/>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:ID" use="required"/>
 		</xs:complexType>
@@ -27,7 +27,7 @@
 			<xs:element name="keyPerformanceIndicators">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="KPI" type="IKPIType" maxOccurs="unbounded"/>
+						<xs:element name="KPI" type="ns1:IKPIType" maxOccurs="unbounded"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -42,7 +42,7 @@
 			<xs:element name="monthName" type="xs:string"/>
 			<xs:element name="year" type="xs:int"/>
 			<xs:element name="monthId" type="xs:int"/>
-			<xs:group ref="weeks"/>
+			<xs:group ref="ns1:weeks"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
 		<xs:attribute name="trainingPlanId" type="xs:string"/>
@@ -54,7 +54,7 @@
 		<xs:sequence>
 			<xs:element name="trainingPlanWeek" type="xs:int"/>
 			<xs:element name="trainingType"/>
-			<xs:group ref="days"/>
+			<xs:group ref="ns1:days"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
 		<xs:attribute name="parentId" type="xs:string"/>
@@ -66,8 +66,8 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="date" type="xs:date" nillable="false"/>
-			<xs:element name="details" type="dayDetails"/>
-			<xs:group ref="workouts"/>
+			<xs:element name="details" type="ns1:dayDetails"/>
+			<xs:group ref="ns1:workouts"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
 		<xs:attribute name="parentId" type="xs:string"/>
@@ -81,11 +81,11 @@
 			<xs:element name="volume" type="xs:double"/>
 			<xs:element name="duration" type="xs:int"/>
 			<xs:element name="description" type="xs:string"/>
-			<xs:group ref="excersizes"/>
+			<xs:group ref="ns1:excersizes"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
 		<xs:attribute name="parentId" type="xs:string"/>
-		<xs:attribute name="sportType" type="sportTypes" use="optional" default="Other"/>
+		<xs:attribute name="sportType" type="ns1:sportTypes" use="optional" default="Other"/>
 	</xs:complexType>
 	<xs:complexType name="IPhaseStrategyType">
 		<xs:annotation>
@@ -98,7 +98,7 @@
 			<xs:element name="startDate" type="xs:date"/>
 			<xs:element name="endDate" type="xs:date"/>
 			<xs:element name="duration" type="xs:duration"/>
-			<xs:group ref="phases"/>
+			<xs:group ref="ns1:phases"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
 		<xs:attribute name="parentId" type="xs:string"/>
@@ -112,8 +112,8 @@
 			<xs:element name="intensity" type="xs:double"/>
 			<xs:element name="duration" type="xs:duration"/>
 			<xs:choice>
-				<xs:group ref="phases" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:group ref="workouts"/>
+				<xs:group ref="ns1:phases" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:group ref="ns1:workouts"/>
 			</xs:choice>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
@@ -129,7 +129,7 @@
 			<xs:element name="numberOfDays" type="xs:int"/>
 			<xs:element name="startDate" type="xs:date"/>
 			<xs:element name="endDate" type="xs:date"/>
-			<xs:group ref="months"/>
+			<xs:group ref="ns1:months"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID"/>
 		<xs:attribute name="parentId" type="xs:string"/>
@@ -139,17 +139,17 @@
 			<xs:documentation>hold the list of test values for a particular sportsType. contains measurement types and values</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="SportsType" type="sportTypes" default="Other"/>
-			<xs:element name="startValue" type="KpiValueType"/>
-			<xs:element name="goalValue" type="KpiValueType"/>
-			<xs:element name="currentValue" type="KpiValueType"/>
+			<xs:element name="SportsType" type="ns1:sportTypes" default="Other"/>
+			<xs:element name="startValue" type="ns1:KpiValueType"/>
+			<xs:element name="goalValue" type="ns1:KpiValueType"/>
+			<xs:element name="currentValue" type="ns1:KpiValueType"/>
 			<xs:element name="Measurement">
 				<xs:complexType>
 					<xs:simpleContent>
 						<xs:extension base="xs:string">
-							<xs:attribute name="measureType" type="measureTypes" use="optional" default="pace"/>
-							<xs:attribute name="distanceMeasure" type="distanceMeasures" use="optional" default="meter"/>
-							<xs:attribute name="timeMeasure" type="timeMeasures" default="second"/>
+							<xs:attribute name="measureType" type="ns1:measureTypes" use="optional" default="pace"/>
+							<xs:attribute name="distanceMeasure" type="ns1:distanceMeasures" use="optional" default="meter"/>
+							<xs:attribute name="timeMeasure" type="ns1:timeMeasures" default="second"/>
 						</xs:extension>
 					</xs:simpleContent>
 				</xs:complexType>
@@ -157,7 +157,7 @@
 			<xs:element name="kpiRecords">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="kpiRecord" type="KpiValueType" maxOccurs="unbounded"/>
+						<xs:element name="kpiRecord" type="ns1:KpiValueType" maxOccurs="unbounded"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -174,7 +174,7 @@
 			<xs:element name="sleepQuality" type="xs:int" default="0"/>
 			<xs:element name="energyLevel" type="xs:int" default="0"/>
 			<xs:element name="moodLevel" type="xs:int"/>
-			<xs:group ref="nutrition"/>
+			<xs:group ref="ns1:nutrition"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="KpiValueType">
@@ -187,45 +187,27 @@
 	</xs:complexType>
 	<xs:group name="weeks">
 		<xs:sequence>
-			<xs:element name="WeekType" maxOccurs="6">
-				<xs:complexType>
-					<xs:complexContent>
-						<xs:extension base="WeekType"/>
-					</xs:complexContent>
-				</xs:complexType>
-			</xs:element>
+			<xs:element name="WeekType" type="ns1:WeekType" maxOccurs="6"/>
 		</xs:sequence>
 	</xs:group>
 	<xs:group name="days">
 		<xs:sequence>
-			<xs:element name="DayType" maxOccurs="7">
-				<xs:complexType>
-					<xs:complexContent>
-						<xs:extension base="DayType"/>
-					</xs:complexContent>
-				</xs:complexType>
-			</xs:element>
+			<xs:element name="DayType" type="ns1:DayType" maxOccurs="7"/>
 		</xs:sequence>
 	</xs:group>
 	<xs:group name="months">
 		<xs:sequence>
-			<xs:element name="MonthType" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:complexContent>
-						<xs:extension base="MonthType"/>
-					</xs:complexContent>
-				</xs:complexType>
-			</xs:element>
+			<xs:element name="MonthType" type="ns1:MonthType" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:group>
 	<xs:group name="workouts">
 		<xs:sequence>
-			<xs:element name="WorkoutType" type="IWorkoutType" maxOccurs="unbounded"/>
+			<xs:element name="WorkoutType" type="ns1:IWorkoutType" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:group>
 	<xs:group name="phases">
 		<xs:sequence>
-			<xs:element name="phase" type="PhaseType" maxOccurs="unbounded"/>
+			<xs:element name="phase" type="ns1:PhaseType" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:group>
 	<xs:simpleType name="sportTypes">
@@ -285,8 +267,15 @@
 			<xs:element name="volume" type="xs:double"/>
 			<xs:element name="focus" type="xs:string"/>
 			<xs:element name="description" type="xs:string"/>
-			<xs:element name="sportType" type="sportTypes" default="Other"/>
-			<xs:element name="Extensions" type="xs:anyType"/>
+			<xs:element name="sportType" type="ns1:sportTypes"/>
+			<xs:element name="WLEXT" type="ns1:WeightLiftingExerciseDataBase"/>
+			<xs:element name="Extensions">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="xs:anyType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
 		</xs:sequence>
 		<xs:attribute name="parentId" type="xs:string"/>
 		<xs:attribute name="name" type="xs:string"/>
@@ -294,17 +283,12 @@
 	</xs:complexType>
 	<xs:group name="excersizes">
 		<xs:sequence>
-			<xs:element name="Excersize" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:complexContent>
-						<xs:extension base="ExcersizeType"/>
-					</xs:complexContent>
-				</xs:complexType>
-			</xs:element>
+			<xs:element name="Excersize" type="ns1:ExcersizeType" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:group>
 	<xs:complexType name="WeightLiftingExtension">
 		<xs:sequence>
+			<xs:element name="excersizeName"/>
 			<xs:element name="muscleGroup" type="xs:string"/>
 			<xs:element name="secondaryMuscleGroup" type="xs:string"/>
 			<xs:sequence>
@@ -330,4 +314,15 @@
 			<xs:element name="carbohydrates" type="xs:int"/>
 		</xs:sequence>
 	</xs:group>
+	<xs:complexType name="WeightLiftingExerciseDataBase">
+		<xs:sequence>
+			<xs:element name="exercises" maxOccurs="unbounded">
+				<xs:complexType mixed="0">
+					<xs:complexContent>
+						<xs:extension base="ns1:ExcersizeType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 </xs:schema>

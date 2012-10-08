@@ -15,8 +15,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import trainingplanner.org.extensions.TrainingCalendarExt;
 import trainingplanner.org.extensions.WorkoutExt;
+import trainingplanner.org.xsd.DayType;
 import trainingplanner.org.xsd.IWorkoutType;
-import trainingplanner.org.xsd.WeekType.DayType;
 
 /**
  *

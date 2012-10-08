@@ -13,6 +13,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import trainingplanner.org.xsd.ExcersizeType;
 import trainingplanner.org.xsd.IWorkoutType;
 import trainingplanner.org.xsd.SportTypes;
@@ -27,6 +28,7 @@ public class WorkoutExt extends IWorkoutType {
     private GregorianCalendar workoutDate;
     private IWorkoutType workOutType = new IWorkoutType();
     private ObservableList<ExcersizeType> excersizes = FXCollections.observableArrayList();
+    private Image sportIconImage;
     
         
     public WorkoutExt(GregorianCalendar date){
@@ -52,6 +54,7 @@ public class WorkoutExt extends IWorkoutType {
         this.sportType = wo.getSportType();
         this.volume = wo.getVolume();
         this.excersizes.addAll(wo.getExcersize());
+        this.sportIconImage = getSportsTypeIconImage();
         setProperties();
     }
     
@@ -147,6 +150,27 @@ public class WorkoutExt extends IWorkoutType {
      */
     public void setWorkoutDate(GregorianCalendar workoutDate) {
         this.workoutDate = workoutDate;
+    }
+
+    public Image getSportsTypeIconImage() {
+        switch (this.sportType){
+            case STRENGTH:
+                return new Image("/trainingplanner/images/icons-weights.gif"); 
+            case SWIM:
+                return new Image("/trainingplanner/images/icons-swimming.gif"); 
+            case BIKE:
+                return new Image("/trainingplanner/images/icons-cycling.gif"); 
+            case DAY_OFF:
+                return new Image("/trainingplanner/images/icons-other.gif"); 
+            case OTHER:
+                return new Image("/trainingplanner/images/icons-other.gif"); 
+            case RACE:
+                return new Image("/trainingplanner/images/icons-other.gif"); 
+            case RUN:
+                return new Image("/trainingplanner/images/icons-running.gif"); 
+            default:
+                return new Image("/trainingplanner/images/icons-other.gif");
+        }
     }
    
 }

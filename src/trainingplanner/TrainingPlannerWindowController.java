@@ -85,6 +85,7 @@ public class TrainingPlannerWindowController implements Initializable {
     private JAXBContext jcTCD;
     private TrainingCenterDatabaseT tcd;
     private TrainingCalendarExt trainingCalendar;
+    private WorkoutEditorController workoutEditor;
     
     
     @FXML
@@ -151,6 +152,10 @@ public class TrainingPlannerWindowController implements Initializable {
             _currentNotePad.setVisible(true);
         }
         _currentNotePad.setTrainingDay(selectedCalendarDate.get()); 
+    }
+    
+    void displayWorkoutEditor(){
+        workoutEditor.setVisible(!workoutEditor.isVisible());
     }
     
     /**
@@ -282,18 +287,33 @@ public class TrainingPlannerWindowController implements Initializable {
 
     private void initializeWorkouts() {
         workoutsPane.getChildren().clear();
-        WorkoutsPaneController workouts = new WorkoutsPaneController(trainingCalendar, color);
-        workouts.setActivities(tcd);
+        WorkoutsPaneController workouts = new WorkoutsPaneController(this, trainingCalendar, color);
+        //workouts.setActivities(tcd);
+        AnchorPane.setLeftAnchor(workouts, 0.0);
+        AnchorPane.setBottomAnchor(workouts, 0.0);
+        AnchorPane.setRightAnchor(workouts, 0.0);
+        AnchorPane.setTopAnchor(workouts, 0.0);
+        
+        workouts.setMaxHeight(workouts.USE_COMPUTED_SIZE);
+        workouts.setMaxWidth(workouts.USE_COMPUTED_SIZE);
+        
         workoutsPane.getChildren().add(workouts);
         workoutsPane.setVisible(false);
+        
+        workoutEditor = new WorkoutEditorController();
+        workoutEditor.setVisible(false);
+        rootPane.getChildren().add(workoutEditor);
     }
+    
+    
     private void initializeTrainingPane() {
         trainingPane.getChildren().clear();
         TrainingPaneController training = new TrainingPaneController(trainingCalendar, color);
-        training.getProperties().put("pane-right-anchor", 0.0);
-        training.getProperties().put("pane-left-anchor", 0.0);
-        training.getProperties().put("pane-bottom-anchor", 0.0);
-        training.getProperties().put("pane-top-anchor", 0.0);
+
+        AnchorPane.setLeftAnchor(training, 0.0);
+        AnchorPane.setBottomAnchor(training, 0.0);
+        AnchorPane.setRightAnchor(training, 0.0);
+        AnchorPane.setTopAnchor(training, 0.0);
         
         training.setMaxHeight(training.USE_COMPUTED_SIZE);
         training.setMaxWidth(training.USE_COMPUTED_SIZE);
@@ -301,4 +321,5 @@ public class TrainingPlannerWindowController implements Initializable {
         trainingPane.getChildren().add(training);
         trainingPane.setVisible(false);
     }
+
 }

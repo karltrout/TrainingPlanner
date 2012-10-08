@@ -11,13 +11,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import trainingplanner.org.calendar.TrainingCalendarDay;
+import trainingplanner.org.xsd.DayType;
 import trainingplanner.org.xsd.ICalendarType;
-import trainingplanner.org.xsd.MonthType.WeekType;
-import trainingplanner.org.xsd.WeekType.DayType;
+import trainingplanner.org.xsd.MonthType;
+import trainingplanner.org.xsd.WeekType;
 
 /**
  *
@@ -27,6 +26,7 @@ public class TrainingCalendarExt extends ICalendarType {
     //private ICalendarType calType;
     
     private ObservableList<TrainingCalendarDay> allTrainingDays = FXCollections.observableArrayList();
+    private ObservableList<WorkoutExt> allTrainingDayWorkouts = FXCollections.observableArrayList();
 
     public TrainingCalendarExt(){
     }
@@ -53,11 +53,13 @@ public class TrainingCalendarExt extends ICalendarType {
                     if(! dayType.getWorkoutType().isEmpty()){
                         TrainingCalendarDay nreDay = new TrainingCalendarDay(dayType, this);
                        allTrainingDays.add(nreDay);
+                       allTrainingDayWorkouts.addAll(nreDay.getObservableWorkOuts());
                     }        
                 }
             }
         }
         sortAllTrainingDays();
+        sortTrainingDayWorkouts();
     }
     
     public TrainingCalendarDay getTrainingDay(GregorianCalendar gCal) {
@@ -157,16 +159,20 @@ public class TrainingCalendarExt extends ICalendarType {
     public void addWorkoutToTrainingDay(TrainingCalendarDay day, WorkoutExt workout){
         day.addWorkout(workout);
         if (!allTrainingDays.contains(day)) allTrainingDays.add(day);
+        if (!allTrainingDayWorkouts.contains(workout)) allTrainingDayWorkouts.add(workout);
+        sortTrainingDayWorkouts();
         sortAllTrainingDays();
     }
     
     public void removeWorkoutFromTrainingDay (TrainingCalendarDay day, WorkoutExt workout){
         if(day.getObservableWorkOuts().contains(workout)) day.getObservableWorkOuts().remove(workout);
         if(day.getWorkoutCount() == 0 && allTrainingDays.contains(day) ) allTrainingDays.remove(day); 
+        if (allTrainingDayWorkouts.contains(workout)) allTrainingDayWorkouts.remove(workout);
+        sortTrainingDayWorkouts();
         sortAllTrainingDays();
     }
     
-    public void sortAllTrainingDays(){
+    public final void sortAllTrainingDays(){
         if (allTrainingDays != null){
         Collections.sort(allTrainingDays, new Comparator<TrainingCalendarDay>() {
             @Override
@@ -178,6 +184,21 @@ public class TrainingCalendarExt extends ICalendarType {
         });
         }
     }
-    
-    
+
+    public ObservableList<WorkoutExt> getAllWorkouts() {
+        return allTrainingDayWorkouts;
+    }
+
+    private void sortTrainingDayWorkouts() {
+        if (allTrainingDayWorkouts != null){
+        Collections.sort(allTrainingDayWorkouts, new Comparator<WorkoutExt>() {
+            @Override
+            public int compare(WorkoutExt t, WorkoutExt t1) {
+                if (t.getWorkoutDate().after(t1.getWorkoutDate())) return 1;
+                if (t.getWorkoutDate().before(t1.getWorkoutDate())) return -1;
+                else return 0;
+            }
+        });
+        }
+    } 
 }
