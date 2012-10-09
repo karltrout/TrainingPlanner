@@ -14,19 +14,19 @@
 
 <fx:root type="javafx.scene.layout.AnchorPane" id="AnchorPane" prefHeight="430.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <Rectangle id="rectangle2" arcHeight="15.0" arcWidth="15.0" fill="#dfdfdf" height="430.0" stroke="BLACK" strokeType="INSIDE" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-    <GridPane fx:id="excersizeName" layoutX="17.0" layoutY="23.0" prefHeight="70.0" prefWidth="212.0">
+    <Rectangle id="rectangle2" arcHeight="15.0" arcWidth="15.0" fill="#dfdfdf" height="430.0" stroke="BLACK" strokeType="INSIDE" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
+    <GridPane fx:id="excersizeName" hgap="5.0" layoutX="15.0" layoutY="52.0" prefHeight="66.0" prefWidth="249.0">
       <children>
-        <Label id="label2" text="Intensity" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <Text id="noteIntensity" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Label id="label3" text="Duration" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <Text id="noteDuration" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Label id="label4" text="Volume" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <Text id="noteVolume" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Text id="noteIntensity" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Text id="noteDuration" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Text id="noteVolume" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Text id="text4" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="Volume" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Text id="text5" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="Intensity" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Text id="text6" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="Duration" GridPane.columnIndex="0" GridPane.rowIndex="1" />
       </children>
       <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="61.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="151.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="136.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="108.0" />
       </columnConstraints>
       <rowConstraints>
         <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
@@ -34,29 +34,29 @@
         <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <Text id="workout-heading" layoutX="-44.0" layoutY="-244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Excersize Details" x="60.0" y="264.0">
+    <Text layoutX="-46.0" layoutY="-236.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tab-header-text" text="Excersize Details" x="60.0" y="264.0">
       <font>
         <Font name="Courier New Bold" size="18.0" />
       </font>
     </Text>
-    <Text id="text1" layoutX="13.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Primary Muscle" />
-    <Text id="text1" layoutX="155.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Secondary Muscle" />
-    <GridPane id="excersizeName" layoutX="301.0" layoutY="22.0" prefHeight="84.0" prefWidth="273.0">
+    <Text id="text1" layoutX="14.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelText" text="Primary Muscle" />
+    <Text id="text1" layoutX="156.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelText" text="Secondary Muscle" />
+    <GridPane id="excersizeName" hgap="5.0" layoutX="301.0" layoutY="22.0" prefHeight="84.0" prefWidth="273.0">
       <children>
-        <Text id="noteIntensity" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Text id="noteDuration" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <Text id="noteVolume" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-        <Text id="text2" strokeType="OUTSIDE" strokeWidth="0.0" text="Repitions" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <Text id="text2" scaleX="1.0000055973490956" strokeType="OUTSIDE" strokeWidth="0.0" text="Sets" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <Text id="text2" strokeType="OUTSIDE" strokeWidth="0.0" text="Weight" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-        <Text id="text2" strokeType="OUTSIDE" strokeWidth="0.0" text="One Repition Max" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <Text id="noteIntensity" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Text id="text2" strokeType="OUTSIDE" strokeWidth="0.0" text="Rest Interval" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <Text id="noteIntensity" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Text id="text2" fx:id="repetitionField" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field" text="Repetitions" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Text id="text2" scaleX="1.0000055973490956" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field" text="Sets" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Text id="text2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field" text="Weight" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Text id="text2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field" text="One Repition Max" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Text id="text2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field" text="Rest Interval" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField id="textField1" fx:id="oneRepMaxField" alignment="CENTER_RIGHT" editable="false" prefWidth="200.0" text="0.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField id="textField2" fx:id="restIntervalField" alignment="CENTER_RIGHT" editable="false" prefWidth="200.0" text="0.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField id="textField3" fx:id="repitionField" alignment="CENTER_RIGHT" editable="false" prefWidth="200.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField id="textField4" fx:id="setsField" alignment="CENTER_RIGHT" editable="false" prefWidth="200.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField id="textField5" fx:id="weightField" alignment="CENTER_RIGHT" editable="false" prefWidth="200.0" text="0.0" GridPane.columnIndex="0" GridPane.rowIndex="4" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="111.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="109.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="111.0" />
       </columnConstraints>
       <rowConstraints>
         <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
@@ -66,14 +66,14 @@
         <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <ImageView id="emptyImageView1" fitHeight="219.99996948242188" fitWidth="182.87497146858155" layoutX="52.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="emptyImageView1" fitHeight="251.01168823242188" fitWidth="208.6534634601982" layoutX="40.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@../images/Bodyweight-Exercise-Muscle-Diagram.jpg" preserveRatio="false" smooth="false" />
       </image>
     </ImageView>
-    <ListView id="listView1" layoutX="300.0" layoutY="130.0" prefHeight="252.007568359375" prefWidth="286.0" />
-    <Text id="text1" layoutX="301.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Muscle Group Excersizes" />
-    <ChoiceBox id="choiceBox1" layoutX="13.0" layoutY="130.0" prefWidth="120.0">
+    <ListView id="listView1" fx:id="muscleGroupExcersizeList" layoutX="300.0" layoutY="132.0" prefHeight="251.01171875" prefWidth="286.0" />
+    <Text id="text1" layoutX="300.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field" text="Muscle Group Excersizes" />
+    <ChoiceBox id="choiceBox1" layoutX="13.0" layoutY="133.0" prefWidth="120.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -82,7 +82,7 @@
         </FXCollections>
       </items>
     </ChoiceBox>
-    <ChoiceBox id="choiceBox1" layoutX="153.0" layoutY="130.0" prefWidth="120.0">
+    <ChoiceBox id="choiceBox1" layoutX="154.0" layoutY="133.0" prefWidth="120.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -117,12 +117,13 @@
         <Text id="text3" layoutX="14.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancel" />
       </children>
     </Group>
-    <Group id="notePadCloseBox" layoutX="325.0" layoutY="387.0">
+    <Group id="notePadCloseBox" fx:id="newExcersizeButton" layoutX="325.0" layoutY="387.0">
       <children>
         <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" layoutY="9.0" stroke="$x1" strokeType="INSIDE" strokeWidth="2.0" width="65.15625" />
         <Text id="text3" layoutX="20.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New" />
       </children>
     </Group>
+    <TextField id="textField6" fx:id="ExerciseNameField" editable="false" layoutX="14.0" layoutY="33.0" prefWidth="259.0" promptText="Exercise name" />
   </children>
   <stylesheets>
     <URL value="@css/trainingPlanner.css" />

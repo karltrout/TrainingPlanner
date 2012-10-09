@@ -7,7 +7,6 @@ package trainingplanner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
@@ -151,6 +150,7 @@ public class TrainingPlannerWindowController implements Initializable {
                 }
                 else {
                      WeightExerciseDataBase = new WeightLiftingDatabase();
+                     WeightExerciseDataBase.setDataBase(new WeightLiftingExerciseDataBase());
                      WeightsExersizeDBSerializer.serializeObjectToXML(WeightExerciseDataBase); 
                 }
             } catch (Exception ex) {
@@ -321,7 +321,7 @@ public class TrainingPlannerWindowController implements Initializable {
         workoutsPane.getChildren().add(workouts);
         workoutsPane.setVisible(false);
         
-        workoutEditor = new WorkoutEditorController();
+        workoutEditor = new WorkoutEditorController(WeightExerciseDataBase);
         workoutEditor.setVisible(false);
         rootPane.getChildren().add(workoutEditor);
     }

@@ -75,6 +75,13 @@ root {
     -fx-background-color: rgba(255,255,255,0.25);
 }
 
+.workout-editor-text-field-14{
+    -fx-font: bold 14pt "Arial"; 
+    -fx-font-family: sans-serif;
+    -fx-text-fill: BLACK;  
+    -fx-background-color: rgba(255,255,255,0.25);
+}
+
 .goals-pane {
     -fx-background-image: url('images/carbon-fiber.png');
     -fx-background-repeat: repeat-x;
