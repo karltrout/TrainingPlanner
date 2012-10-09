@@ -4,8 +4,10 @@
  */
 package trainingplanner;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
@@ -43,6 +45,8 @@ import trainingplanner.org.extensions.AthleteExt;
 import trainingplanner.org.extensions.TrainingCalendarExt;
 import trainingplanner.org.extensions.TrainingPlanExt;
 import trainingplanner.org.xsd.TrainingPlan;
+import trainingplanner.org.xsd.WeightLiftingDatabase;
+import trainingplanner.org.xsd.WeightLiftingExerciseDataBase;
 import trainingplanner.org.xsd.garmin.TrainingCenterDatabaseT;
 
 /**
@@ -86,6 +90,9 @@ public class TrainingPlannerWindowController implements Initializable {
     private TrainingCenterDatabaseT tcd;
     private TrainingCalendarExt trainingCalendar;
     private WorkoutEditorController workoutEditor;
+    private String weightsDbFile = "WeightExercisesDataBase.xml";
+    private WeightLiftingDatabase WeightExerciseDataBase;
+    private ExersizeDataBase WeightsExersizeDBSerializer;
     
     
     @FXML
@@ -137,11 +144,25 @@ public class TrainingPlannerWindowController implements Initializable {
                 switchWindowViewTo("training");
             }
         });
+        try {
+                 WeightsExersizeDBSerializer = new ExersizeDataBase("trainingplanner.org.xsd",weightsDbFile);
+                if (new File(weightsDbFile).exists()){
+                     WeightExerciseDataBase = (WeightLiftingDatabase) WeightsExersizeDBSerializer.deserializeXMLTodataBase();
+                }
+                else {
+                     WeightExerciseDataBase = new WeightLiftingDatabase();
+                     WeightsExersizeDBSerializer.serializeObjectToXML(WeightExerciseDataBase); 
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(TrainingPlannerWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
         loadTrainingPlan();
         initializeDashBoard();        
         initializeWorkouts();
         initializeTrainingPane();
+        
+        
         
         switchWindowViewTo("dashboard");
     }
