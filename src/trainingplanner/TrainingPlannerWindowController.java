@@ -91,7 +91,7 @@ public class TrainingPlannerWindowController implements Initializable {
     private WorkoutEditorController workoutEditor;
     private String weightsDbFile = "WeightExercisesDataBase.xml";
     private WeightLiftingDatabase WeightExerciseDataBase;
-    private ExersizeDataBase WeightsExersizeDBSerializer;
+    static private ExersizeDataBase WeightsExersizeDBSerializer;
     
     
     @FXML
@@ -324,6 +324,10 @@ public class TrainingPlannerWindowController implements Initializable {
         workoutEditor = new WorkoutEditorController(WeightExerciseDataBase);
         workoutEditor.setVisible(false);
         rootPane.getChildren().add(workoutEditor);
+    }
+    
+    static public void saveWeightTrainingDatabase( WeightLiftingDatabase sWeightExerciseDataBase) throws Exception{
+                     WeightsExersizeDBSerializer.serializeObjectToXML(sWeightExerciseDataBase); 
     }
     
     

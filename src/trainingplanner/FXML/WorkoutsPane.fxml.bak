@@ -28,7 +28,7 @@
         <NumberAxis id="yAxis2" side="LEFT" />
       </yAxis>
     </LineChart>
-    <ListView id="listView2" prefHeight="216.0" prefWidth="255.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="285.0" />
+    <ListView id="listView2" fx:id="workoutDetailList" prefHeight="216.0" prefWidth="255.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="285.0" />
     <AnchorPane id="anchorPane2" prefHeight="235.0" prefWidth="626.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
       <children>
         <Text id="text2" layoutX="200.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tab-header-text" text="Workout Lap Details here" />
@@ -37,7 +37,7 @@
     <Label id="" fx:id="workoutDetailHeaderText" font="$x1" layoutX="285.0" layoutY="262.0" prefWidth="186.0" styleClass="tab-header-text, tab-header-text-selected" text="Details" />
     <HBox id="hBox1" layoutX="470.0" layoutY="267.0" spacing="5.0">
       <children>
-        <Group id="notePadCloseBox" fx:id="workoutDetailsEditButton">
+        <Group id="notePadCloseBox" fx:id="workoutDetailsEditButton" disable="true">
           <children>
             <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" strokeType="INSIDE" strokeWidth="2.0" width="20.0">
               <stroke>

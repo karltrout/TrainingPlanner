@@ -7,13 +7,17 @@ package trainingplanner;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableStringValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,9 +27,15 @@ import javafx.scene.Group;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import trainingplanner.org.xsd.WeightLiftingDatabase;
@@ -134,7 +144,7 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
         exercise.getWeightLiftingExtension().setExcersizeName("New exercise");
         obserableExerciseList.add(exercise);
         muscleGroupExcersizeList.getSelectionModel().selectLast();
-        editExersize();
+        editExersize((ExerciseProperty) muscleGroupExcersizeList.getSelectionModel().getSelectedItem());
     }
     
     /**
@@ -169,15 +179,16 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
         });
     } 
 
-    private void editExersize() {
+    private void editExersize(ExerciseProperty exercise) {
         if (currentExercise != null) currentExercise.nameProperty.unbind();
-        currentExercise = (ExerciseProperty) muscleGroupExcersizeList.getSelectionModel().getSelectedItem(); 
+        currentExercise = exercise;//(ExerciseProperty) muscleGroupExcersizeList.getSelectionModel().getSelectedItem(); 
         currentExercise.nameProperty.bind(ExerciseNameField.textProperty());
         setEditing(true);
     }
     
     private void saveExersize(){
-        setEditing(false);   
+        setEditing(false);
+        currentExercise.nameProperty.unbind();
         WeightLiftingExtension ext = currentExercise.getWeightLiftingExtension();
         ext.setOneRepMax(Double.parseDouble(oneRepMaxField.getText()));
         ext.setRestInterval(Double.parseDouble(restIntervalField.getText()));
@@ -185,6 +196,17 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
         ext.setSets(Integer.parseInt(setsField.getText()));
         ext.setWeight(Double.parseDouble(weightField.getText()));
         ext.setExcersizeName(ExerciseNameField.getText());
+        try {
+            TrainingPlannerWindowController.saveWeightTrainingDatabase(_database);
+        } catch (Exception ex) {
+            Logger.getLogger(WorkoutEditorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void removeExercise(Exercises exercise){
+        if(obserableExerciseList.contains(exercise)){
+            obserableExerciseList.remove(exercise);
+        }
     }
     
     private void setEditing(boolean editing){
@@ -199,16 +221,26 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
     }
     
      private void setSelectedExerciseFromList(final WorkoutDetailsHBox selectedExercise ){
-         currentSelection = selectedExercise;
-         ExerciseNameField.setText(selectedExercise.getItem().getName());
+        setEditing(false);
+        currentExercise.nameProperty.unbind();
+        if(selectedExercise.getItem() != null){
+            ExerciseNameField.setText(selectedExercise.getItem().getName());
+            currentExercise = selectedExercise.getItem();
+        }
     }
     
      class Delta { double x, y; } 
      
      private class WorkoutDetailsHBox extends ListCell<ExerciseProperty> {
          private Text title = new Text();
+         private Group editGroup = new Group();
+         private Group removeGroup = new Group();
+
+        public WorkoutDetailsHBox() {
+            
+        }
         @Override
-        public void updateItem(ExerciseProperty item, boolean empty) {
+        public void updateItem(final ExerciseProperty item, boolean empty) {
          super.updateItem(item, empty);
             title.getStyleClass().add("workout-listbox-title-text");
              if (item != null) {
@@ -221,11 +253,69 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
                       setSelectedExerciseFromList((WorkoutDetailsHBox)t.getSource());                             
                     }
                 });
+                
+                editGroup.idProperty().set("notePadCloseBox");
+                editGroup.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                     @Override
+                     public void handle(MouseEvent t) {
+                         editExersize(item);
+                     }
+                     
+                 });
+                Rectangle box = new Rectangle(20, 20, Color.WHITE);
+                box.arcHeightProperty().set(10.0);
+                box.arcWidthProperty().set(10.0);
+                box.strokeTypeProperty().set(StrokeType.INSIDE);
+                box.strokeWidthProperty().set(2.0);
+                box.strokeProperty().set(Color.web("#001899"));
+                ImageView editIcon = new ImageView(new Image("/trainingplanner/images/blue_file_edit.png"));
+                editIcon.fitHeightProperty().set(13.0);
+                editIcon.fitWidthProperty().set(18.0);
+                editIcon.layoutYProperty().set(3.0);
+                editIcon.layoutXProperty().set(3.0);
+                editIcon.pickOnBoundsProperty().set(true);
+                editIcon.preserveRatioProperty().set(true);
+                
+                editGroup.getChildren().addAll(box,editIcon);
+                
+                removeGroup.idProperty().set("notePadCloseBox");
+                removeGroup.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                     @Override
+                     public void handle(MouseEvent t) {
+                         Group g = (Group) t.getSource();
+                         removeExercise(item);
+                     }
+                     
+                 });
+                
+                Circle circle = new Circle(10.0, Color.WHITE);
+                circle.strokeTypeProperty().set(StrokeType.INSIDE);
+                circle.strokeWidthProperty().set(2.0);
+                circle.strokeProperty().set(Color.web("#990000"));
+                
+                removeGroup.getChildren().add(circle);
+                
+                
+                AnchorPane border = new AnchorPane();
+                border.setMaxSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+                border.setMinSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+                border.setPrefSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+
+                AnchorPane.setTopAnchor(title, 5.0);
+                AnchorPane.setLeftAnchor(title, 5.0);
+                AnchorPane.setTopAnchor(editGroup, 5.0);
+                AnchorPane.setLeftAnchor(editGroup, 250.0);
+                AnchorPane.setTopAnchor(removeGroup, 5.0);
+                AnchorPane.setLeftAnchor(removeGroup, 225.0);
+
+                border.getChildren().addAll(title,editGroup, removeGroup);
                  
                 HBox rect = new HBox();
                 rect.setSpacing(5.0);
                 rect.setAlignment(Pos.CENTER_LEFT);
-                rect.getChildren().add(title);
+                rect.getChildren().add(border);
                 setGraphic(rect);
             }
         }
@@ -233,6 +323,7 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
      
      private class ExerciseProperty extends Exercises{
          private SimpleStringProperty nameProperty = new SimpleStringProperty();
+
 
          @Override
          public String getName(){

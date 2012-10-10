@@ -32,7 +32,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
-import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.TrainingCalendarExt;
 import trainingplanner.org.extensions.WorkoutExt;
 import trainingplanner.org.xsd.ExcersizeType;

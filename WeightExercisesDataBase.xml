@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <WeightLiftingDatabase xmlns="trainingPlan">
-    <dataBase/>
+    <dataBase>
+        <exercises name="New exercise">
+            <intensity>0.0</intensity>
+            <duration>0</duration>
+            <volume>0.0</volume>
+            <WeightLiftingExtension>
+                <excersizeName xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">test Excersize</excersizeName>
+                <repitions>20</repitions>
+                <sets>3</sets>
+                <weight>50.0</weight>
+                <oneRepMax>100.0</oneRepMax>
+                <restInterval>30.0</restInterval>
+            </WeightLiftingExtension>
+        </exercises>
+    </dataBase>
 </WeightLiftingDatabase>
