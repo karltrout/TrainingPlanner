@@ -1,18 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <WeightLiftingDatabase xmlns="trainingPlan">
-    <dataBase>
-        <exercises name="New exercise">
-            <intensity>0.0</intensity>
-            <duration>0</duration>
-            <volume>0.0</volume>
-            <WeightLiftingExtension>
-                <excersizeName xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">test Excersize</excersizeName>
-                <repitions>20</repitions>
-                <sets>3</sets>
-                <weight>50.0</weight>
-                <oneRepMax>100.0</oneRepMax>
-                <restInterval>30.0</restInterval>
-            </WeightLiftingExtension>
-        </exercises>
-    </dataBase>
+    <exercise name="Exercise 8">
+        <intensity>15.0</intensity>
+        <duration>149</duration>
+        <volume>30.0</volume>
+        <WeightLiftingExtension>
+            <excersizeName xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Exercise 8</excersizeName>
+            <repitions>10</repitions>
+            <sets>3</sets>
+            <weight>50.0</weight>
+            <oneRepMax>100.0</oneRepMax>
+            <restInterval>30.0</restInterval>
+        </WeightLiftingExtension>
+    </exercise>
+    <exercise name="Exersize 9">
+        <intensity>5.0</intensity>
+        <duration>159</duration>
+        <volume>20.0</volume>
+        <WeightLiftingExtension>
+            <excersizeName xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Exersize 9</excersizeName>
+            <repitions>10</repitions>
+            <sets>2</sets>
+            <weight>50.0</weight>
+            <oneRepMax>200.0</oneRepMax>
+            <restInterval>60.0</restInterval>
+        </WeightLiftingExtension>
+    </exercise>
+    <exercise name="Exercise 10">
+        <intensity>15.0</intensity>
+        <duration>149</duration>
+        <volume>30.0</volume>
+        <WeightLiftingExtension>
+            <excersizeName xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Exercise 10</excersizeName>
+            <repitions>10</repitions>
+            <sets>3</sets>
+            <weight>50.0</weight>
+            <oneRepMax>100.0</oneRepMax>
+            <restInterval>30.0</restInterval>
+        </WeightLiftingExtension>
+    </exercise>
+    <exercise name="Exercise 11">
+        <intensity>5.0</intensity>
+        <duration>159</duration>
+        <volume>20.0</volume>
+        <WeightLiftingExtension>
+            <excersizeName xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Exercise 11</excersizeName>
+            <repitions>10</repitions>
+            <sets>2</sets>
+            <weight>50.0</weight>
+            <oneRepMax>200.0</oneRepMax>
+            <restInterval>60.0</restInterval>
+        </WeightLiftingExtension>
+    </exercise>
 </WeightLiftingDatabase>

@@ -81,7 +81,7 @@
 			<xs:element name="volume" type="xs:double"/>
 			<xs:element name="duration" type="xs:int"/>
 			<xs:element name="description" type="xs:string"/>
-			<xs:group ref="ns1:excersizes"/>
+			<xs:group ref="ns1:excersize"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
 		<xs:attribute name="parentId" type="xs:string"/>
@@ -280,7 +280,7 @@
 		<xs:attribute name="name" type="xs:string"/>
 		<xs:attribute name="id" type="xs:ID"/>
 	</xs:complexType>
-	<xs:group name="excersizes">
+	<xs:group name="excersize">
 		<xs:sequence>
 			<xs:element name="Excersize" type="ns1:ExcersizeType" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -315,7 +315,7 @@
 	</xs:group>
 	<xs:complexType name="WeightLiftingExerciseDataBase">
 		<xs:sequence>
-			<xs:element name="exercises" maxOccurs="unbounded">
+			<xs:element name="exercise" maxOccurs="unbounded">
 				<xs:complexType mixed="0">
 					<xs:complexContent>
 						<xs:extension base="ns1:ExcersizeType">
@@ -330,9 +330,9 @@
 	</xs:complexType>
 	<xs:element name="WeightLiftingDatabase">
 		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="dataBase" type="ns1:WeightLiftingExerciseDataBase"/>
-			</xs:sequence>
+			<xs:complexContent>
+				<xs:extension base="ns1:WeightLiftingExerciseDataBase"/>
+			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

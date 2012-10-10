@@ -43,6 +43,7 @@ import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.AthleteExt;
 import trainingplanner.org.extensions.TrainingCalendarExt;
 import trainingplanner.org.extensions.TrainingPlanExt;
+import trainingplanner.org.extensions.WorkoutExt;
 import trainingplanner.org.xsd.TrainingPlan;
 import trainingplanner.org.xsd.WeightLiftingDatabase;
 import trainingplanner.org.xsd.WeightLiftingExerciseDataBase;
@@ -150,7 +151,6 @@ public class TrainingPlannerWindowController implements Initializable {
                 }
                 else {
                      WeightExerciseDataBase = new WeightLiftingDatabase();
-                     WeightExerciseDataBase.setDataBase(new WeightLiftingExerciseDataBase());
                      WeightsExersizeDBSerializer.serializeObjectToXML(WeightExerciseDataBase); 
                 }
             } catch (Exception ex) {
@@ -175,7 +175,8 @@ public class TrainingPlannerWindowController implements Initializable {
         _currentNotePad.setTrainingDay(selectedCalendarDate.get()); 
     }
     
-    void displayWorkoutEditor(){
+    void displayWorkoutEditor(WorkoutExt wo){
+        workoutEditor.setWorkout(wo);
         workoutEditor.setVisible(!workoutEditor.isVisible());
     }
     

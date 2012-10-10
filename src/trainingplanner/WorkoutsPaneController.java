@@ -279,15 +279,17 @@ public class WorkoutsPaneController extends AnchorPane implements Initializable 
         workoutDetailsEditButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-              parentPane.displayWorkoutEditor();
+             WorkoutExt wo =  workoutList.getSelectionModel().getSelectedItem();
+              if(wo != null) parentPane.displayWorkoutEditor(wo);
             }
         });
         
         workoutDetailsAddButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-              parentPane.displayWorkoutEditor();
-               //addWorkout();
+               WorkoutExt wo =  workoutList.getSelectionModel().getSelectedItem();
+              if(wo != null) parentPane.displayWorkoutEditor(wo);
+              //addWorkout();
                 //trainingDay.getWorkoutType().add(new IWorkoutType());
                 //trainingDay.addWorkout(new WorkoutExt(trainingDay.getDate().toGregorianCalendar()));4
                 //trainingCalendar.addWorkoutToTrainingDay(trainingDay, new WorkoutExt(trainingDay.getDate().toGregorianCalendar()));
@@ -297,8 +299,8 @@ public class WorkoutsPaneController extends AnchorPane implements Initializable 
         workoutDetailsRemoveButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-               
-              parentPane.displayWorkoutEditor();
+             WorkoutExt wo =  workoutList.getSelectionModel().getSelectedItem();
+              if(wo != null) parentPane.displayWorkoutEditor(wo);
             }
         });
     }

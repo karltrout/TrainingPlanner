@@ -15,9 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,8 +36,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import trainingplanner.org.extensions.WorkoutExt;
 import trainingplanner.org.xsd.WeightLiftingDatabase;
-import trainingplanner.org.xsd.WeightLiftingExerciseDataBase.Exercises;
+import trainingplanner.org.xsd.WeightLiftingExerciseDataBase.Exercise;
 import trainingplanner.org.xsd.WeightLiftingExtension;
 
 /**
@@ -60,14 +59,23 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
     @FXML private TextField setsField;
     @FXML private TextField weightField;
     @FXML private TextField ExerciseNameField;
+    @FXML private Text intensityField;
+    @FXML private Text durationField;
+    @FXML private Text volumeField;
+                                    
+    @FXML private AnchorPane databaseChangedMessage;
+    @FXML private Group saveDatabaseButton;
+    @FXML private Group cancelSaveDatabaseButton;
+    @FXML private Group selectExerciseButton;
     
     private WeightLiftingDatabase _database;
     private ExerciseProperty currentExercise;
-    private final ObservableList<Exercises> obserableExerciseList;
+    private final ObservableList<ExerciseProperty> obserableExerciseList;
     private boolean workoutDatabaseIsDirty;
     private final ObservableStringValue currentExerciseName= new SimpleStringProperty();;
     private boolean isEditing;
     private WorkoutDetailsHBox currentSelection;
+    private WorkoutExt workout;
    
     public WorkoutEditorController(WeightLiftingDatabase database){
         this._database = database;
@@ -119,32 +127,71 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
                 
             }
         });
-        
-        obserableExerciseList = FXCollections.observableList(_database.getDataBase().getExercises());
-        obserableExerciseList.addListener(new ListChangeListener<Exercises>() {
+        saveDatabaseButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
             @Override
-            public void onChanged(Change<? extends Exercises> change) {
-               workoutDatabaseIsDirty = true;
+            public void handle(MouseEvent t) {
+                saveDatabase();
+                databaseChangedMessage.setVisible(false);
+                hideDialog();
             }
         });
+        
+        cancelSaveDatabaseButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                databaseChangedMessage.setVisible(false);
+            }
+        });
+        selectExerciseButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent t) {
+                useThisExercise();
+            }
+        });
+        
+        obserableExerciseList = FXCollections.observableArrayList();
+        
+        for (Exercise e : _database.getExercise()){
+            
+            obserableExerciseList.add(new ExerciseProperty(e));
+            
+        }
+        
+        obserableExerciseList.addListener(new ListChangeListener<ExerciseProperty>() {
+                @Override
+                public void onChanged(Change<? extends ExerciseProperty> change) {
+                   workoutDatabaseIsDirty = true;
+                }
+            });
 
         muscleGroupExcersizeList.setItems(obserableExerciseList);
         setEditing(false);
     }  
         
     private void closeDialog(){
-        this.setVisible(false);
+        if(workoutDatabaseIsDirty){
+            databaseChangedMessage.visibleProperty().set(true);
+        }
+        else{
+            hideDialog();
+        }
     }
     
 
     private void createNewExersize() {
-        ExerciseProperty exercise = new ExerciseProperty();       
+        Exercise exercise = new Exercise();       
         exercise.setName("New exercise");
+        exercise.setDuration(0);
+        exercise.setIntensity(0.0);
+        exercise.setVolume(0.0);
         exercise.setWeightLiftingExtension(new WeightLiftingExtension());
         exercise.getWeightLiftingExtension().setExcersizeName("New exercise");
-        obserableExerciseList.add(exercise);
+        ExerciseProperty ep  = new ExerciseProperty(exercise);
+        obserableExerciseList.add(ep);
         muscleGroupExcersizeList.getSelectionModel().selectLast();
-        editExersize((ExerciseProperty) muscleGroupExcersizeList.getSelectionModel().getSelectedItem());
+        editExercise((ExerciseProperty) muscleGroupExcersizeList.getSelectionModel().getSelectedItem());
     }
     
     /**
@@ -179,16 +226,18 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
         });
     } 
 
-    private void editExersize(ExerciseProperty exercise) {
+    private void editExercise(ExerciseProperty exercise) {
         if (currentExercise != null) currentExercise.nameProperty.unbind();
         currentExercise = exercise;//(ExerciseProperty) muscleGroupExcersizeList.getSelectionModel().getSelectedItem(); 
+        ExerciseNameField.setText(currentExercise.getName());
         currentExercise.nameProperty.bind(ExerciseNameField.textProperty());
         setEditing(true);
     }
     
     private void saveExersize(){
         setEditing(false);
-        currentExercise.nameProperty.unbind();
+        if (currentExercise != null)currentExercise.nameProperty.unbind();
+        currentExercise._exercise.setName(ExerciseNameField.getText());
         WeightLiftingExtension ext = currentExercise.getWeightLiftingExtension();
         ext.setOneRepMax(Double.parseDouble(oneRepMaxField.getText()));
         ext.setRestInterval(Double.parseDouble(restIntervalField.getText()));
@@ -196,17 +245,42 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
         ext.setSets(Integer.parseInt(setsField.getText()));
         ext.setWeight(Double.parseDouble(weightField.getText()));
         ext.setExcersizeName(ExerciseNameField.getText());
+        currentExercise.calulateVDI();
+        if (! _database.getExercise().contains(currentExercise._exercise))
+        {
+            _database.getExercise().add(currentExercise._exercise);
+            this.workoutDatabaseIsDirty = true;
+        }
+    }
+    
+    private void saveDatabase(){
         try {
             TrainingPlannerWindowController.saveWeightTrainingDatabase(_database);
         } catch (Exception ex) {
             Logger.getLogger(WorkoutEditorController.class.getName()).log(Level.SEVERE, null, ex);
         }
+            this.workoutDatabaseIsDirty = false;
     }
     
-    private void removeExercise(Exercises exercise){
+    private void useThisExercise(){
+        workout.getExcersize().add(currentExercise);
+        closeDialog();
+    }
+    
+    private void hideDialog(){
+        
+        this.setVisible(false);
+    }
+    
+    private void removeExercise(ExerciseProperty exercise){
         if(obserableExerciseList.contains(exercise)){
             obserableExerciseList.remove(exercise);
         }
+        if(_database.getExercise().contains(exercise._exercise)){
+            _database.getExercise().remove(exercise._exercise);
+            this.workoutDatabaseIsDirty = true;
+        }
+        currentExercise = null;
     }
     
     private void setEditing(boolean editing){
@@ -221,12 +295,29 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
     }
     
      private void setSelectedExerciseFromList(final WorkoutDetailsHBox selectedExercise ){
-        setEditing(false);
-        currentExercise.nameProperty.unbind();
+       
+         if(null != currentExercise && null != currentExercise.nameProperty && !currentExercise.equals(selectedExercise.getItem())){
+            setEditing(false);
+            currentExercise.nameProperty.unbind();
+       }
         if(selectedExercise.getItem() != null){
-            ExerciseNameField.setText(selectedExercise.getItem().getName());
+            Exercise e = selectedExercise.getItem();
+            WeightLiftingExtension w = e.getWeightLiftingExtension();
+            ExerciseNameField.setText(e.getName());
+            oneRepMaxField.setText(String.valueOf(w.getOneRepMax()));
+            restIntervalField.setText(String.valueOf(w.getRestInterval()));
+            repitionField.setText(String.valueOf(w.getRepitions()));
+            setsField.setText(String.valueOf(w.getSets()));
+            weightField.setText(String.valueOf(w.getWeight()));
+            intensityField.setText(String.valueOf(e.getIntensity()));
+            durationField.setText(String.valueOf(e.getDuration()));
+            volumeField.setText(String.valueOf(e.getVolume()));
             currentExercise = selectedExercise.getItem();
         }
+    }
+
+    void setWorkout(WorkoutExt wo) {
+        this.workout = wo;
     }
     
      class Delta { double x, y; } 
@@ -235,9 +326,7 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
          private Text title = new Text();
          private Group editGroup = new Group();
          private Group removeGroup = new Group();
-
         public WorkoutDetailsHBox() {
-            
         }
         @Override
         public void updateItem(final ExerciseProperty item, boolean empty) {
@@ -259,7 +348,7 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
 
                      @Override
                      public void handle(MouseEvent t) {
-                         editExersize(item);
+                         editExercise(item);
                      }
                      
                  });
@@ -321,9 +410,17 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
         }
     }
      
-     private class ExerciseProperty extends Exercises{
+     private class ExerciseProperty extends Exercise{
          private SimpleStringProperty nameProperty = new SimpleStringProperty();
-
+         private Exercise _exercise;
+         
+         ExerciseProperty(Exercise e){
+            
+             _exercise = e;
+             setSuperFields(e);
+             nameProperty.set(_exercise.getName());
+             
+         }
 
          @Override
          public String getName(){
@@ -347,6 +444,34 @@ public class WorkoutEditorController  extends AnchorPane implements Initializabl
          */
         public void setNameProperty(SimpleStringProperty nameProperty) {
             this.nameProperty = nameProperty;
+        }
+
+        private void setSuperFields(Exercise e) {
+            super.setName(e.getName());
+            super.setDescription(e.getDescription());
+            super.setDuration(e.getDuration());
+            super.setExtensions(e.getExtensions());
+            super.setFocus(e.getFocus());
+            super.setId(e.getId());
+            super.setIntensity(e.getIntensity());
+            super.setParentId(e.getParentId());
+            super.setSportType(e.getSportType());
+            super.setVolume(e.getVolume());
+            super.setWeightLiftingExtension(e.getWeightLiftingExtension());
+        }
+
+        private void calulateVDI() {
+            super.volume = weightLiftingExtension.getRepitions()*weightLiftingExtension.getSets();
+            if (weightLiftingExtension.getOneRepMax() > 0){
+            super.intensity = (weightLiftingExtension.getWeight()/weightLiftingExtension.getOneRepMax())*weightLiftingExtension.getRepitions()*weightLiftingExtension.getSets();
+                    }
+            else super.intensity = weightLiftingExtension.getRepitions()*weightLiftingExtension.getSets();
+            super.duration = (int) ((2*weightLiftingExtension.getRepitions())*weightLiftingExtension.getSets()+
+                           (weightLiftingExtension.getRestInterval()*weightLiftingExtension.getSets()-1));
+           _exercise.setVolume(super.getVolume());
+           _exercise.setDuration(super.getDuration());
+           _exercise.setIntensity(super.getIntensity());
+                    
         }
          
      }

@@ -161,7 +161,7 @@
         <Image url="@../images/blue_file_edit.png" preserveRatio="false" smooth="false" />
       </image>
     </ImageView>
-    <AnchorPane fx:id="workoutEditBox" layoutX="38.0" layoutY="210.0" minHeight="156.5" prefHeight="330.5" prefWidth="362.0">
+    <AnchorPane fx:id="workoutEditBox" layoutX="38.0" layoutY="210.0" minHeight="156.5" prefHeight="330.5" prefWidth="362.0" visible="false">
       <children>
         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="332.5" layoutX="5.0" layoutY="-1.0" opacity="0.85" stroke="BLACK" strokeType="INSIDE" width="352.0" />
         <VBox id="VBox" alignment="CENTER" layoutX="29.0" layoutY="16.0" spacing="5.0">

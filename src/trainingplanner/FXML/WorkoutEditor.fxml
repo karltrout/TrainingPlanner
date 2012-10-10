@@ -6,6 +6,7 @@
 <?import javafx.collections.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
@@ -14,12 +15,19 @@
 
 <fx:root type="javafx.scene.layout.AnchorPane" id="AnchorPane" prefHeight="430.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <Rectangle id="rectangle2" arcHeight="15.0" arcWidth="15.0" fill="#dfdfdf" height="430.0" stroke="BLACK" strokeType="INSIDE" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
+    <Rectangle id="rectangle2" arcHeight="15.0" arcWidth="15.0" height="430.0" stroke="BLACK" strokeType="INSIDE" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+      <effect>
+        <DropShadow offsetX="2.0" offsetY="2.0" />
+      </effect>
+      <fill>
+        <Color blue="0.875" green="0.875" red="0.875" fx:id="x2" />
+      </fill>
+    </Rectangle>
     <GridPane fx:id="excersizeName" hgap="5.0" layoutX="15.0" layoutY="52.0" prefHeight="66.0" prefWidth="249.0">
       <children>
-        <Text id="noteIntensity" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Text id="noteDuration" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Text id="noteVolume" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Text id="noteIntensity" fx:id="intensityField" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Text id="noteDuration" fx:id="durationField" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Text id="noteVolume" fx:id="volumeField" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Text id="text4" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="Volume" GridPane.columnIndex="0" GridPane.rowIndex="2" />
         <Text id="text5" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="Intensity" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <Text id="text6" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-editor-text-field-14" text="Duration" GridPane.columnIndex="0" GridPane.rowIndex="1" />
@@ -105,25 +113,59 @@
         <URL value="@css/trainingPlanner.css" />
       </stylesheets>
     </Group>
-    <Group id="notePadCloseBox" fx:id="saveExcersizeButton" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="119.0">
+    <Group id="notePadCloseBox" fx:id="saveExcersizeButton" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="189.0">
       <children>
-        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" layoutY="9.0" stroke="$x1" strokeType="INSIDE" strokeWidth="2.0" width="65.15625" />
-        <Text id="text3" layoutX="20.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Save" />
+        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" layoutY="9.0" stroke="$x1" strokeType="INSIDE" strokeWidth="2.0" width="50.5654296875" />
+        <Text id="text3" layoutX="13.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Save" />
       </children>
     </Group>
-    <Group id="notePadCloseBox" fx:id="cancelExcersizeButton" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="29.0">
+    <Group id="notePadCloseBox" fx:id="cancelExcersizeButton" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="80.0">
       <children>
-        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" layoutY="9.0" stroke="$x1" strokeType="INSIDE" strokeWidth="2.0" width="65.15625" />
-        <Text id="text3" layoutX="14.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancel" />
+        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" layoutY="9.0" stroke="$x1" strokeType="INSIDE" strokeWidth="2.0" width="57.5517578125" />
+        <Text id="text3" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancel" />
       </children>
     </Group>
-    <Group id="notePadCloseBox" fx:id="newExcersizeButton" layoutX="325.0" layoutY="387.0">
+    <Group id="notePadCloseBox" fx:id="newExcersizeButton" layoutX="301.0" layoutY="387.0">
       <children>
-        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" layoutY="9.0" stroke="$x1" strokeType="INSIDE" strokeWidth="2.0" width="65.15625" />
-        <Text id="text3" layoutX="20.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New" />
+        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" layoutY="9.0" stroke="$x1" strokeType="INSIDE" strokeWidth="2.0" width="50.5654296875" />
+        <Text id="text3" layoutX="13.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New" />
       </children>
     </Group>
     <TextField id="textField6" fx:id="ExerciseNameField" editable="false" layoutX="14.0" layoutY="33.0" prefWidth="259.0" promptText="Exercise name" />
+    <AnchorPane fx:id="databaseChangedMessage" layoutX="152.0" layoutY="146.0" minHeight="84.0" prefHeight="91.0" prefWidth="286.0" visible="false">
+      <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x2" height="91.00003814697266" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="286.0">
+          <effect>
+            <DropShadow offsetX="2.0" offsetY="2.0" />
+          </effect>
+        </Rectangle>
+        <Group id="notePadCloseBox" fx:id="cancelSaveDatabaseButton" layoutX="140.0" layoutY="52.0">
+          <children>
+            <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" layoutY="9.0" stroke="$x1" strokeType="INSIDE" strokeWidth="2.0" width="65.15625" />
+            <Text id="text3" layoutX="14.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancel" />
+          </children>
+        </Group>
+        <Group id="notePadCloseBox" fx:id="saveDatabaseButton" layoutX="214.0" layoutY="52.0">
+          <children>
+            <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" layoutY="9.0" stroke="$x1" strokeType="INSIDE" strokeWidth="2.0" width="65.15625" />
+            <Text id="text3" layoutX="20.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Save" />
+          </children>
+        </Group>
+        <Group id="Group" layoutX="4.0" layoutY="2.0">
+          <children>
+            <Circle fill="RED" layoutX="28.0" layoutY="25.0" radius="20.0" stroke="#990000" strokeType="INSIDE" strokeWidth="2.0" />
+            <Line endX="20.0" layoutX="18.0" layoutY="25.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="8.0" />
+          </children>
+        </Group>
+        <Text layoutX="55.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="workout-listbox-text" text="the database for weightLifting Exercises has been modified. would you like to save it?" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="220.0" />
+      </children>
+    </AnchorPane>
+    <Group id="notePadCloseBox" fx:id="selectExerciseButton" layoutX="528.0" layoutY="387.0">
+      <children>
+        <Rectangle id="rectangle1" arcHeight="10.0" arcWidth="10.0" fill="WHITE" height="20.0" layoutY="9.0" stroke="#001899" strokeType="INSIDE" strokeWidth="2.0" width="57.5654296875" />
+        <Text id="text3" layoutX="13.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select" />
+      </children>
+    </Group>
   </children>
   <stylesheets>
     <URL value="@css/trainingPlanner.css" />
