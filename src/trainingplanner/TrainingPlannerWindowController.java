@@ -46,7 +46,6 @@ import trainingplanner.org.extensions.TrainingPlanExt;
 import trainingplanner.org.extensions.WorkoutExt;
 import trainingplanner.org.xsd.TrainingPlan;
 import trainingplanner.org.xsd.WeightLiftingDatabase;
-import trainingplanner.org.xsd.WeightLiftingExerciseDataBase;
 import trainingplanner.org.xsd.garmin.TrainingCenterDatabaseT;
 
 /**
@@ -84,7 +83,7 @@ public class TrainingPlannerWindowController implements Initializable {
     
     private SimpleObjectProperty<TrainingCalendarDay> selectedCalendarDate;
     private PaperBackController currentNotePad;
-    final private String planFile = "trainingPLan.xml";
+    final private String planFile = "trainingPlan.xml";
     private String tcdFile = "data/bike_test.tcx";
     private JAXBContext jcTCD;
     private TrainingCenterDatabaseT tcd;
@@ -197,6 +196,9 @@ public class TrainingPlannerWindowController implements Initializable {
      */
     public TrainingPlan deserializeXMLToTrainingPlan(String xmlFileLocation)
       throws Exception {
+        /* TODO:
+         * check for File
+         */ 
         FileInputStream is = new FileInputStream(xmlFileLocation);
         Unmarshaller u = jc.createUnmarshaller();
         TrainingPlan tp = (TrainingPlan)u.unmarshal(is);
