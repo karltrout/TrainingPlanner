@@ -37,7 +37,7 @@ import javafx.util.Callback;
 import trainingplanner.org.calendar.TrainingCalendarDay;
 import trainingplanner.org.extensions.TrainingCalendarExt;
 import trainingplanner.org.extensions.WorkoutExt;
-import trainingplanner.org.xsd.ExcersizeType;
+import trainingplanner.org.xsd.ExerciseType;
 import trainingplanner.org.xsd.SportTypes;
 /**
  * FXML Controller class
@@ -74,7 +74,7 @@ public class PaperBackController extends AnchorPane implements Initializable {
     @FXML Text noteVolume;
     @FXML TextArea noteDescription;
     
-    @FXML ListView<ExcersizeType> noteDetailList;
+    @FXML ListView<ExerciseType> noteDetailList;
 
     //private ObservableList<WorkoutExt> workouts = FXCollections.observableArrayList();
     private TrainingCalendarDay trainingDay;
@@ -179,7 +179,9 @@ public class PaperBackController extends AnchorPane implements Initializable {
             selected.workout.setVolume(Double.parseDouble(volume.getText()));
             selected.workout.setDuration(Integer.parseInt(duration.getText()));
             selected.workout.setIntensity(Double.parseDouble(intensity.getText()));
-            selected.workout.setDescription(description.getText());            
+            selected.workout.setDescription(description.getText());   
+            noteDetailList.setItems(selected.workout.getObservableExercises());
+            
             refreshWorkoutChart();
             this.parentCalendar.updateCalendar();
         }
@@ -256,7 +258,7 @@ public class PaperBackController extends AnchorPane implements Initializable {
         duration.setText(String.valueOf(wb.workout.getDuration()));
         description.setText(wb.workout.getDescription());
         
-        noteDetailList.setItems(wb.workout.getExcersizes());
+        noteDetailList.setItems(wb.workout.getObservableExercises());
         
         selected = wb;
     }
@@ -289,6 +291,7 @@ public class PaperBackController extends AnchorPane implements Initializable {
             noteDuration.setText("");
             noteVolume.setText("");
             noteDescription.setText("");
+            noteDetailList.getItems().clear();
             return;
         }
         noteSportsName.setText(workout.getSportType().value());
@@ -296,6 +299,8 @@ public class PaperBackController extends AnchorPane implements Initializable {
         noteDuration.setText(String.valueOf(workout.getDuration()));
         noteVolume.setText(String.valueOf(workout.getVolume()));
         noteDescription.setText(workout.getDescription());
+        
+        noteDetailList.setItems(workout.getObservableExercises());
     }
     
     private void refreshNutritionChart() {

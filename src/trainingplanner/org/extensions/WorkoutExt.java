@@ -14,7 +14,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
-import trainingplanner.org.xsd.ExcersizeType;
+import trainingplanner.org.xsd.ExerciseType;
 import trainingplanner.org.xsd.IWorkoutType;
 import trainingplanner.org.xsd.SportTypes;
 
@@ -27,35 +27,35 @@ public class WorkoutExt extends IWorkoutType {
     private SimpleStringProperty sportsTypeNameProperty;
     private GregorianCalendar workoutDate;
     private IWorkoutType workOutType = new IWorkoutType();
-    private ObservableList<ExcersizeType> excersizes = FXCollections.observableArrayList();
+    private ObservableList<ExerciseType> exercises = FXCollections.observableArrayList();
     private Image sportIconImage;
     
         
     public WorkoutExt(GregorianCalendar date){
         sportType = SportTypes.OTHER;
         description = "New Workout";
-        duration = 0;//new TrainingCalendarDuration();
-        excersize = FXCollections.observableArrayList();
-        intensity = 1.0;
-        volume = 1;
+        duration = 0;
+        intensity = 0.0;
+        volume = 0;
         workoutDate = date;
         setProperties();
     }
 
     public WorkoutExt(IWorkoutType wo, GregorianCalendar date) {
         workoutDate = date;
-        this.workOutType = wo;
-        this.description = wo.getDescription();
-        this.duration = wo.getDuration();
-        this.excersize = wo.getExcersize();
-        this.id = wo.getId();
-        this.intensity = wo.getIntensity();
-        this.parentId = wo.getParentId();
-        this.sportType = wo.getSportType();
-        this.volume = wo.getVolume();
-        this.excersizes.addAll(wo.getExcersize());
-        this.sportIconImage = getSportsTypeIconImage();
+        workOutType = wo;
+        description = wo.getDescription();
+        duration = wo.getDuration();
+        id = wo.getId();
+        intensity = wo.getIntensity();
+        parentId = wo.getParentId();
+        sportType = wo.getSportType();
+        volume = wo.getVolume();
+        super.getExercise().addAll(wo.getExercise());
+        exercises.addAll(wo.getExercise());
+        sportIconImage = getSportsTypeIconImage();
         setProperties();
+        calulateVDI();
     }
     
     public StringProperty getSportsTypeNameProperty(){
@@ -90,8 +90,7 @@ public class WorkoutExt extends IWorkoutType {
 
     private void setProperties() {
         sportsTypeNameProperty = new SimpleStringProperty(sportType.value());
-        //sportsTypeNameProperty.bind(this.sportType.value());
-        sportsTypeProperty = new SimpleObjectProperty<SportTypes>(sportType);
+        sportsTypeProperty = new SimpleObjectProperty<>(sportType);
         
         sportsTypeProperty.addListener(new ChangeListener<SportTypes>() {
 
@@ -131,11 +130,17 @@ public class WorkoutExt extends IWorkoutType {
         super.setVolume(value);
     }
 
+    public void addWorkoutExercise(ExerciseType exercise){
+        super.getExercise().add(exercise);
+        exercises.add(exercise);
+        workOutType.getExercise().add(exercise);
+        calulateVDI();
+    }
     /**
-     * @return the excersizes
+     * @return the exercises
      */
-    public ObservableList<ExcersizeType> getExcersizes() {
-        return excersizes;
+    public ObservableList<ExerciseType> getObservableExercises() {
+        return exercises;
     }
 
     /**
@@ -152,7 +157,7 @@ public class WorkoutExt extends IWorkoutType {
         this.workoutDate = workoutDate;
     }
 
-    public Image getSportsTypeIconImage() {
+    public final Image getSportsTypeIconImage() {
         switch (this.sportType){
             case STRENGTH:
                 return new Image("/trainingplanner/images/icons-weights.gif"); 
@@ -171,6 +176,19 @@ public class WorkoutExt extends IWorkoutType {
             default:
                 return new Image("/trainingplanner/images/icons-other.gif");
         }
+    }
+    public void calulateVDI() {
+        volume = 0;
+        intensity = 0;
+        duration = 0;
+        for (ExerciseType e:exercise){
+            volume = volume + e.getVolume();
+            intensity = intensity + e.getIntensity();
+            duration = duration + e.getDuration();
+        }
+        workOutType.setVolume(volume);
+        workOutType.setDuration(duration);
+        workOutType.setIntensity(intensity);  
     }
    
 }

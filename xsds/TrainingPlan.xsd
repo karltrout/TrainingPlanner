@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by karl trout (private) -->
+<!-- edited with XMLSpy v2012 sp1 (x64) (http://www.altova.com) by Karl Trout (private) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="trainingPlan" targetNamespace="trainingPlan" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:element name="TrainingPlan">
 		<xs:annotation>
@@ -81,7 +81,7 @@
 			<xs:element name="volume" type="xs:double"/>
 			<xs:element name="duration" type="xs:int"/>
 			<xs:element name="description" type="xs:string"/>
-			<xs:group ref="ns1:excersize"/>
+			<xs:group ref="ns1:exercise"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
 		<xs:attribute name="parentId" type="xs:string"/>
@@ -260,7 +260,7 @@
 			<xs:element name="Extension" type="xs:anyType" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="ExcersizeType" abstract="true">
+	<xs:complexType name="ExerciseType" abstract="false">
 		<xs:sequence>
 			<xs:element name="intensity" type="xs:double"/>
 			<xs:element name="duration" type="xs:int"/>
@@ -268,26 +268,20 @@
 			<xs:element name="focus" type="xs:string"/>
 			<xs:element name="description" type="xs:string"/>
 			<xs:element name="sportType" type="ns1:sportTypes"/>
-			<xs:element name="Extensions">
-				<xs:complexType>
-					<xs:complexContent>
-						<xs:extension base="xs:anyType"/>
-					</xs:complexContent>
-				</xs:complexType>
-			</xs:element>
+			<xs:element name="Extensions" type="xs:anyType" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="parentId" type="xs:string"/>
 		<xs:attribute name="name" type="xs:string"/>
 		<xs:attribute name="id" type="xs:ID"/>
 	</xs:complexType>
-	<xs:group name="excersize">
+	<xs:group name="exercise">
 		<xs:sequence>
-			<xs:element name="Excersize" type="ns1:ExcersizeType" maxOccurs="unbounded"/>
+			<xs:element name="Exercise" type="ns1:ExerciseType" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:group>
 	<xs:complexType name="WeightLiftingExtension">
 		<xs:sequence>
-			<xs:element name="excersizeName"/>
+			<xs:element name="exerciseName"/>
 			<xs:element name="muscleGroup" type="xs:string"/>
 			<xs:element name="secondaryMuscleGroup" type="xs:string"/>
 			<xs:sequence>
@@ -318,7 +312,7 @@
 			<xs:element name="exercise" maxOccurs="unbounded">
 				<xs:complexType mixed="0">
 					<xs:complexContent>
-						<xs:extension base="ns1:ExcersizeType">
+						<xs:extension base="ns1:ExerciseType">
 							<xs:sequence>
 								<xs:element name="WeightLiftingExtension" type="ns1:WeightLiftingExtension"/>
 							</xs:sequence>

@@ -20,12 +20,12 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 //import trainingplanner.org.xsd.SportTypes;
 
-public class ExersizeDataBase {
+public class ExerciseDataBase {
     private JAXBContext jc;
     private String dataBaseFileLocation;
     //private SportTypes sportsType;
     
-    ExersizeDataBase( final String  packageName, final String xmlFileLocation) throws IOException{
+    ExerciseDataBase( final String  packageName, final String xmlFileLocation) throws IOException{
             dataBaseFileLocation = xmlFileLocation;
         
         try{

@@ -34,7 +34,7 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 import trainingplanner.org.extensions.TrainingCalendarExt;
 import trainingplanner.org.extensions.WorkoutExt;
-import trainingplanner.org.xsd.ExcersizeType;
+import trainingplanner.org.xsd.ExerciseType;
 import trainingplanner.org.xsd.garmin.ActivityT;
 
 /**
@@ -46,7 +46,7 @@ public class WorkoutsPaneController extends AnchorPane implements Initializable 
     
     private ObservableList<ActivityT> workouts = FXCollections.observableArrayList();
     @FXML private ListView<WorkoutExt> workoutList;
-    @FXML private ListView<ExcersizeType> workoutDetailList;
+    @FXML private ListView<ExerciseType> workoutDetailList;
     @FXML private LineChart maxLapSpeed;
         
     @FXML Group workoutDetailsRemoveButton;
@@ -60,7 +60,7 @@ public class WorkoutsPaneController extends AnchorPane implements Initializable 
     private DateFormat df = new SimpleDateFormat("EEEE - MMM. dd,yyyy");
     private DateFormat dfTime = new SimpleDateFormat("HH:mm:ss a");
     private SimpleObjectProperty<WorkoutExt> selectedWorkout;
-    private ExcersizeType selectedDetail;
+    private ExerciseType selectedDetail;
     
     WorkoutsPaneController(TrainingPlannerWindowController parent, TrainingCalendarExt _trainingCalendar, SimpleObjectProperty<Color> _color){
         trainingCalendar = _trainingCalendar;
@@ -100,10 +100,10 @@ public class WorkoutsPaneController extends AnchorPane implements Initializable 
         });
        workoutList.getItems().clear();
         
-       workoutDetailList.setCellFactory(new Callback<ListView<ExcersizeType>, ListCell<ExcersizeType>>() {
+       workoutDetailList.setCellFactory(new Callback<ListView<ExerciseType>, ListCell<ExerciseType>>() {
 
             @Override
-            public ListCell<ExcersizeType> call(ListView<ExcersizeType> p) {
+            public ListCell<ExerciseType> call(ListView<ExerciseType> p) {
                 return new WorkoutDetailsHBox();
             }
         });
@@ -171,14 +171,14 @@ public class WorkoutsPaneController extends AnchorPane implements Initializable 
 
     private void setDetailsList(WorkoutExt workout) {
         if (workout != null){
-            workoutDetailList.setItems(workout.getExcersizes());
+            workoutDetailList.setItems(workout.getObservableExercises());
         }
     }
 
-    private static class WorkoutDetailsHBox extends ListCell<ExcersizeType> {
+    private static class WorkoutDetailsHBox extends ListCell<ExerciseType> {
          private Text title = new Text();
         @Override
-        public void updateItem(ExcersizeType item, boolean empty) {
+        public void updateItem(ExerciseType item, boolean empty) {
          super.updateItem(item, empty);
             title.getStyleClass().add("workout-listbox-title-text");
              if (item != null) {

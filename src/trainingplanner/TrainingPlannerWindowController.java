@@ -91,7 +91,7 @@ public class TrainingPlannerWindowController implements Initializable {
     private WorkoutEditorController workoutEditor;
     private String weightsDbFile = "WeightExercisesDataBase.xml";
     private WeightLiftingDatabase WeightExerciseDataBase;
-    static private ExersizeDataBase WeightsExersizeDBSerializer;
+    static private ExerciseDataBase WeightsExersizeDBSerializer;
     
     
     @FXML
@@ -144,7 +144,7 @@ public class TrainingPlannerWindowController implements Initializable {
             }
         });
         try {
-                 WeightsExersizeDBSerializer = new ExersizeDataBase("trainingplanner.org.xsd",weightsDbFile);
+                 WeightsExersizeDBSerializer = new ExerciseDataBase("trainingplanner.org.xsd",weightsDbFile);
                 if (new File(weightsDbFile).exists()){
                      WeightExerciseDataBase = (WeightLiftingDatabase) WeightsExersizeDBSerializer.deserializeXMLTodataBase();
                 }
