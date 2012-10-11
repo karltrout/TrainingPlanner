@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TrainingPlan xmlns="trainingPlan">
-    <Athlete id="07dfc2b8-a0dc-4c23-8f0b-a5f91b3a50d6">
+    <Athlete id="46248e56-4460-4233-9faf-c68b78a1f273">
         <firstName>Karl</firstName>
         <lastName>Trout</lastName>
         <dateOfBirth>1970-09-23-04:00</dateOfBirth>
@@ -9,15 +9,15 @@
         <keyPerformanceIndicators>
             <KPI>
                 <SportsType>Swim</SportsType>
-                <goalValue workoutId="000000003" value="75"/>
-                <currentValue workoutId="000000002" value="95"/>
-                <Measurement measureType="pace" distanceMeasure="yard" timeMeasure="minute"></Measurement>
+                <goalValue valueDate="" workoutId="000000003" value="75"/>
+                <currentValue valueDate="" workoutId="000000002" value="95"/>
+                <Measurement measureType="pace" distanceMeasure="yard" timeMeasure="minute"/>
             </KPI>
             <KPI>
                 <SportsType>Bike</SportsType>
-                <goalValue workoutId="000000001" value="133832714.4"/>
-                <currentValue workoutId="000000000" value="122245466.4"/>
-                <Measurement measureType="speed" distanceMeasure="mile" timeMeasure="hour"></Measurement>
+                <goalValue valueDate="" workoutId="000000001" value="133832714.4"/>
+                <currentValue valueDate="" workoutId="000000000" value="122245466.4"/>
+                <Measurement measureType="speed" distanceMeasure="mile" timeMeasure="hour"/>
             </KPI>
         </keyPerformanceIndicators>
     </Athlete>
@@ -32,20 +32,15 @@
             <WeekType weekNumber="2">
                 <trainingPlanWeek>52</trainingPlanWeek>
                 <DayType>
-                    <date>2012-10-08-04:00</date>
+                    <date>2012-10-11-04:00</date>
                     <WorkoutType sportType="Strength">
                         <intensity>1.0</intensity>
-                        <volume>0.45</volume>
+                        <volume>1.0</volume>
                         <duration>0</duration>
-                        <description>biceps and triceps
-</description>
+                        <description>New Workout</description>
                     </WorkoutType>
                 </DayType>
             </WeekType>
         </MonthType>
-        <MonthType>
-            <monthName>September</monthName>
-            <year>2012</year>
-            <monthId>8</monthId>
-            <WeekType weekNumber="3">
-                <trainingPlanWeek
+    </TrainingCalendar>
+</TrainingPlan>
