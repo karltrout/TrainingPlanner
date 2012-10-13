@@ -64,7 +64,7 @@
         </HBox>
       </children>
     </AnchorPane>
-    <AnchorPane fx:id="dashBoardPane" minHeight="-Infinity" minWidth="798.0" prefHeight="512.0" prefWidth="798.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
+    <AnchorPane fx:id="dashBoardPane" minHeight="-Infinity" minWidth="798.0" prefHeight="512.0" prefWidth="798.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
       <children>
         <StackPane id="StackPane" fx:id="calendarPane" layoutX="14.0" layoutY="14.0">
           <children>
@@ -76,14 +76,6 @@
             <fx:include source="TrainingPlannerGoals.fxml" prefHeight="150.0" prefWidth="398.0" />
           </children>
         </StackPane>
-        <AreaChart fx:id="volumeChart" legendSide="LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="325.0" prefWidth="768.0" title="Volume" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="14.0">
-          <xAxis>
-            <NumberAxis id="xAxis1" side="BOTTOM" />
-          </xAxis>
-          <yAxis>
-            <NumberAxis id="yAxis1" side="LEFT" />
-          </yAxis>
-        </AreaChart>
         <AnchorPane id="anchorPane1" prefHeight="163.0" prefWidth="761.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="427.0" AnchorPane.rightAnchor="10.0">
           <children>
             <ScrollPane id="scrollPane3" hbarPolicy="NEVER" pannable="true" prefHeight="161.0" prefWidth="768.0" styleClass="goals-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -99,10 +91,21 @@
             </ScrollPane>
           </children>
         </AnchorPane>
-        <AnchorPane id="anchorPane3" layoutX="599.0" layoutY="258.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane id="chartPane" fx:id="dashboardChartPane" prefHeight="320.0" prefWidth="761.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="427.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
+          <children>
+            <AreaChart id="volumeChart" legendSide="LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="317.0" prefWidth="751.0" title="Volume" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+              <xAxis>
+                <NumberAxis id="xAxis1" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis id="yAxis1" side="LEFT" />
+              </yAxis>
+            </AreaChart>
+          </children>
+        </AnchorPane>
       </children>
     </AnchorPane>
-    <AnchorPane id="workoutPane" fx:id="trainingPane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
+    <AnchorPane id="workoutPane" fx:id="trainingPane" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="125.0">
       <children>
         <fx:include source="TrainingPane.fxml" maxHeight="100.0" maxWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       </children>

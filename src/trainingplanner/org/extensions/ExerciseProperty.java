@@ -14,19 +14,18 @@ import trainingplanner.org.xsd.WeightLiftingExerciseDataBase.Exercise;
  * @author troutk
  */
 public class ExerciseProperty  extends Exercise{
-         private SimpleStringProperty nameProperty = new SimpleStringProperty();
-         private WeightLiftingExerciseDataBase.Exercise _exercise;
-        private ExerciseType exerciseType;
+    private SimpleStringProperty nameProperty = new SimpleStringProperty();
+    private Exercise _exercise;
+    private ExerciseType exerciseType;
          
          /**
      *
      * @param e
      */
-    public ExerciseProperty(WeightLiftingExerciseDataBase.Exercise e){
+    public ExerciseProperty(Exercise e){
              _exercise = e;
              setSuperFields(e);
              nameProperty.set(_exercise.getName());
-             
          }
 
          @Override
@@ -69,15 +68,15 @@ public class ExerciseProperty  extends Exercise{
         public void calulateVDI() {
             super.volume = weightLiftingExtension.getRepitions()*weightLiftingExtension.getSets();
             if (weightLiftingExtension.getOneRepMax() > 0){
-            super.intensity = (weightLiftingExtension.getWeight()/weightLiftingExtension.getOneRepMax())*weightLiftingExtension.getRepitions()*weightLiftingExtension.getSets();
-                    }
+                super.intensity = (weightLiftingExtension.getWeight()/weightLiftingExtension.getOneRepMax())*weightLiftingExtension.getRepitions()*weightLiftingExtension.getSets();
+            }
             else super.intensity = weightLiftingExtension.getRepitions()*weightLiftingExtension.getSets();
             super.duration = (int) ((2*weightLiftingExtension.getRepitions())*weightLiftingExtension.getSets()+
                            (weightLiftingExtension.getRestInterval()*weightLiftingExtension.getSets()-1));
-           getExercise().setVolume(super.getVolume());
-           getExercise().setDuration(super.getDuration());
-           getExercise().setIntensity(super.getIntensity());
-                    
+           
+            _exercise.setVolume(super.getVolume());
+            _exercise.setDuration(super.getDuration());
+            _exercise.setIntensity(super.getIntensity());
         }
         
         public ExerciseType getExerciseType(){
@@ -92,13 +91,12 @@ public class ExerciseProperty  extends Exercise{
             exerciseType.setVolume(volume);
             exerciseType.getExtensions().add(getExercise().getWeightLiftingExtension());
             return exerciseType;
-            
         }
 
     /**
      * @return the _exercise
      */
-    public WeightLiftingExerciseDataBase.Exercise getExercise() {
+    public Exercise getExercise() {
         return _exercise;
     }
 

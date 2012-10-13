@@ -24,6 +24,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -80,6 +84,7 @@ public class TrainingPlannerWindowController implements Initializable {
     @FXML  private ColorPicker colorPicker;
     @FXML  private AreaChart volumeChart;
     @FXML  private AnchorPane rootPane;
+    @FXML  private AnchorPane dashboardChartPane;
     
     private SimpleObjectProperty<TrainingCalendarDay> selectedCalendarDate;
     private PaperBackController currentNotePad;
@@ -259,6 +264,33 @@ public class TrainingPlannerWindowController implements Initializable {
         paceClock.setScaleX(0.5);
         paceClock.setScaleY(0.5);
         goalIcons.getChildren().add(paceClock);
+        
+        /*
+         * set dashboard chart
+         */
+        dashboardChartPane.getChildren().clear();
+        
+        final CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Workout Day");
+        final NumberAxis yAxis = new NumberAxis();
+        LineChart dashBoardChart = new LineChart<String,Number>(xAxis,yAxis);
+         dashBoardChart.setTitle("Daily Values");
+                          
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("Daily Volume");
+        
+        for(TrainingCalendarDay day: trainingCalendar.getAllTrainingDays()){
+            series1.getData().add(new XYChart.Data(String.format("%1$tm/%1$te",day.getCalendar()), day.getTotalVolume()));
+        }
+        
+        dashBoardChart.getData().add(series1);
+        AnchorPane.setBottomAnchor(dashBoardChart, 5.0);
+        AnchorPane.setTopAnchor(dashBoardChart, 5.0);
+        AnchorPane.setLeftAnchor(dashBoardChart, 5.0);
+        AnchorPane.setRightAnchor(dashBoardChart, 5.0);
+        
+        dashboardChartPane.getChildren().add(dashBoardChart);
+        
     }
 
     private void loadTrainingPlan() {
